@@ -34,7 +34,7 @@ export function HomeHeroRow() {
         <div className="relative lg:min-h-[calc(100vh-var(--header-h,88px))]">
           {/* MOBILE */}
           <div className="block lg:hidden">
-            <div className="relative h-[74vh] min-h-[600px] w-full overflow-hidden">
+            <div className="relative h-[82vh] min-h-[680px] w-full overflow-hidden">
               {isVideo ? (
                 <video
                   className="absolute inset-0 h-full w-full object-cover"
@@ -61,8 +61,8 @@ export function HomeHeroRow() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(214,179,106,0.08),transparent_42%)]" />
               <div className="absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(10,58,52,0.24),transparent)]" />
 
-              <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-5">
-                <div className="mx-auto max-w-[26rem] rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,25,21,0.86),rgba(8,25,21,0.72))] px-4 py-4 backdrop-blur-[7px] shadow-[0_18px_50px_rgba(0,0,0,0.26)] ring-1 ring-white/6">
+              <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-4">
+                <div className="mx-auto max-w-[26rem] rounded-[26px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,25,21,0.86),rgba(8,25,21,0.72))] px-4 py-3.5 backdrop-blur-[7px] shadow-[0_18px_50px_rgba(0,0,0,0.26)] ring-1 ring-white/6">
                   <div className="flex flex-wrap items-center gap-2">
                     <div className="founding-badge inline-flex items-center rounded-full border border-[#e8c979]/30 bg-[#d6b36a]/10 px-3 py-1">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#f2d79c]">
@@ -77,12 +77,12 @@ export function HomeHeroRow() {
                     </div>
                   </div>
 
-                  <div className="mt-3">
+                  <div className="mt-2.5">
                     <div className="arabic-verse arabic-verse-mobile text-[#ecd7a1]">
                       ﴿ مَنْ ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا ﴾
                     </div>
 
-                    <p className="english-verse english-verse-mobile mt-2 text-[#f1dfb0]">
+                    <p className="english-verse english-verse-mobile mt-1.5 text-[#f1dfb0]">
                       “Who is it that will lend to Allah a goodly loan?”
                     </p>
 
@@ -91,20 +91,20 @@ export function HomeHeroRow() {
                     </p>
                   </div>
 
-                  <h1 className="mt-3 text-[30px] font-semibold leading-[1.08] tracking-tight text-white">
+                  <h1 className="mt-2.5 text-[27px] font-semibold leading-[1.05] tracking-tight text-white">
                     Help Build a
                     <span className="block text-[#f4e1b0]">House of Allah</span>
                   </h1>
 
-                  <p className="mt-3 text-[14px] leading-6 text-white/84">
+                  <p className="mt-2.5 text-[13px] leading-[1.65] text-white/84">
                     Support Phase 1 construction for Masjid Ballantyne and help
                     establish a place for prayer, learning, and community for
                     generations to come.
                   </p>
 
-                  <div className="mt-4 rounded-[20px] border border-white/10 bg-white/[0.03] px-3 py-3">
+                  <div className="mt-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-3 py-3">
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.20em] text-[#ecd7a1]">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#ecd7a1]">
                         {constructionProgressData.phaseLabel} Construction Goal
                       </span>
                       <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/72">
@@ -128,22 +128,22 @@ export function HomeHeroRow() {
                       </span>
                     </div>
 
-                    <div className="mt-3 rounded-[14px] border border-[#e7c978]/16 bg-black/10 px-3 py-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f1dfb0]">
+                    <div className="mt-2.5 rounded-[14px] border border-[#e7c978]/16 bg-black/10 px-3 py-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#f1dfb0]">
                         {formatCurrency(remaining)} still needed
                       </p>
-                      <p className="mt-1 text-[11px] leading-5 text-white/72">
+                      <p className="mt-1 text-[11px] leading-[1.55] text-white/72">
                         Help complete Phase 1 and establish a permanent house of
                         Allah for the community.
                       </p>
                     </div>
 
-                    <div className="mt-3">
+                    <div className="mt-2.5">
                       <Link
                         href="/construction-progress"
-                        className="pdf-btn group relative inline-flex min-h-[42px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.04] px-4 py-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#f3dfad] transition-all duration-300 hover:border-[#e7c978]/30 hover:bg-white/[0.07]"
+                        className="pdf-btn group relative inline-flex min-h-[40px] w-full items-center justify-center overflow-hidden rounded-[15px] border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#f3dfad] transition-all duration-300 hover:border-[#e7c978]/30 hover:bg-white/[0.07]"
                       >
-                        <span className="pdf-shine absolute inset-0 overflow-hidden rounded-[16px]" />
+                        <span className="pdf-shine absolute inset-0 overflow-hidden rounded-[15px]" />
                         <span className="relative z-10">
                           View Phase 1 Progress
                         </span>
@@ -151,20 +151,20 @@ export function HomeHeroRow() {
                     </div>
                   </div>
 
-                  <p className="mt-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#ecd7a1]/95">
+                  <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#ecd7a1]/95">
                     Help secure the first permanent masjid in Ballantyne
                   </p>
 
-                  <div className="mt-3 flex items-center justify-between gap-3">
+                  <div className="mt-2.5 flex items-center justify-between gap-3">
                     <Link
                       href="/donate"
-                      className="donate-btn group relative inline-flex min-h-[46px] items-center justify-center overflow-hidden rounded-[18px] border border-[#e5c57a]/30 bg-[linear-gradient(180deg,rgba(232,206,138,0.22),rgba(214,179,106,0.14))] px-5 py-3 text-sm font-semibold text-[#f7ebc8] shadow-[0_12px_32px_rgba(0,0,0,0.20)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#f0d897]/45 hover:bg-[linear-gradient(180deg,rgba(232,206,138,0.30),rgba(214,179,106,0.18))]"
+                      className="donate-btn group relative inline-flex min-h-[42px] items-center justify-center overflow-hidden rounded-[16px] border border-[#e5c57a]/30 bg-[linear-gradient(180deg,rgba(232,206,138,0.22),rgba(214,179,106,0.14))] px-5 py-2.5 text-sm font-semibold text-[#f7ebc8] shadow-[0_12px_32px_rgba(0,0,0,0.20)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#f0d897]/45 hover:bg-[linear-gradient(180deg,rgba(232,206,138,0.30),rgba(214,179,106,0.18))]"
                     >
-                      <span className="shine-layer absolute inset-0 overflow-hidden rounded-[18px]" />
+                      <span className="shine-layer absolute inset-0 overflow-hidden rounded-[16px]" />
                       <span className="relative z-10">Donate Now</span>
                     </Link>
 
-                    <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">
+                    <span className="text-[10px] uppercase tracking-[0.16em] text-white/60">
                       Sadaqah Jariyah
                     </span>
                   </div>
