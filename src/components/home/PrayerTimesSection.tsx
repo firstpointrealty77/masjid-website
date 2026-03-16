@@ -1,7 +1,4 @@
 import React from "react";
-import { MasjidInfoPanel } from "./prayer/MasjidInfoPanel";
-import { PrayerTimesWelcomePanel } from "./prayer/PrayerTimesWelcomePanel";
-import { PrayerTimesTableCard } from "./prayer/PrayerTimesTableCard";
 
 type PrayerRow = {
   salah: string;
@@ -21,38 +18,72 @@ export function PrayerTimesSection({ rows }: Props) {
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.18]"
         style={{
-          backgroundImage: "radial-gradient(rgba(17,24,39,0.18) 0.6px, transparent 0.6px)",
+          backgroundImage:
+            "radial-gradient(rgba(17,24,39,0.18) 0.6px, transparent 0.6px)",
           backgroundSize: "18px 18px",
         }}
       />
 
-      <div className="pointer-events-none absolute -top-20 left-1/2 h-[340px] w-[min(1400px,96vw)] -translate-x-1/2 opacity-[0.06]">
-        <svg viewBox="0 0 1200 300" preserveAspectRatio="none" className="h-full w-full">
-          <path d="M0,300 Q600,-80 1200,300 L1200,0 L0,0 Z" fill="#0B3B2E" />
-        </svg>
-      </div>
+      <div className="relative px-4 py-10 sm:px-6 lg:px-10">
+        <div className="mx-auto max-w-screen-2xl">
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-[28px] border border-[#eadbb3] bg-white/95 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:p-8">
+              <span className="inline-flex rounded-full border border-[#d9c48a] bg-[#fbf7ea] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[#8a6a16]">
+                Prayer & Community
+              </span>
 
-      <div className="relative px-4 sm:px-6 lg:px-10 py-10 lg:-mt-12">
-        <div className="mx-auto max-w-screen-2xl relative">
-          <div className="pointer-events-none absolute -top-24 left-1/2 h-80 w-[calc(100vw-2rem)] max-w-[900px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl -z-10" />
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
+                Prayer Times
+              </h2>
 
-          {/* Desktop: Masjid Info | Welcome | Prayer Times */}
-          <div className="grid gap-6 lg:grid-cols-[360px_460px_1fr] lg:items-start">
-            {/* Left sticky */}
-            <div className="lg:sticky lg:top-[108px]">
-              <MasjidInfoPanel />
-            </div>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-neutral-600 sm:text-base">
+                Stay connected with the daily salah schedule, Jumu‘ah timings,
+                and important prayer updates for Masjid Ballantyne.
+              </p>
 
-            {/* Middle centered */}
-            <div className="lg:flex lg:min-h-[calc(100vh-160px)] lg:items-center lg:justify-center">
-              <div className="w-full">
-                <PrayerTimesWelcomePanel />
+              <div className="mt-6 rounded-2xl border border-[#e8e1cf] bg-[#fcfaf4] p-5">
+                <p className="text-sm text-neutral-700">
+                  The premium prayer times section is being prepared and will be
+                  restored here soon, inshaAllah.
+                </p>
               </div>
             </div>
 
-            {/* Right sticky */}
-            <div className="lg:sticky lg:top-[108px]">
-              <PrayerTimesTableCard rows={rows} />
+            <div className="rounded-[28px] border border-[#eadbb3] bg-white/95 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:p-8">
+              <h3 className="text-lg font-semibold text-neutral-900">
+                Today&apos;s Schedule
+              </h3>
+
+              {rows && rows.length > 0 ? (
+                <div className="mt-5 space-y-3">
+                  {rows.map((row) => (
+                    <div
+                      key={row.salah}
+                      className="flex items-center justify-between rounded-2xl border border-[#ece6d8] bg-[#fffdf8] px-4 py-3"
+                    >
+                      <div>
+                        <p className="font-medium text-neutral-900">
+                          {row.salah}
+                        </p>
+                        <p className="text-xs text-neutral-500">Adhan</p>
+                      </div>
+
+                      <div className="text-right">
+                        <p className="font-medium text-neutral-900">
+                          {row.adhan}
+                        </p>
+                        <p className="text-xs text-neutral-500">
+                          Iqamah: {row.iqamah}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-5 rounded-2xl border border-dashed border-[#d9cfb5] bg-[#fcfaf4] px-4 py-5 text-sm text-neutral-600">
+                  Prayer times will appear here once the data loads.
+                </div>
+              )}
             </div>
           </div>
         </div>

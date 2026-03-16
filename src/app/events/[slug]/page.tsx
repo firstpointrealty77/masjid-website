@@ -15,9 +15,7 @@ export default async function EventDetailPage({
         <h1 className="text-3xl font-semibold tracking-tight text-neutral-900">
           Event Details
         </h1>
-        <p className="mt-4 text-base text-neutral-600">
-          Event slug: {slug}
-        </p>
+        <p className="mt-4 text-base text-neutral-600">Event slug: {slug}</p>
       </section>
     </main>
   );
