@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 type PrayerRow = {
@@ -227,11 +226,11 @@ export function PrayerTimesModule() {
   }, [dailyRows, jummahRows, friday, tick]);
 
   return (
-    <aside className="relative overflow-hidden rounded-[22px] md:rounded-[28px] border border-[#dccba0] bg-[linear-gradient(180deg,rgba(252,249,241,0.96),rgba(244,238,226,0.96))] text-[#163324] shadow-[0_18px_44px_rgba(0,0,0,0.14)] md:shadow-[0_30px_90px_rgba(0,0,0,0.22)] backdrop-blur-md before:pointer-events-none before:absolute before:inset-0 before:rounded-[28px] before:border before:border-[#d4a447]/20">
+    <aside className="relative overflow-hidden rounded-[22px] border border-[#dccba0] bg-[linear-gradient(180deg,rgba(252,249,241,0.96),rgba(244,238,226,0.96))] text-[#163324] shadow-[0_18px_44px_rgba(0,0,0,0.14)] backdrop-blur-md before:pointer-events-none before:absolute before:inset-0 before:rounded-[28px] before:border before:border-[#d4a447]/20 md:rounded-[28px] md:shadow-[0_30px_90px_rgba(0,0,0,0.22)]">
       <div className="border-b border-[#d9c592] bg-[linear-gradient(180deg,#113f30_0%,#1a5a43_100%)] px-4 py-3.5 md:px-5 md:py-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 items-start gap-2.5 md:gap-3">
-            <div className="mt-0.5 flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full border border-[#d4a447]/40 bg-[#0f3d2e]/70 text-[#d4a447] shadow-[0_0_0_1px_rgba(212,164,71,0.08)]">
+            <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d4a447]/40 bg-[#0f3d2e]/70 text-[#d4a447] shadow-[0_0_0_1px_rgba(212,164,71,0.08)] md:h-10 md:w-10">
               <svg
                 className="h-4 w-4 md:h-5 md:w-5"
                 viewBox="0 0 24 24"
@@ -251,19 +250,19 @@ export function PrayerTimesModule() {
             </div>
 
             <div>
-              <h3 className="text-[17px] md:text-[20px] font-semibold tracking-[-0.02em] text-[#f8f2e7]">
+              <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-[#f8f2e7] md:text-[20px]">
                 Prayer Times
               </h3>
-              <div className="mt-1 h-px w-20 md:w-28 bg-gradient-to-r from-[#d4a447] via-[#e6c776] to-transparent" />
+              <div className="mt-1 h-px w-20 bg-gradient-to-r from-[#d4a447] via-[#e6c776] to-transparent md:w-28" />
             </div>
           </div>
 
           <div className="text-right">
-            <div className="text-[11px] md:text-[13px] font-medium text-[#f4ead2] whitespace-nowrap">
+            <div className="whitespace-nowrap text-[11px] font-medium text-[#f4ead2] md:text-[13px]">
               {displayDate}
             </div>
             {displayHijri ? (
-              <div className="mt-0.5 md:mt-1 text-[10px] md:text-[12px] text-[#d9c592] whitespace-nowrap">
+              <div className="mt-0.5 whitespace-nowrap text-[10px] text-[#d9c592] md:mt-1 md:text-[12px]">
                 {displayHijri}
               </div>
             ) : null}
@@ -278,15 +277,15 @@ export function PrayerTimesModule() {
           <div className="text-sm text-black/60">Loading…</div>
         ) : (
           <>
-            <div className="overflow-hidden rounded-[14px] md:rounded-[18px] border border-[#d8c8a0] bg-white/70 shadow-[0_6px_18px_rgba(0,0,0,0.04)] md:shadow-[0_12px_30px_rgba(0,0,0,0.07)]">
+            <div className="overflow-hidden rounded-[14px] border border-[#d8c8a0] bg-white/70 shadow-[0_6px_18px_rgba(0,0,0,0.04)] md:rounded-[18px] md:shadow-[0_12px_30px_rgba(0,0,0,0.07)]">
               <div className="grid grid-cols-[1fr_62px_68px] items-center border-b border-[#d8c8a0] bg-[linear-gradient(180deg,#1b5b43_0%,#144733_100%)] px-4 py-2 md:grid-cols-[1fr_72px_82px] md:px-5 md:py-3">
-                <div className="text-[11px] md:text-[14px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2] md:text-[14px]">
                   Prayer
                 </div>
-                <div className="text-center text-[11px] md:text-[13px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2]">
+                <div className="text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2] md:text-[13px]">
                   Adhan
                 </div>
-                <div className="text-right text-[11px] md:text-[14px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2]">
+                <div className="text-right text-[11px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2] md:text-[14px]">
                   Iqama
                 </div>
               </div>
@@ -302,7 +301,7 @@ export function PrayerTimesModule() {
                   <div
                     key={`${r.salah}-${i}`}
                     className={[
-                      "relative grid grid-cols-[1fr_62px_68px] items-center px-4 py-2 md:grid-cols-[1fr_72px_82px] md:px-5 md:py-3 transition-colors duration-200 hover:bg-[#f5efdf]",
+                      "relative grid grid-cols-[1fr_62px_68px] items-center px-4 py-2 transition-colors duration-200 hover:bg-[#f5efdf] md:grid-cols-[1fr_72px_82px] md:px-5 md:py-3",
                       i % 2 === 0 ? "bg-[#fffdf8]" : "bg-[#f8f4ea]",
                       !isLast ? "border-b border-[#eee4cc]" : "",
                       isNext
@@ -311,11 +310,11 @@ export function PrayerTimesModule() {
                     ].join(" ")}
                   >
                     {isNext ? (
-                      <span className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full bg-gradient-to-b from-[#e2be63] via-[#d4a447] to-[#c6912c]" />
+                      <span className="absolute bottom-2 left-0 top-2 w-[3px] rounded-r-full bg-gradient-to-b from-[#e2be63] via-[#d4a447] to-[#c6912c]" />
                     ) : null}
 
                     <div
-                      className={`text-[13px] md:text-[17px] font-medium ${
+                      className={`text-[13px] font-medium md:text-[17px] ${
                         isSunrise ? "text-gray-400" : "text-[#163324]"
                       }`}
                     >
@@ -323,7 +322,7 @@ export function PrayerTimesModule() {
                     </div>
 
                     <div
-                      className={`text-center text-[12px] md:text-[14px] tabular-nums font-medium ${
+                      className={`text-center text-[12px] font-medium tabular-nums md:text-[14px] ${
                         isSunrise ? "text-gray-400" : "text-[#486555]"
                       }`}
                     >
@@ -331,12 +330,12 @@ export function PrayerTimesModule() {
                     </div>
 
                     <div
-                      className={`text-right tabular-nums font-semibold ${
+                      className={`text-right font-semibold tabular-nums ${
                         isSunrise
-                          ? "text-[14px] md:text-[18px] text-gray-400"
+                          ? "text-[14px] text-gray-400 md:text-[18px]"
                           : isNext
-                          ? "text-[14px] md:text-[19px] text-[#123124]"
-                          : "text-[14px] md:text-[18px] text-[#163324]"
+                          ? "text-[14px] text-[#123124] md:text-[19px]"
+                          : "text-[14px] text-[#163324] md:text-[18px]"
                       }`}
                     >
                       {iqamah}
@@ -347,12 +346,12 @@ export function PrayerTimesModule() {
             </div>
 
             {jummahRows.length > 0 && (
-              <div className="mt-2.5 md:mt-3.5 overflow-hidden rounded-[14px] md:rounded-[18px] border border-[#d8c8a0] bg-white/70 shadow-[0_6px_18px_rgba(0,0,0,0.04)] md:shadow-[0_12px_30px_rgba(0,0,0,0.07)]">
+              <div className="mt-2.5 overflow-hidden rounded-[14px] border border-[#d8c8a0] bg-white/70 shadow-[0_6px_18px_rgba(0,0,0,0.04)] md:mt-3.5 md:rounded-[18px] md:shadow-[0_12px_30px_rgba(0,0,0,0.07)]">
                 <div className="grid grid-cols-[1fr_82px] items-center border-b border-[#d8c8a0] bg-[linear-gradient(180deg,#1b5b43_0%,#144733_100%)] px-4 py-2 md:grid-cols-[1fr_100px] md:px-5 md:py-3">
-                  <div className="text-[12px] md:text-[14px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2]">
+                  <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2] md:text-[14px]">
                     Jummah
                   </div>
-                  <div className="text-right text-[12px] md:text-[14px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2]">
+                  <div className="text-right text-[12px] font-semibold uppercase tracking-[0.08em] text-[#f4ead2] md:text-[14px]">
                     Khutba
                   </div>
                 </div>
@@ -366,7 +365,7 @@ export function PrayerTimesModule() {
                     <div
                       key={`${r.salah}-${i}`}
                       className={[
-                        "relative grid grid-cols-[1fr_82px] items-center px-4 py-2 md:grid-cols-[1fr_100px] md:px-5 md:py-3 transition-colors duration-200 hover:bg-[#f5efdf]",
+                        "relative grid grid-cols-[1fr_82px] items-center px-4 py-2 transition-colors duration-200 hover:bg-[#f5efdf] md:grid-cols-[1fr_100px] md:px-5 md:py-3",
                         i % 2 === 0 ? "bg-[#fffdf8]" : "bg-[#f8f4ea]",
                         !isLast ? "border-b border-[#eee4cc]" : "",
                         isNext
@@ -375,18 +374,18 @@ export function PrayerTimesModule() {
                       ].join(" ")}
                     >
                       {isNext ? (
-                        <span className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full bg-gradient-to-b from-[#e2be63] via-[#d4a447] to-[#c6912c]" />
+                        <span className="absolute bottom-2 left-0 top-2 w-[3px] rounded-r-full bg-gradient-to-b from-[#e2be63] via-[#d4a447] to-[#c6912c]" />
                       ) : null}
 
-                      <div className="text-[14px] md:text-[17px] font-medium text-[#163324]">
+                      <div className="text-[14px] font-medium text-[#163324] md:text-[17px]">
                         {r.salah}
                       </div>
 
                       <div
-                        className={`text-right tabular-nums font-semibold ${
+                        className={`text-right font-semibold tabular-nums ${
                           isNext
-                            ? "text-[15px] md:text-[19px] text-[#123124]"
-                            : "text-[15px] md:text-[18px] text-[#163324]"
+                            ? "text-[15px] text-[#123124] md:text-[19px]"
+                            : "text-[15px] text-[#163324] md:text-[18px]"
                         }`}
                       >
                         {iqamah}
@@ -397,11 +396,13 @@ export function PrayerTimesModule() {
               </div>
             )}
 
-            <div className="mt-3.5 md:mt-4 border-t border-[#e5d8b7] pt-2.5 md:pt-3">
+            <div className="mt-3.5 border-t border-[#e5d8b7] pt-2.5 md:mt-4 md:pt-3">
               <div className="flex flex-col gap-2">
-                <Link
-                  href="/prayer"
-                  className="inline-flex items-center gap-2 text-[12px] md:text-[13px] font-semibold text-[#1b5b43] hover:underline"
+                <a
+                  href="/monthly-prayer-schedule.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#1b5b43] hover:underline md:text-[13px]"
                 >
                   <svg
                     className="h-4 w-4 text-[#b48a2c]"
@@ -419,11 +420,13 @@ export function PrayerTimesModule() {
                     <path d="M3 10h18" />
                   </svg>
                   <span>Monthly Schedule</span>
-                </Link>
+                </a>
 
                 <a
                   href="/annual-prayer-schedule.pdf"
-                  className="inline-flex items-center gap-2 text-[12px] md:text-[13px] font-semibold text-[#1b5b43] hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#1b5b43] hover:underline md:text-[13px]"
                 >
                   <svg
                     className="h-4 w-4 text-[#b48a2c]"
