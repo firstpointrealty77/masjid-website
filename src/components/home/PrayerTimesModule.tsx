@@ -399,7 +399,7 @@ export function PrayerTimesModule() {
             <div className="mt-3.5 border-t border-[#e5d8b7] pt-2.5 md:mt-4 md:pt-3">
               <div className="flex flex-col gap-2">
                 <a
-                  href="/monthly-prayer-schedule.pdf"
+                  href="/prayer/monthly-prayer-schedule.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#1b5b43] hover:underline md:text-[13px]"
@@ -423,7 +423,7 @@ export function PrayerTimesModule() {
                 </a>
 
                 <a
-                  href="/annual-prayer-schedule.pdf"
+                  href="/prayer/annual-prayer-schedule.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#1b5b43] hover:underline md:text-[13px]"
