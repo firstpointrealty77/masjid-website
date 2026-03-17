@@ -67,7 +67,7 @@ function MenuButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="h-9 w-9 rounded-full inline-flex items-center justify-center shrink-0 border border-[#A7D7C5]/45 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_12px_26px_rgba(0,0,0,0.22)] hover:bg-white/5 transition-all duration-200"
+      className="h-10 w-10 rounded-full inline-flex items-center justify-center shrink-0 border border-[#A7D7C5]/45 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_12px_26px_rgba(0,0,0,0.22)] hover:bg-white/5 transition-all duration-200"
       aria-label="Open menu"
     >
       <div className="flex flex-col gap-[3px]">
@@ -336,16 +336,17 @@ export function Header() {
             {/* MOBILE */}
             <div
               className={clsx(
-                "md:hidden flex items-center justify-between",
+                "md:hidden flex items-center gap-3",
                 scrolled ? "py-2.5" : "py-3"
               )}
             >
-              <div className="min-w-0 pr-2">
-                <WordmarkLogo />
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <div className="max-w-full overflow-hidden">
+                  <WordmarkLogo />
+                </div>
               </div>
 
-              <div className="flex items-center gap-1.5 shrink-0">
-                <DonateButton compact />
+              <div className="shrink-0">
                 <MenuButton
                   onClick={() => {
                     setMobileOpen(true);
@@ -517,9 +518,17 @@ export function Header() {
 
           <style jsx global>{`
             @keyframes sweep {
-              0% { transform: translateX(0) skewX(12deg); opacity: 0; }
-              25% { opacity: 1; }
-              100% { transform: translateX(240%) skewX(12deg); opacity: 0; }
+              0% {
+                transform: translateX(0) skewX(12deg);
+                opacity: 0;
+              }
+              25% {
+                opacity: 1;
+              }
+              100% {
+                transform: translateX(240%) skewX(12deg);
+                opacity: 0;
+              }
             }
           `}</style>
         </header>
@@ -534,178 +543,173 @@ export function Header() {
             aria-label="Close overlay"
           />
 
-          <div className="absolute right-0 top-0 h-full w-[86%] max-w-sm bg-[#0A3A34] border-l border-[#A7D7C5]/35 shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
-            <div className="flex items-center justify-between px-5 py-5 border-b border-[#A7D7C5]/35">
-              <span className="text-xs font-medium text-white">Menu</span>
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="text-white text-lg"
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="px-5 py-6">
-              <div className="flex items-center gap-3">
-                <DonateButton
-                  className="flex-1 justify-center h-10"
+          <div className="absolute right-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto overscroll-contain bg-[#0A3A34] border-l border-[#A7D7C5]/35 shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
+            <div className="min-h-full">
+              <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-5 border-b border-[#A7D7C5]/35 bg-[#0A3A34]/95 backdrop-blur-md">
+                <span className="text-xs font-medium text-white">Menu</span>
+                <button
                   onClick={() => setMobileOpen(false)}
-                />
+                  className="text-white text-lg"
+                  aria-label="Close menu"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="px-5 py-6 pb-10">
                 <a
                   href={whatsappInvite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 h-10 inline-flex items-center justify-center rounded-full border border-[#A7D7C5]/35 text-white text-[11px] hover:text-[#A7D7C5] hover:border-[#A7D7C5]/55 transition"
+                  className="inline-flex w-full h-10 items-center justify-center rounded-full border border-[#A7D7C5]/35 text-white text-[11px] hover:text-[#A7D7C5] hover:border-[#A7D7C5]/55 transition"
                 >
                   WhatsApp
                 </a>
-              </div>
 
-              {/* WhatsApp Community Card */}
-              <a
-                href={whatsappInvite}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 block rounded-2xl border border-[#A7D7C5]/28 bg-white/[0.04] px-4 py-4 transition hover:bg-white/[0.06]"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 h-9 w-9 shrink-0 rounded-full border border-[#A7D7C5]/30 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] flex items-center justify-center text-[#A7D7C5]">
-                    <span className="text-sm">✦</span>
-                  </div>
-
-                  <div>
-                    <div className="text-white font-medium text-[15px] tracking-[0.01em]">
-                      Join Our WhatsApp Community
+                <a
+                  href={whatsappInvite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 block rounded-2xl border border-[#A7D7C5]/28 bg-white/[0.04] px-4 py-4 transition hover:bg-white/[0.06]"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 h-9 w-9 shrink-0 rounded-full border border-[#A7D7C5]/30 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] flex items-center justify-center text-[#A7D7C5]">
+                      <span className="text-sm">✦</span>
                     </div>
-                    <div className="mt-1 text-white/65 text-[12px] leading-relaxed">
-                      Get prayer updates, events, announcements, and community reminders.
+
+                    <div>
+                      <div className="text-white font-medium text-[15px] tracking-[0.01em]">
+                        Join Our WhatsApp Community
+                      </div>
+                      <div className="mt-1 text-white/65 text-[12px] leading-relaxed">
+                        Get prayer updates, events, announcements, and community reminders.
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
 
-              <div className="mt-6 h-px bg-[#A7D7C5]/35" />
+                <div className="mt-6 h-px bg-[#A7D7C5]/35" />
 
-              <nav className="mt-6 flex flex-col gap-2">
-                {topNav.map((item) => {
-                  if (item.type === "link") {
-                    const isActive = isActivePath(pathname, item.href);
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={clsx(
-                          "relative rounded-2xl px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors border border-white/10",
-                          isActive
-                            ? "text-[#A7D7C5] bg-white/[0.04]"
-                            : "text-white hover:text-[#A7D7C5] hover:bg-white/[0.03]"
-                        )}
-                      >
-                        <span
-                          aria-hidden="true"
+                <nav className="mt-6 flex flex-col gap-2">
+                  {topNav.map((item) => {
+                    if (item.type === "link") {
+                      const isActive = isActivePath(pathname, item.href);
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setMobileOpen(false)}
                           className={clsx(
-                            "absolute left-0 top-2 bottom-2 w-[2px] rounded-full transition-opacity",
-                            isActive ? "opacity-100 bg-[#A7D7C5]" : "opacity-0"
+                            "relative rounded-2xl px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors border border-white/10",
+                            isActive
+                              ? "text-[#A7D7C5] bg-white/[0.04]"
+                              : "text-white hover:text-[#A7D7C5] hover:bg-white/[0.03]"
                           )}
-                        />
-                        {isActive && (
+                        >
                           <span
                             aria-hidden="true"
-                            className="absolute inset-0 rounded-2xl pointer-events-none"
-                            style={{
-                              background:
-                                "radial-gradient(circle at 30% 50%, rgba(212,164,71,0.10), transparent 60%)",
-                            }}
+                            className={clsx(
+                              "absolute left-0 top-2 bottom-2 w-[2px] rounded-full transition-opacity",
+                              isActive ? "opacity-100 bg-[#A7D7C5]" : "opacity-0"
+                            )}
                           />
-                        )}
-                        <span className="relative z-10">{item.label}</span>
-                      </Link>
+                          {isActive && (
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0 rounded-2xl pointer-events-none"
+                              style={{
+                                background:
+                                  "radial-gradient(circle at 30% 50%, rgba(212,164,71,0.10), transparent 60%)",
+                              }}
+                            />
+                          )}
+                          <span className="relative z-10">{item.label}</span>
+                        </Link>
+                      );
+                    }
+
+                    const groupActive = item.items.some((x) =>
+                      isActivePath(pathname, x.href)
                     );
-                  }
+                    const isOpen = !!mobileGroupsOpen[item.label];
 
-                  const groupActive = item.items.some((x) =>
-                    isActivePath(pathname, x.href)
-                  );
-                  const isOpen = !!mobileGroupsOpen[item.label];
-
-                  return (
-                    <div
-                      key={item.label}
-                      className="rounded-2xl border border-white/10 overflow-hidden bg-white/[0.03]"
-                    >
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setMobileGroupsOpen((p) => ({
-                            ...p,
-                            [item.label]: !p[item.label],
-                          }))
-                        }
-                        className={clsx(
-                          "w-full flex items-center justify-between px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
-                          groupActive ? "text-[#A7D7C5]" : "text-white"
-                        )}
-                        aria-expanded={isOpen}
+                    return (
+                      <div
+                        key={item.label}
+                        className="rounded-2xl border border-white/10 overflow-hidden bg-white/[0.03]"
                       >
-                        <span className="relative z-10">{item.label}</span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setMobileGroupsOpen((p) => ({
+                              ...p,
+                              [item.label]: !p[item.label],
+                            }))
+                          }
+                          className={clsx(
+                            "relative w-full flex items-center justify-between px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
+                            groupActive ? "text-[#A7D7C5]" : "text-white"
+                          )}
+                          aria-expanded={isOpen}
+                        >
+                          <span className="relative z-10">{item.label}</span>
 
-                        {groupActive && (
-                          <span
-                            aria-hidden="true"
-                            className="absolute left-0 top-2 bottom-2 w-[2px] rounded-full bg-[#A7D7C5]"
-                          />
-                        )}
+                          {groupActive && (
+                            <span
+                              aria-hidden="true"
+                              className="absolute left-0 top-2 bottom-2 w-[2px] rounded-full bg-[#A7D7C5]"
+                            />
+                          )}
 
-                        <span className="text-white/70">{isOpen ? "–" : "+"}</span>
-                      </button>
+                          <span className="text-white/70">{isOpen ? "–" : "+"}</span>
+                        </button>
 
-                      {isOpen && (
-                        <div className="px-2 pb-2">
-                          {item.items.map((it) => {
-                            const active = isActivePath(pathname, it.href);
-                            return (
-                              <Link
-                                key={it.href}
-                                href={it.href}
-                                onClick={() => setMobileOpen(false)}
-                                className={clsx(
-                                  "block relative rounded-xl px-3 py-2 text-sm transition-colors",
-                                  active
-                                    ? "text-[#A7D7C5] bg-white/[0.04]"
-                                    : "text-white/85 hover:text-[#A7D7C5] hover:bg-white/[0.03]"
-                                )}
-                              >
-                                <span
-                                  aria-hidden="true"
+                        {isOpen && (
+                          <div className="px-2 pb-2">
+                            {item.items.map((it) => {
+                              const active = isActivePath(pathname, it.href);
+                              return (
+                                <Link
+                                  key={it.href}
+                                  href={it.href}
+                                  onClick={() => setMobileOpen(false)}
                                   className={clsx(
-                                    "absolute left-0 top-2 bottom-2 w-[2px] rounded-full transition-opacity",
-                                    active ? "opacity-100 bg-[#A7D7C5]" : "opacity-0"
+                                    "block relative rounded-xl px-3 py-2 text-sm transition-colors",
+                                    active
+                                      ? "text-[#A7D7C5] bg-white/[0.04]"
+                                      : "text-white/85 hover:text-[#A7D7C5] hover:bg-white/[0.03]"
                                   )}
-                                />
-                                {active && (
+                                >
                                   <span
                                     aria-hidden="true"
-                                    className="absolute inset-0 rounded-xl pointer-events-none"
-                                    style={{
-                                      background:
-                                        "radial-gradient(circle at 30% 50%, rgba(212,164,71,0.10), transparent 60%)",
-                                    }}
+                                    className={clsx(
+                                      "absolute left-0 top-2 bottom-2 w-[2px] rounded-full transition-opacity",
+                                      active ? "opacity-100 bg-[#A7D7C5]" : "opacity-0"
+                                    )}
                                   />
-                                )}
-                                <span className="relative z-10 pl-2">{it.label}</span>
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </nav>
+                                  {active && (
+                                    <span
+                                      aria-hidden="true"
+                                      className="absolute inset-0 rounded-xl pointer-events-none"
+                                      style={{
+                                        background:
+                                          "radial-gradient(circle at 30% 50%, rgba(212,164,71,0.10), transparent 60%)",
+                                      }}
+                                    />
+                                  )}
+                                  <span className="relative z-10 pl-2">{it.label}</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </nav>
 
-              <div className="mt-6 h-px bg-[#A7D7C5]/35" />
+                <div className="mt-6 h-px bg-[#A7D7C5]/35" />
+              </div>
             </div>
           </div>
         </div>
