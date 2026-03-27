@@ -88,11 +88,11 @@ export default function UpcomingEventsStandalone() {
   if (!images.length) return null;
 
   return (
-    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#f8faf8_0%,#f4f6f2_42%,#f7f5ef_100%)] py-4 md:py-7 xl:py-9">
+    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#f8faf8_0%,#f4f6f2_42%,#f7f5ef_100%)] py-3 md:py-6 xl:py-8">
       <div className="relative mx-auto w-full max-w-[2500px] px-4 sm:px-5">
         {/* HEADER */}
-        <div className="mb-3 text-center sm:mb-5">
-          <div className="mx-auto mb-1.5 flex items-center justify-center gap-2">
+        <div className="mb-2 text-center sm:mb-4">
+          <div className="mx-auto mb-1 flex items-center justify-center gap-2">
             <span className="mini-line" />
             <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#b8933f]">
               Masjid Life
@@ -100,32 +100,26 @@ export default function UpcomingEventsStandalone() {
             <span className="mini-line" />
           </div>
 
-          <h2 className="mx-auto text-[1.42rem] font-semibold leading-tight tracking-[-0.02em] text-[#123c31] sm:text-3xl lg:text-[2.5rem]">
+          <h2 className="mx-auto text-[1.35rem] font-semibold leading-tight tracking-[-0.01em] text-[#123c31] sm:text-3xl lg:text-[2.4rem]">
             Community Events & Programs
           </h2>
 
-          <div className="premium-divider mt-2">
+          <div className="premium-divider mt-1.5">
             <span className="divider-line" />
-            <span className="divider-ornament">
-              <span className="divider-dot" />
-            </span>
+            <span className="divider-dot" />
             <span className="divider-line" />
           </div>
-
-          <p className="mx-auto mt-2 max-w-lg text-[13px] leading-snug text-[#5a6b64] sm:text-sm">
-            Stay connected with activities, classes, and gatherings at the Masjid.
-          </p>
         </div>
 
         {/* MOBILE */}
         <div
-          className="relative mt-4 md:hidden"
+          className="relative mt-3 md:hidden"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onTouchStart={() => setPaused(true)}
           onTouchEnd={() => setPaused(false)}
         >
-          <div className="relative mx-auto w-full max-w-[560px] overflow-hidden rounded-[30px]">
+          <div className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[30px]">
             <div
               className="flex transition-transform duration-700 ease-out"
               style={{ transform: `translateX(-${page * 100}%)` }}
@@ -140,7 +134,7 @@ export default function UpcomingEventsStandalone() {
                       <span>Coming Soon</span>
                     </div>
 
-                    <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.98)_0%,rgba(241,238,230,0.92)_100%)]">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-[22px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.98)_0%,rgba(241,238,230,0.92)_100%)]">
                       <Image
                         src={item.src}
                         alt=""
@@ -319,32 +313,6 @@ export default function UpcomingEventsStandalone() {
             #d4a94f,
             rgba(212, 169, 79, 0.16)
           );
-        }
-
-        .divider-line::after {
-          content: "";
-          position: absolute;
-          inset: -2px 18px;
-          background: radial-gradient(rgba(212, 169, 79, 0.16), transparent 70%);
-          filter: blur(4px);
-          pointer-events: none;
-        }
-
-        .divider-ornament {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 22px;
-          height: 22px;
-        }
-
-        .divider-ornament::before {
-          content: "";
-          position: absolute;
-          inset: 4px;
-          border: 1px solid rgba(212, 169, 79, 0.34);
-          border-radius: 999px;
         }
 
         .divider-dot {
