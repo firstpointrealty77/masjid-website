@@ -35,29 +35,38 @@ function DonateButton({
       aria-label="Donate"
       className={clsx(
         "group relative inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300",
-        "text-[#0A3A34] border border-[#F3D789]/55",
-        "bg-[linear-gradient(180deg,#E1BA5A_0%,#D4A447_55%,#C8922E_100%)]",
-        "shadow-[0_10px_24px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.22)]",
-        "hover:brightness-[1.04] hover:shadow-[0_14px_30px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.26)]",
+        "text-[#0A3A34] border border-[#F3D789]/60",
+        "bg-[linear-gradient(180deg,#EBC870_0%,#D8AA48_52%,#BC811E_100%)]",
+        "shadow-[0_16px_38px_rgba(0,0,0,0.26),0_0_0_1px_rgba(243,215,137,0.14),inset_0_1px_0_rgba(255,255,255,0.24)]",
+        "hover:brightness-[1.05] hover:shadow-[0_20px_42px_rgba(0,0,0,0.32),0_0_28px_rgba(212,164,71,0.24),inset_0_1px_0_rgba(255,255,255,0.30)]",
         "active:brightness-[0.98]",
-        compact ? "h-9 px-3 text-[11px]" : "h-10 px-7 text-[12px]",
+        compact ? "h-11 px-5 text-[12px]" : "h-[50px] px-9 text-[13px] xl:px-10",
         className
       )}
     >
-      <span className="relative z-10">Donate</span>
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-[3px] rounded-full opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(212,164,71,0.34), transparent 72%)",
+        }}
+      />
+
+      <span className="relative z-10 tracking-[0.02em]">Donate</span>
 
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-full opacity-55"
+        className="pointer-events-none absolute inset-0 rounded-full opacity-60"
         style={{
           background:
-            "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.30), transparent 62%)",
+            "radial-gradient(circle at 28% 24%, rgba(255,255,255,0.33), transparent 62%)",
         }}
       />
 
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 -left-[140%] w-[120%] bg-gradient-to-r from-transparent via-white/35 to-transparent skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-[sweep_0.85s_ease-out_forwards]"
+        className="pointer-events-none absolute inset-y-0 -left-[140%] w-[120%] bg-gradient-to-r from-transparent via-white/35 to-transparent skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-[sweep_0.9s_ease-out_forwards]"
       />
     </Link>
   );
@@ -242,6 +251,7 @@ export function Header() {
 
   const headerRef = useRef<HTMLElement | null>(null);
   const navWrapRef = useRef<HTMLDivElement | null>(null);
+  const desktopNavRef = useRef<HTMLDivElement | null>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [indicator, setIndicator] = useState<{
@@ -309,6 +319,18 @@ export function Header() {
     return null;
   }, [pathname, topNav]);
 
+  const activeGroupLabel: string | null = useMemo(() => {
+    for (const it of topNav) {
+      if (
+        it.type === "group" &&
+        it.items.some((x) => isActivePath(pathname, x.href))
+      ) {
+        return it.label;
+      }
+    }
+    return null;
+  }, [pathname, topNav]);
+
   const computeIndicator = () => {
     const wrap = navWrapRef.current;
     if (!wrap || !activeTopKey) {
@@ -325,7 +347,7 @@ export function Header() {
     const wrapRect = wrap.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
 
-    const width = Math.max(34, Math.min(elRect.width - 8, 68));
+    const width = Math.max(38, Math.min(elRect.width - 6, 82));
     const left = elRect.left - wrapRect.left + (elRect.width - width) / 2;
 
     setIndicator({ left, width, show: true });
@@ -354,11 +376,35 @@ export function Header() {
   useEffect(() => {
     if (!openGroup) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenGroup(null);
+      if (e.key === "Escape") {
+        setOpenGroup(activeGroupLabel);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [openGroup]);
+  }, [openGroup, activeGroupLabel]);
+
+  useEffect(() => {
+    setOpenGroup(activeGroupLabel);
+    if (activeGroupLabel) {
+      setMobileGroupsOpen((prev) => ({
+        ...prev,
+        [activeGroupLabel]: true,
+      }));
+    }
+  }, [activeGroupLabel]);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (!desktopNavRef.current) return;
+      if (!desktopNavRef.current.contains(e.target as Node)) {
+        setOpenGroup(activeGroupLabel);
+      }
+    };
+
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [activeGroupLabel]);
 
   const openDesktopGroup = (label: string) => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
@@ -368,7 +414,7 @@ export function Header() {
   const closeDesktopGroup = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     hoverTimeoutRef.current = setTimeout(() => {
-      setOpenGroup(null);
+      setOpenGroup(activeGroupLabel);
     }, 140);
   };
 
@@ -386,9 +432,9 @@ export function Header() {
           )}
         >
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,164,71,0.18),transparent_58%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_55%,rgba(0,0,0,0.26),transparent_60%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_55%,rgba(0,0,0,0.26),transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,164,71,0.18),transparent_56%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_55%,rgba(0,0,0,0.24),transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_55%,rgba(0,0,0,0.24),transparent_60%)]" />
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A7D7C5]/28 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#A7D7C5]/22 to-transparent" />
           </div>
@@ -438,22 +484,21 @@ export function Header() {
 
             <div className="hidden md:block">
               <div className="relative">
-                <div className="pointer-events-none absolute inset-x-[18%] top-2 h-24 overflow-hidden">
-                  <span className="absolute left-[4%] top-10 h-[3px] w-[3px] rounded-full bg-[#F3D789]/30 blur-[0.5px] animate-[floatParticleA_13s_ease-in-out_infinite]" />
-                  <span className="absolute left-[14%] top-4 h-[4px] w-[4px] rounded-full bg-[#D4A447]/22 blur-[0.5px] animate-[floatParticleB_16s_ease-in-out_infinite]" />
-                  <span className="absolute left-[25%] top-12 h-[2px] w-[2px] rounded-full bg-[#F3D789]/35 animate-[floatParticleC_12s_ease-in-out_infinite]" />
-                  <span className="absolute left-[37%] top-2 h-[3px] w-[3px] rounded-full bg-[#E7C66C]/24 blur-[0.5px] animate-[floatParticleD_15s_ease-in-out_infinite]" />
-                  <span className="absolute left-[49%] top-9 h-[4px] w-[4px] rounded-full bg-[#F6E7B0]/20 blur-[0.5px] animate-[floatParticleA_17s_ease-in-out_infinite]" />
-                  <span className="absolute left-[60%] top-1 h-[2px] w-[2px] rounded-full bg-[#D4A447]/30 animate-[floatParticleB_14s_ease-in-out_infinite]" />
-                  <span className="absolute left-[71%] top-14 h-[3px] w-[3px] rounded-full bg-[#F3D789]/24 blur-[0.5px] animate-[floatParticleC_18s_ease-in-out_infinite]" />
-                  <span className="absolute left-[83%] top-5 h-[4px] w-[4px] rounded-full bg-[#E7C66C]/18 blur-[0.5px] animate-[floatParticleD_13s_ease-in-out_infinite]" />
-                  <span className="absolute left-[91%] top-11 h-[2px] w-[2px] rounded-full bg-[#F3D789]/30 animate-[floatParticleA_15s_ease-in-out_infinite]" />
+                <div className="pointer-events-none absolute inset-x-[18%] top-1 h-20 overflow-hidden">
+                  <span className="absolute left-[4%] top-10 h-[3px] w-[3px] rounded-full bg-[#F3D789]/28 blur-[0.5px] animate-[floatParticleA_13s_ease-in-out_infinite]" />
+                  <span className="absolute left-[14%] top-4 h-[4px] w-[4px] rounded-full bg-[#D4A447]/20 blur-[0.5px] animate-[floatParticleB_16s_ease-in-out_infinite]" />
+                  <span className="absolute left-[25%] top-12 h-[2px] w-[2px] rounded-full bg-[#F3D789]/32 animate-[floatParticleC_12s_ease-in-out_infinite]" />
+                  <span className="absolute left-[37%] top-2 h-[3px] w-[3px] rounded-full bg-[#E7C66C]/20 blur-[0.5px] animate-[floatParticleD_15s_ease-in-out_infinite]" />
+                  <span className="absolute left-[49%] top-9 h-[4px] w-[4px] rounded-full bg-[#F6E7B0]/18 blur-[0.5px] animate-[floatParticleA_17s_ease-in-out_infinite]" />
+                  <span className="absolute left-[60%] top-1 h-[2px] w-[2px] rounded-full bg-[#D4A447]/28 animate-[floatParticleB_14s_ease-in-out_infinite]" />
+                  <span className="absolute left-[71%] top-14 h-[3px] w-[3px] rounded-full bg-[#F3D789]/22 blur-[0.5px] animate-[floatParticleC_18s_ease-in-out_infinite]" />
+                  <span className="absolute left-[83%] top-5 h-[4px] w-[4px] rounded-full bg-[#E7C66C]/16 blur-[0.5px] animate-[floatParticleD_13s_ease-in-out_infinite]" />
                 </div>
 
                 <div
                   className={clsx(
                     "relative flex justify-center",
-                    scrolled ? "pb-1.5 pt-3" : "pb-2 pt-4"
+                    scrolled ? "pb-1 pt-2.5" : "pb-1.5 pt-3"
                   )}
                 >
                   <Link
@@ -466,46 +511,46 @@ export function Header() {
                       className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl transition-all duration-400 group-hover:opacity-100"
                       style={{
                         background:
-                          "radial-gradient(circle at 50% 50%, rgba(212,164,71,0.24), transparent 68%)",
+                          "radial-gradient(circle at 50% 50%, rgba(212,164,71,0.22), transparent 68%)",
                       }}
                     />
                     <span
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-y-[8%] -left-[125%] w-[36%] rounded-2xl bg-gradient-to-r from-transparent via-[#FFF4CC]/38 to-transparent skew-x-[-18deg] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:animate-[logoShimmer_1.45s_ease-out_forwards]"
                     />
-                    <span className="relative z-10 origin-center scale-[1.05] transition-transform duration-300 group-hover:scale-[1.065] xl:scale-[1.08] xl:group-hover:scale-[1.095]">
+                    <span className="relative z-10 origin-center scale-[1.04] transition-transform duration-300 group-hover:scale-[1.06] xl:scale-[1.07] xl:group-hover:scale-[1.085]">
                       <WordmarkLogo />
                     </span>
                   </Link>
                 </div>
               </div>
 
-              <nav className="flex items-center pb-4">
-                <div className="flex-[1.15]" />
+              <nav className="flex items-center pb-3">
+                <div className="flex-[1.03]" />
 
-                <div className="relative">
-                  <div className="pointer-events-none absolute inset-x-[8%] -top-5 h-16 overflow-hidden">
-                    <span className="absolute left-[6%] top-8 h-[3px] w-[3px] rounded-full bg-[#F3D789]/26 blur-[0.5px] animate-[floatParticleB_14s_ease-in-out_infinite]" />
-                    <span className="absolute left-[20%] top-2 h-[2px] w-[2px] rounded-full bg-[#D4A447]/24 animate-[floatParticleC_18s_ease-in-out_infinite]" />
-                    <span className="absolute left-[34%] top-11 h-[4px] w-[4px] rounded-full bg-[#F6E7B0]/16 blur-[0.5px] animate-[floatParticleD_15s_ease-in-out_infinite]" />
-                    <span className="absolute left-[47%] top-3 h-[3px] w-[3px] rounded-full bg-[#E7C66C]/20 blur-[0.5px] animate-[floatParticleA_12s_ease-in-out_infinite]" />
-                    <span className="absolute left-[59%] top-9 h-[2px] w-[2px] rounded-full bg-[#F3D789]/28 animate-[floatParticleB_16s_ease-in-out_infinite]" />
-                    <span className="absolute left-[73%] top-1 h-[3px] w-[3px] rounded-full bg-[#D4A447]/20 blur-[0.5px] animate-[floatParticleC_13s_ease-in-out_infinite]" />
-                    <span className="absolute left-[87%] top-10 h-[2px] w-[2px] rounded-full bg-[#F3D789]/24 animate-[floatParticleD_17s_ease-in-out_infinite]" />
+                <div className="relative" ref={desktopNavRef}>
+                  <div className="pointer-events-none absolute inset-x-[8%] -top-4 h-14 overflow-hidden">
+                    <span className="absolute left-[6%] top-8 h-[3px] w-[3px] rounded-full bg-[#F3D789]/24 blur-[0.5px] animate-[floatParticleB_14s_ease-in-out_infinite]" />
+                    <span className="absolute left-[20%] top-2 h-[2px] w-[2px] rounded-full bg-[#D4A447]/22 animate-[floatParticleC_18s_ease-in-out_infinite]" />
+                    <span className="absolute left-[34%] top-11 h-[4px] w-[4px] rounded-full bg-[#F6E7B0]/14 blur-[0.5px] animate-[floatParticleD_15s_ease-in-out_infinite]" />
+                    <span className="absolute left-[47%] top-3 h-[3px] w-[3px] rounded-full bg-[#E7C66C]/18 blur-[0.5px] animate-[floatParticleA_12s_ease-in-out_infinite]" />
+                    <span className="absolute left-[59%] top-9 h-[2px] w-[2px] rounded-full bg-[#F3D789]/24 animate-[floatParticleB_16s_ease-in-out_infinite]" />
+                    <span className="absolute left-[73%] top-1 h-[3px] w-[3px] rounded-full bg-[#D4A447]/18 blur-[0.5px] animate-[floatParticleC_13s_ease-in-out_infinite]" />
+                    <span className="absolute left-[87%] top-10 h-[2px] w-[2px] rounded-full bg-[#F3D789]/20 animate-[floatParticleD_17s_ease-in-out_infinite]" />
                   </div>
 
-                  <div className="relative overflow-hidden rounded-full">
+                  <div className="relative rounded-full">
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 rounded-full border border-white/8 bg-white/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_16px_40px_rgba(0,0,0,0.16)] backdrop-blur-md"
+                      className="pointer-events-none absolute inset-0 rounded-full border border-white/10 bg-white/[0.05] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_18px_44px_rgba(0,0,0,0.18),0_8px_20px_rgba(3,20,18,0.16)] backdrop-blur-md"
                     />
 
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-y-[10%] -left-[22%] w-[18%] rounded-full opacity-[0.16] blur-md animate-[navGoldSweep_12s_ease-in-out_infinite]"
+                      className="pointer-events-none absolute inset-y-[8%] -left-[18%] w-[16%] rounded-full opacity-[0.14] blur-md animate-[navGoldSweep_12s_ease-in-out_infinite]"
                       style={{
                         background:
-                          "linear-gradient(90deg, transparent 0%, rgba(243,215,137,0.00) 8%, rgba(243,215,137,0.10) 40%, rgba(255,244,204,0.22) 50%, rgba(243,215,137,0.10) 60%, rgba(243,215,137,0.00) 92%, transparent 100%)",
+                          "linear-gradient(90deg, transparent 0%, rgba(243,215,137,0.00) 8%, rgba(243,215,137,0.08) 40%, rgba(255,244,204,0.22) 50%, rgba(243,215,137,0.08) 60%, rgba(243,215,137,0.00) 92%, transparent 100%)",
                       }}
                     />
 
@@ -514,15 +559,16 @@ export function Header() {
                       className="pointer-events-none absolute inset-x-10 top-[1px] h-[46%] rounded-full opacity-90"
                       style={{
                         background:
-                          "linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04) 55%, transparent 100%)",
+                          "linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05) 55%, transparent 100%)",
                       }}
                     />
+
                     <div
                       aria-hidden="true"
                       className="pointer-events-none absolute left-[12%] top-1/2 h-12 w-40 -translate-y-1/2 rounded-full blur-2xl"
                       style={{
                         background:
-                          "radial-gradient(circle, rgba(212,164,71,0.12), transparent 70%)",
+                          "radial-gradient(circle, rgba(212,164,71,0.10), transparent 70%)",
                       }}
                     />
                     <div
@@ -530,19 +576,19 @@ export function Header() {
                       className="pointer-events-none absolute right-[10%] top-1/2 h-12 w-40 -translate-y-1/2 rounded-full blur-2xl"
                       style={{
                         background:
-                          "radial-gradient(circle, rgba(167,215,197,0.08), transparent 70%)",
+                          "radial-gradient(circle, rgba(167,215,197,0.07), transparent 70%)",
                       }}
                     />
 
                     <div
                       ref={navWrapRef}
-                      className="relative flex max-w-[980px] flex-nowrap items-center justify-center gap-4 rounded-full px-6 py-2.5 text-[14px] font-medium tracking-[0.02em] lg:gap-5 xl:gap-6 xl:text-[15px]"
+                      className="relative flex max-w-[1060px] flex-nowrap items-center justify-center gap-5 rounded-full px-7 py-[13px] text-[14px] font-semibold tracking-[0.015em] lg:gap-6 xl:gap-7 xl:text-[16px]"
                       onMouseLeave={closeDesktopGroup}
                     >
                       <span
                         aria-hidden="true"
                         className={clsx(
-                          "pointer-events-none absolute top-0 h-[2px] rounded-full bg-gradient-to-r from-[#C8922E] via-[#F3D789] to-[#C8922E] shadow-[0_0_14px_rgba(212,164,71,0.35)] transition-[transform,opacity,width] duration-300 ease-out",
+                          "pointer-events-none absolute top-0 h-[2px] rounded-full bg-gradient-to-r from-[#C8922E] via-[#F3D789] to-[#C8922E] shadow-[0_0_16px_rgba(212,164,71,0.38)] transition-[transform,opacity,width] duration-300 ease-out",
                           indicator.show ? "opacity-100" : "opacity-0"
                         )}
                         style={{
@@ -581,15 +627,19 @@ export function Header() {
                                 <>
                                   <span
                                     aria-hidden="true"
-                                    className="pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-xl"
+                                    className="pointer-events-none absolute -inset-x-2.5 -inset-y-1.5 rounded-xl"
                                     style={{
                                       background:
-                                        "radial-gradient(circle at 50% 55%, rgba(212,164,71,0.16), transparent 72%)",
+                                        "radial-gradient(circle at 50% 55%, rgba(212,164,71,0.18), transparent 72%)",
                                     }}
                                   />
                                   <span
                                     aria-hidden="true"
-                                    className="pointer-events-none absolute bottom-[-1px] left-1/2 h-[2px] w-full max-w-[88px] -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-[#E7C66C] to-transparent"
+                                    className="pointer-events-none absolute inset-x-1 bottom-0 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#A7D7C5]/45 to-transparent"
+                                  />
+                                  <span
+                                    aria-hidden="true"
+                                    className="pointer-events-none absolute bottom-[-1px] left-1/2 h-[2px] w-full max-w-[96px] -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-[#E7C66C] to-transparent"
                                   />
                                 </>
                               )}
@@ -613,9 +663,14 @@ export function Header() {
                               type="button"
                               data-key={item.label}
                               aria-expanded={isOpen}
+                              onClick={() =>
+                                setOpenGroup((prev) =>
+                                  prev === item.label ? null : item.label
+                                )
+                              }
                               className={clsx(
                                 "group relative inline-flex items-center gap-1.5 whitespace-nowrap px-1 py-2 leading-none transition-colors duration-200",
-                                groupActive
+                                groupActive || isOpen
                                   ? "text-[#F6E7B0]"
                                   : "text-white hover:text-[#A7D7C5]"
                               )}
@@ -630,23 +685,28 @@ export function Header() {
                                 className={clsx(
                                   "pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-px w-0 bg-gradient-to-r from-transparent via-[#D4A447] to-transparent opacity-0 transition-all duration-300",
                                   !groupActive &&
+                                    !isOpen &&
                                     "group-hover:w-full group-hover:opacity-100"
                                 )}
                               />
 
-                              {groupActive && (
+                              {(groupActive || isOpen) && (
                                 <>
                                   <span
                                     aria-hidden="true"
-                                    className="pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-xl"
+                                    className="pointer-events-none absolute -inset-x-2.5 -inset-y-1.5 rounded-xl"
                                     style={{
                                       background:
-                                        "radial-gradient(circle at 50% 55%, rgba(212,164,71,0.16), transparent 72%)",
+                                        "radial-gradient(circle at 50% 55%, rgba(212,164,71,0.20), transparent 72%)",
                                     }}
                                   />
                                   <span
                                     aria-hidden="true"
-                                    className="pointer-events-none absolute bottom-[-1px] left-1/2 h-[2px] w-full max-w-[88px] -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-[#E7C66C] to-transparent"
+                                    className="pointer-events-none absolute inset-x-1 bottom-0 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#A7D7C5]/45 to-transparent"
+                                  />
+                                  <span
+                                    aria-hidden="true"
+                                    className="pointer-events-none absolute bottom-[-1px] left-1/2 h-[2px] w-full max-w-[96px] -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-[#E7C66C] to-transparent"
                                   />
                                 </>
                               )}
@@ -654,7 +714,7 @@ export function Header() {
 
                             <div
                               className={clsx(
-                                "absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 transition-all duration-200 ease-out",
+                                "absolute left-1/2 top-full z-50 -translate-x-1/2 pt-[18px] transition-all duration-200 ease-out",
                                 isOpen
                                   ? "pointer-events-auto translate-y-0 opacity-100"
                                   : "pointer-events-none -translate-y-1 opacity-0"
@@ -662,25 +722,39 @@ export function Header() {
                               onMouseEnter={() => openDesktopGroup(item.label)}
                               onMouseLeave={closeDesktopGroup}
                             >
-                              <div className="relative min-w-[620px] rounded-2xl border border-white/10 bg-black/70 p-3 shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl">
-                                <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/55 to-transparent" />
-                                <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/5" />
+                              <div className="relative min-w-[800px] rounded-[30px] border border-white/12 bg-[linear-gradient(180deg,rgba(7,14,15,0.90)_0%,rgba(15,19,18,0.84)_40%,rgba(25,22,17,0.84)_100%)] p-[18px] shadow-[0_40px_100px_rgba(0,0,0,0.60)] backdrop-blur-[24px]">
+                                <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/58 to-transparent" />
+                                <div className="pointer-events-none absolute inset-0 rounded-[30px] ring-1 ring-white/5" />
+                                <div
+                                  aria-hidden="true"
+                                  className="pointer-events-none absolute inset-x-[18%] top-0 h-20 rounded-full blur-3xl"
+                                  style={{
+                                    background:
+                                      "radial-gradient(circle, rgba(212,164,71,0.10), transparent 72%)",
+                                  }}
+                                />
+                                <div
+                                  aria-hidden="true"
+                                  className="pointer-events-none absolute inset-x-[20%] bottom-0 h-16 rounded-full blur-2xl"
+                                  style={{
+                                    background:
+                                      "radial-gradient(circle, rgba(167,215,197,0.05), transparent 72%)",
+                                  }}
+                                />
 
-                                <div className="grid grid-cols-2 gap-1">
+                                <div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
                                   {item.items.map((it, index) => {
-                                    const active = isActivePath(
-                                      pathname,
-                                      it.href
-                                    );
+                                    const active = isActivePath(pathname, it.href);
                                     return (
                                       <Link
                                         key={it.href}
                                         href={it.href}
+                                        onClick={() => setOpenGroup(item.label)}
                                         className={clsx(
-                                          "group/item relative rounded-xl px-3 py-2 transition-all duration-300",
+                                          "group/item relative rounded-[20px] px-4 py-3.5 transition-all duration-300",
                                           active
-                                            ? "bg-[#A7D7C5]/15 text-[#DFF5EC]"
-                                            : "text-white/80 hover:bg-white/5 hover:text-white",
+                                            ? "bg-[linear-gradient(180deg,rgba(167,215,197,0.16),rgba(167,215,197,0.08))] text-[#E8FBF4] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+                                            : "text-white/90 hover:bg-white/[0.06] hover:text-white",
                                           isOpen
                                             ? "translate-y-0 opacity-100"
                                             : "translate-y-2 opacity-0"
@@ -694,17 +768,31 @@ export function Header() {
                                         <span
                                           aria-hidden="true"
                                           className={clsx(
-                                            "pointer-events-none absolute inset-y-2 left-0 w-[2px] rounded-full transition-opacity duration-200",
+                                            "pointer-events-none absolute inset-y-3 left-0 w-[2px] rounded-full transition-opacity duration-200",
                                             active
                                               ? "bg-[#D4A447] opacity-100"
                                               : "bg-[#D4A447] opacity-0 group-hover/item:opacity-100"
                                           )}
                                         />
-                                        <div className="text-[12px] font-semibold tracking-[0.02em]">
+
+                                        <span
+                                          aria-hidden="true"
+                                          className={clsx(
+                                            "pointer-events-none absolute inset-0 rounded-[20px] opacity-0 transition-opacity duration-300",
+                                            !active && "group-hover/item:opacity-100"
+                                          )}
+                                          style={{
+                                            background:
+                                              "radial-gradient(circle at 18% 50%, rgba(212,164,71,0.08), transparent 56%)",
+                                          }}
+                                        />
+
+                                        <div className="relative z-10 text-[14px] font-semibold tracking-[0.01em]">
                                           {it.label}
                                         </div>
+
                                         {it.description ? (
-                                          <div className="mt-0.5 text-xs font-normal text-white/50 transition-colors duration-200 group-hover/item:text-white/65">
+                                          <div className="relative z-10 mt-1 text-[13px] leading-[1.45] text-white/68 transition-colors duration-200 group-hover/item:text-white/82">
                                             {it.description}
                                           </div>
                                         ) : null}
@@ -715,7 +803,7 @@ export function Header() {
 
                                 <div
                                   className={clsx(
-                                    "mt-3 h-px bg-gradient-to-r from-transparent via-[#A7D7C5]/22 to-transparent transition-all duration-300",
+                                    "mt-4 h-px bg-gradient-to-r from-transparent via-[#A7D7C5]/20 to-transparent transition-all duration-300",
                                     isOpen
                                       ? "translate-y-0 opacity-100"
                                       : "translate-y-2 opacity-0"
@@ -729,7 +817,7 @@ export function Header() {
 
                                 <div
                                   className={clsx(
-                                    "mt-3 flex items-center justify-between transition-all duration-300",
+                                    "mt-4 flex items-center justify-between transition-all duration-300",
                                     isOpen
                                       ? "translate-y-0 opacity-100"
                                       : "translate-y-2 opacity-0"
@@ -744,11 +832,12 @@ export function Header() {
                                     href={whatsappInvite}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex h-9 items-center justify-center rounded-full border border-[#A7D7C5]/35 px-4 text-[11px] text-white transition hover:border-[#A7D7C5]/55 hover:text-[#A7D7C5]"
+                                    className="inline-flex h-10 items-center justify-center rounded-full border border-[#A7D7C5]/32 bg-white/[0.03] px-4 text-[12px] font-medium text-white transition hover:border-[#A7D7C5]/55 hover:bg-white/[0.05] hover:text-[#A7D7C5]"
                                   >
                                     WhatsApp
                                   </a>
-                                  <span className="text-[10px] tracking-[0.08em] text-white/55">
+
+                                  <span className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1 text-[10px] tracking-[0.10em] text-white/58">
                                     Ballantyne Islamic Center
                                   </span>
                                 </div>
@@ -761,8 +850,8 @@ export function Header() {
                   </div>
                 </div>
 
-                <div className="flex flex-[1.15] justify-end pl-8">
-                  <DonateButton />
+                <div className="flex flex-[1.01] justify-end pl-5 xl:pl-6">
+                  <DonateButton className="hidden md:inline-flex" />
                 </div>
               </nav>
             </div>
@@ -923,11 +1012,11 @@ export function Header() {
 
           <div className="absolute right-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto overscroll-contain border-l border-[#A7D7C5]/35 bg-[#0A3A34] shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
             <div className="min-h-full">
-              <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#A7D7C5]/35 bg-[#0A3A34]/95 px-5 py-5 backdrop-blur-md">
+              <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#A7D7C5]/35 bg-[#0A3A34]/95 px-5 py-4 backdrop-blur-md">
                 <Link
                   href="/"
                   onClick={() => setMobileOpen(false)}
-                  className="text-xs font-medium text-white transition hover:text-[#A7D7C5]"
+                  className="text-[13px] font-medium text-white transition hover:text-[#A7D7C5]"
                 >
                   Home
                 </Link>
@@ -941,7 +1030,7 @@ export function Header() {
                 </button>
               </div>
 
-              <div className="px-5 py-6 pb-10">
+              <div className="px-5 py-5 pb-8">
                 <a
                   href={whatsappInvite}
                   target="_blank"
@@ -955,10 +1044,10 @@ export function Header() {
                   href={whatsappInvite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 block rounded-2xl border border-[#A7D7C5]/28 bg-white/[0.04] px-4 py-4 transition hover:bg-white/[0.06]"
+                  className="mt-4 block rounded-[24px] border border-[#A7D7C5]/24 bg-white/[0.04] px-4 py-3.5 transition hover:bg-white/[0.06]"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A7D7C5]/30 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] text-[#A7D7C5]">
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A7D7C5]/28 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] text-[#A7D7C5]">
                       <span className="text-sm">✦</span>
                     </div>
 
@@ -974,9 +1063,9 @@ export function Header() {
                   </div>
                 </a>
 
-                <div className="mt-6 h-px bg-[#A7D7C5]/35" />
+                <div className="mt-5 h-px bg-[#A7D7C5]/30" />
 
-                <nav className="mt-6 flex flex-col gap-2">
+                <nav className="mt-5 flex flex-col gap-2.5">
                   {topNav.map((item) => {
                     if (item.type === "link") {
                       const isActive = isActivePath(pathname, item.href);
@@ -986,9 +1075,9 @@ export function Header() {
                           href={item.href}
                           onClick={() => setMobileOpen(false)}
                           className={clsx(
-                            "relative rounded-2xl border border-white/10 px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
+                            "relative rounded-[22px] border border-white/10 px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
                             isActive
-                              ? "bg-white/[0.04] text-[#F6E7B0]"
+                              ? "bg-[linear-gradient(90deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] text-[#F6E7B0]"
                               : "text-white hover:bg-white/[0.03] hover:text-[#A7D7C5]"
                           )}
                         >
@@ -997,17 +1086,17 @@ export function Header() {
                             className={clsx(
                               "absolute bottom-2 left-0 top-2 w-[2px] rounded-full transition-opacity",
                               isActive
-                                ? "bg-[#D4A447] opacity-100"
+                                ? "bg-gradient-to-b from-[#F3D789] via-[#D4A447] to-[#C8922E] opacity-100 shadow-[0_0_10px_rgba(212,164,71,0.28)]"
                                 : "opacity-0"
                             )}
                           />
                           {isActive && (
                             <span
                               aria-hidden="true"
-                              className="pointer-events-none absolute inset-0 rounded-2xl"
+                              className="pointer-events-none absolute inset-0 rounded-[22px]"
                               style={{
                                 background:
-                                  "radial-gradient(circle at 30% 50%, rgba(212,164,71,0.12), transparent 60%)",
+                                  "radial-gradient(circle at 18% 50%, rgba(212,164,71,0.12), transparent 58%)",
                               }}
                             />
                           )}
@@ -1019,12 +1108,12 @@ export function Header() {
                     const groupActive = item.items.some((x) =>
                       isActivePath(pathname, x.href)
                     );
-                    const isOpen = !!mobileGroupsOpen[item.label];
+                    const isOpen = !!mobileGroupsOpen[item.label] || groupActive;
 
                     return (
                       <div
                         key={item.label}
-                        className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+                        className="overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03]"
                       >
                         <button
                           type="button"
@@ -1036,16 +1125,18 @@ export function Header() {
                           }
                           className={clsx(
                             "relative flex w-full items-center justify-between px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
-                            groupActive ? "text-[#F6E7B0]" : "text-white"
+                            groupActive || isOpen
+                              ? "text-[#F6E7B0]"
+                              : "text-white"
                           )}
                           aria-expanded={isOpen}
                         >
                           <span className="relative z-10">{item.label}</span>
 
-                          {groupActive && (
+                          {(groupActive || isOpen) && (
                             <span
                               aria-hidden="true"
-                              className="absolute bottom-2 left-0 top-2 w-[2px] rounded-full bg-[#D4A447]"
+                              className="absolute bottom-2 left-0 top-2 w-[2px] rounded-full bg-gradient-to-b from-[#F3D789] via-[#D4A447] to-[#C8922E] shadow-[0_0_10px_rgba(212,164,71,0.28)]"
                             />
                           )}
 
@@ -1069,10 +1160,10 @@ export function Header() {
                                   href={it.href}
                                   onClick={() => setMobileOpen(false)}
                                   className={clsx(
-                                    "relative block rounded-xl px-3 py-2 text-sm transition-colors",
+                                    "relative block rounded-[18px] px-3.5 py-2.5 text-[14px] transition-colors",
                                     active
                                       ? "bg-white/[0.04] text-[#F6E7B0]"
-                                      : "text-white/85 hover:bg-white/[0.03] hover:text-[#A7D7C5]"
+                                      : "text-white/88 hover:bg-white/[0.03] hover:text-[#A7D7C5]"
                                   )}
                                 >
                                   <span
@@ -1080,17 +1171,17 @@ export function Header() {
                                     className={clsx(
                                       "absolute bottom-2 left-0 top-2 w-[2px] rounded-full transition-opacity",
                                       active
-                                        ? "bg-[#D4A447] opacity-100"
+                                        ? "bg-gradient-to-b from-[#F3D789] via-[#D4A447] to-[#C8922E] opacity-100"
                                         : "opacity-0"
                                     )}
                                   />
                                   {active && (
                                     <span
                                       aria-hidden="true"
-                                      className="pointer-events-none absolute inset-0 rounded-xl"
+                                      className="pointer-events-none absolute inset-0 rounded-[18px]"
                                       style={{
                                         background:
-                                          "radial-gradient(circle at 30% 50%, rgba(212,164,71,0.12), transparent 60%)",
+                                          "radial-gradient(circle at 18% 50%, rgba(212,164,71,0.11), transparent 58%)",
                                       }}
                                     />
                                   )}
@@ -1107,7 +1198,15 @@ export function Header() {
                   })}
                 </nav>
 
-                <div className="mt-6 h-px bg-[#A7D7C5]/35" />
+                <div className="mt-5 h-px bg-[#A7D7C5]/30" />
+
+                <div className="mt-5">
+                  <DonateButton
+                    compact
+                    className="w-full justify-center"
+                    onClick={() => setMobileOpen(false)}
+                  />
+                </div>
               </div>
             </div>
           </div>
