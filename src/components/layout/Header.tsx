@@ -140,26 +140,35 @@ export function Header() {
         type: "group",
         label: "About",
         items: [
-          { label: "About", href: "/about", description: "Who we are" },
-          {
-            label: "Mission & Vision",
-            href: "/about/mission",
-            description: "Our purpose and direction",
-          },
-          {
-            label: "Leadership",
-            href: "/about/leadership",
-            description: "Meet our leadership",
-          },
-          {
-            label: "Policies",
-            href: "/about/policies",
-            description: "Guidelines and policies",
-          },
-        ],
-      },
-
       {
+        label: "About",
+        href: "/about",
+        description: "Who we are and our purpose",
+      },
+      {
+        label: "Leadership",
+        href: "/about/leadership",
+        description: "Meet our leadership",
+      },
+      {
+        label: "Spiritual Team",
+        href: "/about/spiritual-team",
+        description: "Imam and religious guidance",
+      },
+      {
+        label: "Our Staff",
+        href: "/about/staff",
+        description: "Meet our Staff",
+      },
+      {
+        label: "Our Policies & Constitution",
+        href: "/about/policies",
+        description: "Guidelines and governance",
+      },
+    ],
+  },
+
+    {
         type: "group",
         label: "Programs",
         items: [
@@ -377,34 +386,34 @@ export function Header() {
     if (!openGroup) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setOpenGroup(activeGroupLabel);
+        setOpenGroup(null);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [openGroup, activeGroupLabel]);
+  }, [openGroup]);
 
   useEffect(() => {
-    setOpenGroup(activeGroupLabel);
+    setOpenGroup(null);
     if (activeGroupLabel) {
       setMobileGroupsOpen((prev) => ({
         ...prev,
         [activeGroupLabel]: true,
       }));
     }
-  }, [activeGroupLabel]);
+  }, [pathname, activeGroupLabel]);
 
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
       if (!desktopNavRef.current) return;
       if (!desktopNavRef.current.contains(e.target as Node)) {
-        setOpenGroup(activeGroupLabel);
+        setOpenGroup(null);
       }
     };
 
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
-  }, [activeGroupLabel]);
+  }, []);
 
   const openDesktopGroup = (label: string) => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
@@ -414,7 +423,7 @@ export function Header() {
   const closeDesktopGroup = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     hoverTimeoutRef.current = setTimeout(() => {
-      setOpenGroup(activeGroupLabel);
+      setOpenGroup(null);
     }, 140);
   };
 
@@ -749,7 +758,7 @@ export function Header() {
                                       <Link
                                         key={it.href}
                                         href={it.href}
-                                        onClick={() => setOpenGroup(item.label)}
+                                        onClick={() => setOpenGroup(null)}
                                         className={clsx(
                                           "group/item relative rounded-[20px] px-4 py-3.5 transition-all duration-300",
                                           active

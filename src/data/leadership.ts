@@ -1,53 +1,72 @@
-export type Leader = {
-  id: string;
+export type LeadershipMember = {
   name: string;
   role: string;
   bio: string;
-  initials?: string;
   image?: string;
+  email?: string;
+  term?: string;
+  order?: number;
+  linkedin?: string;
 };
 
-export const leadershipTeam: Leader[] = [
+export const leadershipTeam: LeadershipMember[] = [
   {
-    id: "president",
-    name: "Chair / President Name",
-    role: "Chair / President",
-    initials: "CP",
-    bio: "Provides overall leadership, strategic direction, and stewardship for the masjid’s mission, community growth, and long-term vision.",
+    name: "Board Member Name",
+    role: "President",
+    term: "2025 — 2027",
+    order: 1,
+    bio: "Provides overall leadership and strategic direction for Masjid Ballantyne. Oversees long-term planning, community development initiatives, and ensures the Masjid operates in alignment with its mission of worship, education, and service.",
+    image: "/media/leadership/member-1.jpg",
+    email: "president@ballantynemasjid.org",
   },
+
   {
-    id: "vice-president",
-    name: "Vice President Name",
+    name: "Board Member Name",
     role: "Vice President",
-    initials: "VP",
-    bio: "Supports organizational planning, operations, and community initiatives while helping ensure the masjid’s programs and goals move forward effectively.",
+    term: "2025 — 2027",
+    order: 2,
+    bio: "Supports executive leadership and assists with operational planning, community initiatives, and organizational development. Works closely with leadership to ensure effective delivery of programs and services.",
+    image: "/media/leadership/member-2.jpg",
+    email: "vicepresident@ballantynemasjid.org",
   },
+
   {
-    id: "secretary",
-    name: "Secretary Name",
+    name: "Board Member Name",
     role: "Secretary",
-    initials: "SC",
-    bio: "Oversees records, meeting coordination, communications, and organizational documentation to support clarity, accountability, and continuity.",
+    term: "2025 — 2027",
+    order: 3,
+    bio: "Maintains governance records, board documentation, and meeting minutes. Ensures transparency, proper communication, and continuity in organizational leadership.",
+    image: "/media/leadership/member-3.jpg",
+    email: "secretary@ballantynemasjid.org",
   },
+
   {
-    id: "treasurer",
-    name: "Treasurer Name",
+    name: "Board Member Name",
     role: "Treasurer",
-    initials: "TR",
-    bio: "Helps manage financial oversight, budgeting, reporting, and responsible stewardship of donations and masjid resources.",
+    term: "2025 — 2027",
+    order: 4,
+    bio: "Provides financial oversight, budgeting guidance, and fiscal accountability. Ensures responsible stewardship of community resources and transparent financial operations.",
+    image: "/media/leadership/member-4.jpg",
+    email: "treasurer@ballantynemasjid.org",
   },
+
+  // Future Board Members (Optional)
+
   {
-    id: "board-member-1",
     name: "Board Member Name",
     role: "Board Member",
-    initials: "BM",
-    bio: "Contributes to planning, governance, and community development with a focus on supporting the spiritual and organizational needs of the masjid.",
+    term: "2025 — 2027",
+    order: 5,
+    bio: "Supports Masjid governance, strategic planning, and community engagement initiatives. Works collaboratively with leadership to strengthen programs and services.",
+    image: "/media/leadership/member-5.jpg",
   },
+
   {
-    id: "board-member-2",
     name: "Board Member Name",
     role: "Board Member",
-    initials: "BM",
-    bio: "Works alongside the leadership team to strengthen programs, serve families, and help advance the masjid’s mission with sincerity and service.",
+    term: "2025 — 2027",
+    order: 6,
+    bio: "Contributes to Masjid planning, development, and community support efforts, helping advance the mission of Masjid Ballantyne.",
+    image: "/media/leadership/member-6.jpg",
   },
 ];
