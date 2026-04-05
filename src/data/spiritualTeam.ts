@@ -5,6 +5,8 @@ export type SpiritualTeamMember = {
   image?: string;
   shortTitle?: string;
   bio: string;
+  credentialsPdf?: string;
+  featured?: boolean;
   order?: number;
 };
 
@@ -16,6 +18,7 @@ export const spiritualTeam: SpiritualTeamMember[] = [
     email: "@XXX.com",
     image: "/media/spiritual-team/XSG.jpg",
     credentialsPdf: "/docs/spiritual-team/Sheik1-credentials.pdf",
+    featured: true,
     order: 1,
     bio: ``,
   },
@@ -26,6 +29,7 @@ export const spiritualTeam: SpiritualTeamMember[] = [
     email: "@bic.org",
     image: "/media/spiritual-team/ABC.jpg",
     credentialsPdf: "/docs/spiritual-team/Sheik2-credentials.pdf",
+    featured: false,
     order: 2,
     bio: ``,
   },
