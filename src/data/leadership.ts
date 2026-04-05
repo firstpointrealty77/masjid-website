@@ -9,6 +9,8 @@ export type LeadershipMember = {
   linkedin?: string;
 };
 
+export type Leader = LeadershipMember;
+
 export const leadershipTeam: LeadershipMember[] = [
   {
     name: "Board Member Name",
@@ -19,7 +21,6 @@ export const leadershipTeam: LeadershipMember[] = [
     image: "/media/leadership/member-1.jpg",
     email: "president@ballantynemasjid.org",
   },
-
   {
     name: "Board Member Name",
     role: "Vice President",
@@ -29,7 +30,6 @@ export const leadershipTeam: LeadershipMember[] = [
     image: "/media/leadership/member-2.jpg",
     email: "vicepresident@ballantynemasjid.org",
   },
-
   {
     name: "Board Member Name",
     role: "Secretary",
@@ -39,7 +39,6 @@ export const leadershipTeam: LeadershipMember[] = [
     image: "/media/leadership/member-3.jpg",
     email: "secretary@ballantynemasjid.org",
   },
-
   {
     name: "Board Member Name",
     role: "Treasurer",
@@ -49,9 +48,6 @@ export const leadershipTeam: LeadershipMember[] = [
     image: "/media/leadership/member-4.jpg",
     email: "treasurer@ballantynemasjid.org",
   },
-
-  // Future Board Members (Optional)
-
   {
     name: "Board Member Name",
     role: "Board Member",
@@ -60,7 +56,6 @@ export const leadershipTeam: LeadershipMember[] = [
     bio: "Supports Masjid governance, strategic planning, and community engagement initiatives. Works collaboratively with leadership to strengthen programs and services.",
     image: "/media/leadership/member-5.jpg",
   },
-
   {
     name: "Board Member Name",
     role: "Board Member",
