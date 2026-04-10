@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 
 type DonateCategory = {
   title: string;
@@ -163,94 +163,122 @@ export default function DonatePage() {
           border border-[#E7DFC9]
           bg-white
           shadow-[0_10px_30px_rgba(15,23,42,0.05)]
-          p-5
+          p-6
           relative
           overflow-hidden
+          group
           "
         >
-          {/* Gold Accent Line */}
+          {/* Gold Animated Line */}
+
           <div
             className="
-          absolute top-0 left-0 right-0
-          h-[2px]
-          bg-gradient-to-r
-          from-transparent
-          via-[#D4A447]
-          to-transparent
-          "
+            absolute top-0 left-0 right-0
+            h-[2px]
+            bg-gradient-to-r
+            from-transparent
+            via-[#D4A447]
+            to-transparent
+            animate-pulse
+            "
           />
 
           <div
             className="
-          flex flex-col 
-          lg:flex-row 
-          lg:items-center 
-          lg:justify-between
-          gap-4
-          "
+            grid 
+            grid-cols-1 
+            lg:grid-cols-[1fr_auto]
+            gap-4
+            items-center
+            "
           >
-            {/* Left Content */}
+            {/* Left */}
 
-            <div className="max-w-3xl">
-              <h3 className="text-lg font-semibold text-[#0A3A34]">
-                501(c)(3) Non-Profit Organization
-              </h3>
+            <div className="flex items-start gap-3">
+              
+              <div
+                className="
+                w-10 h-10
+                rounded-xl
+                bg-[#F8F6F1]
+                border border-[#E7DFC9]
+                flex items-center justify-center
+                "
+              >
+                <ShieldCheck
+                  className="w-5 h-5 text-[#D4A447]"
+                />
+              </div>
 
-              <p className="mt-1 text-sm text-[#667085]">
-                Ballantyne Islamic Center is a registered nonprofit organization.
-                All donations are tax-deductible to the extent permitted by law.
-              </p>
+              <div>
+                <h3 className="text-lg font-semibold text-[#0A3A34]">
+                  501(c)(3) Non-Profit Organization
+                </h3>
+
+                <p className="mt-1 text-sm text-[#667085]">
+                  Ballantyne Islamic Center is a registered nonprofit organization.
+                  All donations are tax-deductible to the extent permitted by law.
+                </p>
+              </div>
             </div>
 
-            {/* Trust Pills */}
+            {/* Trust Badges */}
 
             <div
               className="
-            flex 
-            flex-wrap 
-            lg:flex-nowrap
-            gap-2.5
-            whitespace-nowrap
-            "
+              flex 
+              items-center 
+              gap-2
+              whitespace-nowrap
+              "
             >
               <span
                 className="
-              px-3.5 py-1.5
-              rounded-full
-              border border-[#E7DFC9]
-              bg-[#F8F6F1]
-              text-[12px]
-              font-medium
-              text-[#0A3A34]
-              "
+                px-3 py-1.5
+                rounded-full
+                border border-[#E7DFC9]
+                bg-[#F8F6F1]
+                text-xs
+                font-medium
+                text-[#0A3A34]
+                hover:bg-white
+                hover:shadow-sm
+                transition
+                "
               >
                 ✓ Tax Deductible
               </span>
 
               <span
                 className="
-              px-3.5 py-1.5
-              rounded-full
-              border border-[#E7DFC9]
-              bg-[#F8F6F1]
-              text-[12px]
-              font-medium
-              text-[#0A3A34]
-              "
+                px-3 py-1.5
+                rounded-full
+                border border-[#E7DFC9]
+                bg-[#F8F6F1]
+                text-xs
+                font-medium
+                text-[#0A3A34]
+                hover:bg-white
+                hover:shadow-sm
+                transition
+                "
               >
                 ✓ Non-Profit
               </span>
 
               <span
                 className="
-              px-3.5 py-1.5
-              rounded-full
-              border border-[#E7DFC9]
-              bg-[#F8F6F1]
-              text-[12px]
-              font-medium
-              text-[#0A3A34]
-              "
+                px-3 py-1.5
+                rounded-full
+                border border-[#E7DFC9]
+                bg-[#F8F6F1]
+                text-xs
+                font-medium
+                text-[#0A3A34]
+                hover:bg-white
+                hover:shadow-sm
+                transition
+                "
               >
                 ✓ Community Supported
               </span>
@@ -274,12 +302,12 @@ export default function DonatePage() {
 
         <div
           className="
-        grid 
-        grid-cols-1 
-        md:grid-cols-2 
-        lg:grid-cols-3 
-        gap-5
-        "
+          grid 
+          grid-cols-1 
+          md:grid-cols-2 
+          lg:grid-cols-3 
+          gap-5
+          "
         >
           {categories.map((category) => (
             <DonateCard key={category.title} {...category} />
