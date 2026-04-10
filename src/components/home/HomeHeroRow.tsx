@@ -1,6 +1,10 @@
 "use client";
-
 import Link from "next/link";
+<Link href="/donate">
+  <button className="gold-button">
+    Donate Now
+  </button>
+</Link>
 import { PrayerTimesModule } from "@/components/home/PrayerTimesModule";
 import { constructionProgressData } from "@/data/constructionProgress";
 

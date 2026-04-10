@@ -16,7 +16,6 @@ type NavTopItem = NavLink | NavGroup;
 function clsx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
-
 function DonateButton({
   href = "/donate",
   className,
@@ -31,43 +30,21 @@ function DonateButton({
   return (
     <Link
       href={href}
-      onClick={onClick}
       aria-label="Donate"
+      onClick={onClick}
       className={clsx(
         "group relative inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300",
         "text-[#0A3A34] border border-[#F3D789]/60",
         "bg-[linear-gradient(180deg,#EBC870_0%,#D8AA48_52%,#BC811E_100%)]",
         "shadow-[0_16px_38px_rgba(0,0,0,0.26),0_0_0_1px_rgba(243,215,137,0.14),inset_0_1px_0_rgba(255,255,255,0.24)]",
-        "hover:brightness-[1.05] hover:shadow-[0_20px_42px_rgba(0,0,0,0.32),0_0_28px_rgba(212,164,71,0.24),inset_0_1px_0_rgba(255,255,255,0.30)]",
-        "active:brightness-[0.98]",
+        "hover:brightness-[1.05] hover:shadow-[0_20px_42px_rgba(0,0,0,0.32),0_0_28px_rgba(212,164,71,0.24)]",
         compact ? "h-11 px-5 text-[12px]" : "h-[50px] px-9 text-[13px] xl:px-10",
         className
       )}
     >
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -inset-[3px] rounded-full opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(212,164,71,0.34), transparent 72%)",
-        }}
-      />
-
-      <span className="relative z-10 tracking-[0.02em]">Donate</span>
-
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-full opacity-60"
-        style={{
-          background:
-            "radial-gradient(circle at 28% 24%, rgba(255,255,255,0.33), transparent 62%)",
-        }}
-      />
-
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 -left-[140%] w-[120%] bg-gradient-to-r from-transparent via-white/35 to-transparent skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-[sweep_0.9s_ease-out_forwards]"
-      />
+      <span className="relative z-10 tracking-[0.02em]">
+        Donate
+      </span>
     </Link>
   );
 }
