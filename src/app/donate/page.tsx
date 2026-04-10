@@ -60,12 +60,15 @@ function DonateCard({ title, subtitle, href, image, badge }: DonateCategory) {
   return (
     <article
       className="
-        group flex h-full flex-col overflow-hidden rounded-2xl
-        border border-[#E7DFC9]
-        bg-white
-        shadow-sm
-        transition-all duration-500
-        hover:-translate-y-1 hover:shadow-xl
+      group flex h-full flex-col
+      overflow-hidden
+      rounded-[24px]
+      border border-[#E7DFC9]
+      bg-white
+      shadow-sm
+      hover:shadow-xl
+      transition-all duration-500
+      hover:-translate-y-1
       "
     >
       <div className="relative overflow-hidden">
@@ -73,8 +76,11 @@ function DonateCard({ title, subtitle, href, image, badge }: DonateCategory) {
           src={image}
           alt={title}
           className="
-            h-[170px] w-full object-cover
-            transition duration-700 group-hover:scale-105
+          w-full 
+          h-[170px] 
+          object-cover 
+          group-hover:scale-105 
+          transition duration-700
           "
         />
 
@@ -83,59 +89,57 @@ function DonateCard({ title, subtitle, href, image, badge }: DonateCategory) {
         {badge && (
           <div
             className="
-              absolute left-3 top-3 rounded-full
-              border border-[#E8D8A8]
-              bg-[rgba(255,250,238,0.92)]
-              px-3 py-1
-              text-[11px] font-medium tracking-[0.03em]
-              text-[#8E6A24]
-              shadow-sm
-            "
+          absolute top-3 left-3 
+          bg-[#FFF8E6]
+          border border-[#E7DFC9]
+          px-3 py-1 
+          rounded-full 
+          text-xs 
+          font-medium 
+          text-[#8E6A24]
+          "
           >
             {badge}
           </div>
         )}
 
-        <Link
-          href={href}
-          aria-label={`Open ${title}`}
+        <div
           className="
-            absolute right-3 top-3
-            flex h-10 w-10 items-center justify-center rounded-full
-            bg-white/90
-            shadow-sm
-            transition duration-300 hover:scale-105 hover:bg-white
-          "
+        absolute top-3 right-3 
+        w-10 h-10 
+        rounded-full 
+        bg-white/90 
+        flex items-center justify-center
+        shadow
+        "
         >
-          <ArrowUpRight className="h-4 w-4 text-[#0A3A34]" />
-        </Link>
+          <ArrowUpRight className="w-4 h-4 text-[#0A3A34]" />
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
-        <h3
-          className="
-            text-lg font-semibold leading-tight text-[#0A3A34]
-            sm:min-h-[56px]
-          "
-        >
-          {title}
-        </h3>
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="text-lg font-semibold text-[#0A3A34]">{title}</h3>
 
-        <p className="mt-1 text-sm leading-6 text-gray-500">{subtitle}</p>
+        <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
 
-        <div className="mb-4 mt-3 h-[2px] w-10 bg-[#D4A447]" />
+        <div className="w-10 h-[2px] bg-[#D4A447] mt-3 mb-4" />
 
         <div className="mt-auto">
           <Link
             href={href}
             className="
-              block rounded-full
-              bg-gradient-to-r from-[#E1BA5A] to-[#C8922E]
-              py-2.5 text-center font-semibold text-[#0A3A34]
-              shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
-              transition-all duration-300
-              hover:-translate-y-0.5 hover:shadow-lg
-            "
+          block 
+          text-center 
+          py-3
+          rounded-full 
+          font-semibold 
+          text-[#0A3A34]
+          bg-gradient-to-r 
+          from-[#E1BA5A] 
+          to-[#C8922E]
+          hover:shadow-lg 
+          transition-all
+          "
           >
             Donate
           </Link>
@@ -147,22 +151,135 @@ function DonateCard({ title, subtitle, href, image, badge }: DonateCategory) {
 
 export default function DonatePage() {
   return (
-    <main className="min-h-screen bg-[#F8F6F1]">
-      <section className="mx-auto max-w-7xl px-4 py-10">
-        <div className="mb-6 flex items-center justify-between">
+    <main className="bg-[#F8F6F1] min-h-screen">
+      <section className="max-w-7xl mx-auto px-4 py-10">
+        
+        {/* Premium Trust Banner */}
+
+        <div
+          className="
+          mb-8
+          rounded-[26px]
+          border border-[#E7DFC9]
+          bg-white
+          shadow-[0_10px_30px_rgba(15,23,42,0.05)]
+          p-5
+          relative
+          overflow-hidden
+          "
+        >
+          {/* Gold Accent Line */}
+          <div
+            className="
+          absolute top-0 left-0 right-0
+          h-[2px]
+          bg-gradient-to-r
+          from-transparent
+          via-[#D4A447]
+          to-transparent
+          "
+          />
+
+          <div
+            className="
+          flex flex-col 
+          lg:flex-row 
+          lg:items-center 
+          lg:justify-between
+          gap-4
+          "
+          >
+            {/* Left Content */}
+
+            <div className="max-w-3xl">
+              <h3 className="text-lg font-semibold text-[#0A3A34]">
+                501(c)(3) Non-Profit Organization
+              </h3>
+
+              <p className="mt-1 text-sm text-[#667085]">
+                Ballantyne Islamic Center is a registered nonprofit organization.
+                All donations are tax-deductible to the extent permitted by law.
+              </p>
+            </div>
+
+            {/* Trust Pills */}
+
+            <div
+              className="
+            flex 
+            flex-wrap 
+            lg:flex-nowrap
+            gap-2.5
+            whitespace-nowrap
+            "
+            >
+              <span
+                className="
+              px-3.5 py-1.5
+              rounded-full
+              border border-[#E7DFC9]
+              bg-[#F8F6F1]
+              text-[12px]
+              font-medium
+              text-[#0A3A34]
+              "
+              >
+                ✓ Tax Deductible
+              </span>
+
+              <span
+                className="
+              px-3.5 py-1.5
+              rounded-full
+              border border-[#E7DFC9]
+              bg-[#F8F6F1]
+              text-[12px]
+              font-medium
+              text-[#0A3A34]
+              "
+              >
+                ✓ Non-Profit
+              </span>
+
+              <span
+                className="
+              px-3.5 py-1.5
+              rounded-full
+              border border-[#E7DFC9]
+              bg-[#F8F6F1]
+              text-[12px]
+              font-medium
+              text-[#0A3A34]
+              "
+              >
+                ✓ Community Supported
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Header */}
+
+        <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold text-[#0A3A34]">
             Donation Categories
           </h2>
 
-          <span className="text-sm text-gray-500">{categories.length} Total</span>
+          <span className="text-sm text-gray-500">
+            {categories.length} Total
+          </span>
         </div>
+
+        {/* Cards */}
 
         <div
           className="
-            grid grid-cols-1 gap-5
-            md:grid-cols-2
-            lg:grid-cols-3
-          "
+        grid 
+        grid-cols-1 
+        md:grid-cols-2 
+        lg:grid-cols-3 
+        gap-5
+        "
         >
           {categories.map((category) => (
             <DonateCard key={category.title} {...category} />
