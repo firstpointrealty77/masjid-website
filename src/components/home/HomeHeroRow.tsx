@@ -38,6 +38,27 @@ function CrescentIcon({ className = "" }: { className?: string }) {
   );
 }
 
+function MetricBlock({
+  value,
+  label,
+  align = "left",
+}: {
+  value: string;
+  label: string;
+  align?: "left" | "right";
+}) {
+  return (
+    <div className={align === "right" ? "text-right" : "text-left"}>
+      <div className="tabular-nums text-[15px] font-semibold leading-none text-[#f3dfad]">
+        {value}
+      </div>
+      <div className="mt-1 text-[9px] uppercase tracking-[0.16em] text-[rgba(255,255,255,0.70)]">
+        {label}
+      </div>
+    </div>
+  );
+}
+
 export function HomeHeroRow() {
   const isVideo = HERO_MEDIA.type === "video";
 
@@ -123,37 +144,46 @@ export function HomeHeroRow() {
                     </p>
                   </div>
 
-                  <div className="mt-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-3 py-3">
+                  <div className="mt-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-3 py-3.5">
                     <div className="flex items-center justify-between gap-3">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#ead7a1]">
                         {constructionProgressData.phaseLabel} Construction Goal
                       </span>
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80">
+                      <span className="tabular-nums text-[12px] font-semibold uppercase tracking-[0.14em] text-white/90">
                         {Math.round(progress)}%
                       </span>
                     </div>
 
-                    <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/10">
+                    <div className="mt-2.5 h-2.5 overflow-hidden rounded-full bg-white/10">
                       <div
                         className="progress-fill h-full rounded-full bg-[linear-gradient(90deg,#d6b36a_0%,#f1dfb0_50%,#c89a43_100%)]"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
 
-                    <div className="mt-2 flex items-center justify-between gap-3 text-[11px]">
-                      <span className="text-[#f0ddb0]">
-                        {formatCurrency(raised)} raised
-                      </span>
-                      <span className="text-[rgba(255,255,255,0.78)]">
-                        of {formatCurrency(goal)}
-                      </span>
+                    <div className="mt-3.5 grid grid-cols-2 gap-3 rounded-[14px] border border-white/8 bg-black/10 px-3 py-2.5">
+                      <MetricBlock value={formatCurrency(raised)} label="Raised" />
+                      <MetricBlock
+                        value={formatCurrency(goal)}
+                        label="Goal"
+                        align="right"
+                      />
                     </div>
 
-                    <div className="mt-3 rounded-[15px] border border-[#e7c978]/24 bg-[linear-gradient(180deg,rgba(214,179,106,0.11),rgba(0,0,0,0.18))] px-3 py-3 text-center shadow-[0_0_22px_rgba(214,179,106,0.10)]">
-                      <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[#f3dfad]">
+                    <div className="funding-gap-panel relative mt-3.5 overflow-hidden rounded-[15px] border border-[#e7c978]/24 bg-[linear-gradient(180deg,rgba(214,179,106,0.11),rgba(0,0,0,0.18))] px-3 py-3.5 text-center shadow-[0_0_22px_rgba(214,179,106,0.10)]">
+                      <div className="pointer-events-none absolute inset-x-[16%] top-[36%] h-12 rounded-full bg-[radial-gradient(circle,rgba(233,205,131,0.16)_0%,rgba(233,205,131,0.06)_36%,transparent_72%)] blur-xl" />
+
+                      <p className="relative z-10 text-[9px] uppercase tracking-[0.18em] text-[#e7cf93]/90">
+                        Current Funding Gap
+                      </p>
+
+                      <div className="relative z-10 mx-auto mt-2 h-px w-24 bg-gradient-to-r from-transparent via-[#e7cf93]/70 to-transparent" />
+
+                      <p className="relative z-10 mt-2 tabular-nums text-[15px] font-bold uppercase tracking-[0.12em] text-[#f3dfad]">
                         {formatCurrency(remaining)} still needed
                       </p>
-                      <p className="mt-1 text-[11px] leading-[1.55] text-[rgba(255,255,255,0.82)]">
+
+                      <p className="relative z-10 mt-1.5 text-[11px] leading-[1.55] text-[rgba(255,255,255,0.82)]">
                         Be part of the first brick.
                       </p>
                     </div>
@@ -179,6 +209,13 @@ export function HomeHeroRow() {
                     <p className="text-center text-[10px] uppercase tracking-[0.16em] text-[#cbb98b]">
                       Sadaqah Jariyah • Lasting Reward
                     </p>
+
+                    <div className="mx-auto flex items-center justify-center gap-2 rounded-full border border-[#e7cf93]/16 bg-white/[0.025] px-3 py-1.5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#e7cf93] shadow-[0_0_10px_rgba(231,207,147,0.65)]" />
+                      <span className="text-[9px] font-medium uppercase tracking-[0.16em] text-[rgba(255,255,255,0.74)]">
+                        Verified project planning underway
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -273,7 +310,7 @@ export function HomeHeroRow() {
                         <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ead7a1]">
                           {constructionProgressData.phaseLabel} Construction Goal
                         </span>
-                        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
+                        <span className="tabular-nums text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
                           {Math.round(progress)}%
                         </span>
                       </div>
@@ -286,19 +323,28 @@ export function HomeHeroRow() {
                       </div>
 
                       <div className="mt-3 flex items-center justify-between gap-4 text-sm">
-                        <span className="text-[#f0ddb0]">
+                        <span className="tabular-nums text-[#f0ddb0]">
                           {formatCurrency(raised)} raised
                         </span>
-                        <span className="text-[rgba(255,255,255,0.78)]">
+                        <span className="tabular-nums text-[rgba(255,255,255,0.78)]">
                           of {formatCurrency(goal)}
                         </span>
                       </div>
 
-                      <div className="mt-4 rounded-[16px] border border-[#e7c978]/24 bg-[linear-gradient(180deg,rgba(214,179,106,0.11),rgba(0,0,0,0.18))] px-4 py-3 text-center shadow-[0_0_26px_rgba(214,179,106,0.12)]">
-                        <p className="text-[13px] font-bold uppercase tracking-[0.18em] text-[#f3dfad]">
+                      <div className="funding-gap-panel relative mt-4 overflow-hidden rounded-[16px] border border-[#e7c978]/24 bg-[linear-gradient(180deg,rgba(214,179,106,0.11),rgba(0,0,0,0.18))] px-4 py-3 text-center shadow-[0_0_26px_rgba(214,179,106,0.12)]">
+                        <div className="pointer-events-none absolute inset-x-[20%] top-[34%] h-14 rounded-full bg-[radial-gradient(circle,rgba(233,205,131,0.16)_0%,rgba(233,205,131,0.06)_36%,transparent_72%)] blur-xl" />
+
+                        <p className="relative z-10 text-[10px] uppercase tracking-[0.18em] text-[#e7cf93]/90">
+                          Current Funding Gap
+                        </p>
+
+                        <div className="relative z-10 mx-auto mt-2 h-px w-28 bg-gradient-to-r from-transparent via-[#e7cf93]/70 to-transparent" />
+
+                        <p className="relative z-10 mt-2 tabular-nums text-[13px] font-bold uppercase tracking-[0.16em] text-[#f3dfad]">
                           {formatCurrency(remaining)} still needed
                         </p>
-                        <p className="mt-1.5 text-sm text-[rgba(255,255,255,0.82)]">
+
+                        <p className="relative z-10 mt-1.5 text-sm text-[rgba(255,255,255,0.82)]">
                           Be part of the first brick.
                         </p>
                       </div>
@@ -322,6 +368,13 @@ export function HomeHeroRow() {
                         <span className="pdf-shine absolute inset-0 overflow-hidden rounded-[20px]" />
                         <span className="relative z-10">View Phase 1 Progress</span>
                       </Link>
+                    </div>
+
+                    <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e7cf93]/16 bg-white/[0.025] px-3 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#e7cf93] shadow-[0_0_10px_rgba(231,207,147,0.65)]" />
+                      <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-[rgba(255,255,255,0.74)]">
+                        Verified project planning underway
+                      </span>
                     </div>
 
                     <p className="mt-3 text-sm uppercase tracking-[0.18em] text-[#cbb98b]">
@@ -354,6 +407,10 @@ export function HomeHeroRow() {
 
         .donate-btn {
           animation: donatePulse 9s ease-in-out infinite;
+        }
+
+        .funding-gap-panel {
+          animation: fundingGapPulse 10s ease-in-out infinite;
         }
 
         .shine-layer::before {
@@ -569,6 +626,30 @@ export function HomeHeroRow() {
           }
         }
 
+        @keyframes fundingGapPulse {
+          0% {
+            box-shadow:
+              0 0 22px rgba(214, 179, 106, 0.10),
+              inset 0 1px 0 rgba(255, 244, 210, 0.02);
+          }
+          10% {
+            box-shadow:
+              0 0 30px rgba(214, 179, 106, 0.16),
+              0 0 12px rgba(233, 205, 131, 0.06),
+              inset 0 1px 0 rgba(255, 244, 210, 0.05);
+          }
+          20% {
+            box-shadow:
+              0 0 22px rgba(214, 179, 106, 0.10),
+              inset 0 1px 0 rgba(255, 244, 210, 0.02);
+          }
+          100% {
+            box-shadow:
+              0 0 22px rgba(214, 179, 106, 0.10),
+              inset 0 1px 0 rgba(255, 244, 210, 0.02);
+          }
+        }
+
         @keyframes badgePulse {
           0% {
             box-shadow:
@@ -691,6 +772,7 @@ export function HomeHeroRow() {
           .cinematic-zoom,
           .donate-btn,
           .coming-soon-badge,
+          .funding-gap-panel,
           .shine-layer::before,
           .pdf-shine::before,
           .coming-soon-badge::after,
