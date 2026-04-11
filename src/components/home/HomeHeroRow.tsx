@@ -74,7 +74,7 @@ export function HomeHeroRow() {
         <div className="relative lg:min-h-[calc(100vh-var(--header-h,88px))]">
           {/* MOBILE */}
           <div className="block lg:hidden">
-            <div className="relative h-[84vh] min-h-[710px] w-full overflow-hidden">
+            <div className="relative h-[82vh] min-h-[680px] w-full overflow-hidden pt-[88px]">
               {isVideo ? (
                 <video
                   className="absolute inset-0 h-full w-full object-cover"
@@ -113,7 +113,7 @@ export function HomeHeroRow() {
                   </div>
 
                   <p className="mt-2 text-[9px] uppercase tracking-[0.18em] text-[#d8c48a]/95">
-                    Construction starting soon • Be part of the first brick
+                    Construction starting soon
                   </p>
 
                   <div className="headline-spotlight-mobile relative mt-3 rounded-[22px]">
@@ -137,11 +137,6 @@ export function HomeHeroRow() {
                         House of Allah
                       </span>
                     </h1>
-
-                    <p className="mt-2 text-[13px] leading-[1.62] text-[rgba(255,255,255,0.88)]">
-                      Be among the first to build this masjid and earn Sadaqah
-                      Jariyah.
-                    </p>
                   </div>
 
                   <div className="mt-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-3 py-3.5">
@@ -205,10 +200,6 @@ export function HomeHeroRow() {
                       <span className="pdf-shine absolute inset-0 overflow-hidden rounded-[15px]" />
                       <span className="relative z-10">View Phase 1 Progress</span>
                     </Link>
-
-                    <p className="text-center text-[10px] uppercase tracking-[0.16em] text-[#cbb98b]">
-                      Sadaqah Jariyah • Lasting Reward
-                    </p>
 
                     <div className="mx-auto flex items-center justify-center gap-2 rounded-full border border-[#e7cf93]/16 bg-white/[0.025] px-3 py-1.5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#e7cf93] shadow-[0_0_10px_rgba(231,207,147,0.65)]" />
@@ -376,10 +367,6 @@ export function HomeHeroRow() {
                         Verified project planning underway
                       </span>
                     </div>
-
-                    <p className="mt-3 text-sm uppercase tracking-[0.18em] text-[#cbb98b]">
-                      Sadaqah Jariyah • Lasting Reward
-                    </p>
                   </div>
                 </div>
 
