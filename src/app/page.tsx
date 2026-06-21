@@ -9,11 +9,13 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Jumu’ah Prayer | Masjid Ballantyne",
-  description:
-    "Join Masjid Ballantyne for Friday Jumu’ah prayer and support our journey toward a permanent masjid home.",
-};
+const SITE_URL = "https://ballantynemasjid.org";
+
+const PAGE_TITLE =
+  "Jumu’ah Prayer in Ballantyne, Fort Mill & Indian Land | Masjid Ballantyne";
+
+const PAGE_DESCRIPTION =
+  "Friday Jumu’ah (Jummah) prayer near Ballantyne, Fort Mill, Indian Land, and Charlotte. Khutbah begins at 1:30 PM and Jumu’ah Salah is at 1:55 PM.";
 
 const TEMPORARY_ADDRESS_LINE_1 = "10562 Providence Rd W";
 const TEMPORARY_ADDRESS_LINE_2 = "Charlotte, NC 28277";
@@ -24,16 +26,98 @@ const JUMUAH_SALAH_TIME = "1:55 PM";
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
-// Replace these before publishing.
+// Replace these before production deployment.
 const WHATSAPP_URL = "https://chat.whatsapp.com/REPLACE-WITH-YOUR-LINK";
 const DONATE_URL = "https://YOUR-DONATION-LINK-HERE";
 const ZELLE_RECIPIENT = "Ballantyne Islamic Center";
 const ZELLE_EMAIL_OR_PHONE = "YOUR-ZELLE-EMAIL-OR-PHONE";
 const ZELLE_MEMO = "Masjid Support";
 
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+
+  alternates: {
+    canonical: SITE_URL,
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Masjid Ballantyne",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    locale: "en_US",
+  },
+
+  twitter: {
+    card: "summary",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ReligiousOrganization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Ballantyne Islamic Center",
+      alternateName: "Masjid Ballantyne",
+      url: SITE_URL,
+      description:
+        "A growing Muslim community serving Ballantyne, Fort Mill, Indian Land, and Charlotte through Friday Jumu’ah prayer and community programs.",
+      areaServed: [
+        "Ballantyne, Charlotte, NC",
+        "Fort Mill, SC",
+        "Indian Land, SC",
+        "Charlotte, NC",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Masjid Ballantyne",
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#jummah-prayer`,
+      url: SITE_URL,
+      name: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      isPartOf: {
+        "@id": `${SITE_URL}/#website`,
+      },
+      about: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: "en-US",
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#063C34] text-[#FFFDF7]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+
       {/* Soft green and gold lighting */}
       <div
         aria-hidden="true"
@@ -70,7 +154,6 @@ export default function HomePage() {
       </svg>
 
       <div className="relative mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
-        {/* Hero */}
         <header className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <div className="inline-flex items-center gap-3">
             <span className="h-px w-10 bg-[#D4A447]/70 sm:w-16" />
@@ -87,13 +170,15 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#D2E0DA] sm:text-lg">
-            Join the Muslim community of Ballantyne, Fort Mill, Indian Land,
-            and Charlotte for Friday Jumu’ah prayer.
+            Join Masjid Ballantyne for Friday Jumu’ah (Jummah) prayer near
+            Ballantyne, Fort Mill, Indian Land, and Charlotte.
           </p>
         </header>
 
-        {/* Prayer schedule and location */}
-        <section className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/40 bg-[#0E5143] shadow-[0_26px_80px_rgba(0,0,0,0.32)]">
+        <section
+          id="jummah-prayer"
+          className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/40 bg-[#0E5143] shadow-[0_26px_80px_rgba(0,0,0,0.32)]"
+        >
           <div className="border-b border-[#D4A447]/25 px-6 py-5 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#D4A447] sm:tracking-[0.3em]">
               Friday Prayer Schedule
@@ -140,8 +225,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Temporary location */}
-          <div className="border-t border-[#D4A447]/25 bg-[#063C34]/55 px-5 py-6 sm:px-8 sm:py-8">
+          <div
+            id="temporary-venue"
+            className="border-t border-[#D4A447]/25 bg-[#063C34]/55 px-5 py-6 sm:px-8 sm:py-8"
+          >
             <div className="flex items-start gap-3 sm:gap-4">
               <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/45 bg-[#0B4C40]">
                 <MapPin className="h-5 w-5 text-[#D4A447]" />
@@ -179,7 +266,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Main visitor actions */}
         <div className="mx-auto mt-8 flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:justify-center">
           <a
             href={GOOGLE_MAPS_URL}
@@ -207,7 +293,6 @@ export default function HomePage() {
           and future Masjid Ballantyne announcements.
         </p>
 
-        {/* Future permanent masjid vision */}
         <section className="mx-auto mt-12 w-full max-w-4xl rounded-[30px] border border-[#D4A447]/30 bg-[#0C493E]/90 p-6 text-center shadow-xl sm:p-10">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#D4A447]/40 bg-[#073F36] px-4 py-2">
             <Sparkles className="h-4 w-4 text-[#D4A447]" />
@@ -252,8 +337,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Donation section */}
-        <section className="mx-auto mt-12 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/45 bg-[#0E5143] shadow-[0_24px_70px_rgba(0,0,0,0.26)]">
+        <section
+          id="support"
+          className="mx-auto mt-12 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/45 bg-[#0E5143] shadow-[0_24px_70px_rgba(0,0,0,0.26)]"
+        >
           <div className="border-b border-[#D4A447]/25 px-6 py-5 text-center">
             <div className="inline-flex items-center gap-2 text-[#D4A447]">
               <HandHeart className="h-5 w-5" />
@@ -285,7 +372,6 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* Zelle information */}
           <div className="border-t border-[#D4A447]/25 bg-[#063C34]/55 p-5 sm:p-8">
             <div className="flex items-start gap-3 text-left sm:gap-4">
               <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/45 bg-[#0B4C40]">
@@ -329,7 +415,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="mx-auto mt-14 max-w-4xl border-t border-white/10 pt-8 text-center">
           <p className="font-serif text-xl text-[#FFFDF7]">
             Ballantyne Islamic Center
