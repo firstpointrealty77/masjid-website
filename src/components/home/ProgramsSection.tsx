@@ -8,7 +8,7 @@ import { programsData } from "@/data/programs";
 function SectionDivider() {
   return (
     <div className="flex items-center justify-center gap-2">
-      <span className="h-px w-16 bg-[#d4b46a]/55 sm:w-20" />
+      <span className="h-px w-12 bg-[#d4b46a]/55 sm:w-14" />
       <div className="flex items-center gap-1">
         <span className="h-1.5 w-1.5 rounded-full bg-[#d4b46a]" />
         <span className="h-2 w-2 rounded-full bg-[#d4b46a]" />
@@ -16,7 +16,7 @@ function SectionDivider() {
         <span className="h-2 w-2 rounded-full bg-[#d4b46a]" />
         <span className="h-1.5 w-1.5 rounded-full bg-[#d4b46a]" />
       </div>
-      <span className="h-px w-16 bg-[#d4b46a]/55 sm:w-20" />
+      <span className="h-px w-12 bg-[#d4b46a]/55 sm:w-14" />
     </div>
   );
 }
@@ -82,7 +82,6 @@ function ProgramCard({
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0.08)_48%,rgba(0,0,0,0.38)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.12),transparent_42%)]" />
 
-          {/* Coming Soon Badge */}
           <div className="absolute left-4 top-4 z-20">
             <div className="coming-soon-badge inline-flex items-center rounded-full border border-[#f2dfab]/45 bg-[linear-gradient(180deg,rgba(232,206,138,0.24),rgba(198,165,92,0.18))] px-3 py-1.5 shadow-[0_10px_22px_rgba(0,0,0,0.16)] backdrop-blur-md">
               <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#fff3cf]">
@@ -186,7 +185,7 @@ export function ProgramsSection() {
   const goNext = () => setActiveIndex((i) => (i + 1) % total);
 
   return (
-    <section className="relative overflow-hidden bg-[#f7f5ef] py-12 lg:py-16">
+    <section className="relative overflow-hidden bg-[#f7f5ef] py-7 lg:py-10">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(214,179,106,0.06),transparent_42%)]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#d9c48d]/45 to-transparent" />
@@ -194,28 +193,22 @@ export function ProgramsSection() {
       </div>
 
       <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 xl:px-8 2xl:px-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.38em] text-[#c9a24c]">
+        <div className="mx-auto max-w-[1100px] text-center">
+          <p className="text-[8px] font-semibold uppercase tracking-[0.38em] text-[#c9a24c]">
             Masjid Life
           </p>
 
-          <h2 className="mt-2 text-[2.15rem] font-semibold leading-[1.04] tracking-tight text-[#0d4a43] sm:text-5xl lg:text-[3.6rem]">
-            Programs & Community Learning
+          <h2 className="mt-1 text-[1.7rem] font-semibold leading-none tracking-tight text-[#0d4a43] whitespace-nowrap sm:text-[2rem] lg:text-[2.55rem]">
+            Learn Your Deen
           </h2>
 
-          <div className="mt-2">
+          <div className="mt-1.5">
             <SectionDivider />
           </div>
-
-          <p className="mx-auto mt-3 max-w-2xl text-[14px] leading-6 text-[#5f6b75] sm:text-[15px] sm:leading-7 lg:text-[17px] lg:leading-8">
-            Discover meaningful programs rooted in Qur’an, character,
-            mentorship, and community care for children, youth, sisters, and
-            new Muslims.
-          </p>
         </div>
 
         {/* Mobile / Tablet */}
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:hidden">
+        <div className="mt-7 grid gap-5 md:grid-cols-2 xl:hidden">
           {programsData.map((program) => (
             <ProgramCard key={program.slug} program={program} />
           ))}
@@ -223,7 +216,7 @@ export function ProgramsSection() {
 
         {/* Desktop */}
         <div
-          className="mt-10 hidden xl:block"
+          className="mt-7 hidden xl:block"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -282,7 +275,7 @@ export function ProgramsSection() {
           </div>
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-7 flex justify-center">
           <Link
             href="/programs"
             className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[#d9c48d] bg-white px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8a6a22] shadow-[0_8px_22px_rgba(122,91,24,0.08)] transition hover:-translate-y-0.5 hover:bg-[#fff9ea]"

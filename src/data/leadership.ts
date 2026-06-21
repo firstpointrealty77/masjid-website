@@ -16,7 +16,7 @@ export type Leader = LeadershipMember;
 export const leadershipTeam: LeadershipMember[] = [
   {
     id: "president",
-    name: "Board Member Name",
+    name: "Abdul Mannan",
     role: "President",
     term: "2025 — 2027",
     order: 1,
@@ -27,7 +27,7 @@ export const leadershipTeam: LeadershipMember[] = [
   },
   {
     id: "vice-president",
-    name: "Board Member Name",
+    name: "Mohammed Ajmal",
     role: "Vice President",
     term: "2025 — 2027",
     order: 2,
@@ -38,7 +38,7 @@ export const leadershipTeam: LeadershipMember[] = [
   },
   {
     id: "secretary",
-    name: "Board Member Name",
+    name: "IKRAM KHAN",
     role: "Secretary",
     term: "2025 — 2027",
     order: 3,
@@ -49,7 +49,7 @@ export const leadershipTeam: LeadershipMember[] = [
   },
   {
     id: "treasurer",
-    name: "Board Member Name",
+    name: "ARAFATH MOHAMMED",
     role: "Treasurer",
     term: "2025 — 2027",
     order: 4,
