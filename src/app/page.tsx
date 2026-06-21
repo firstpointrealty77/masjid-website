@@ -119,8 +119,8 @@ export default function HomePage() {
 
             <div className="grid grid-cols-2 gap-3 sm:gap-5">
               <div className="rounded-2xl border border-white/10 bg-[#073F36] p-4 sm:p-6">
-                <p className="text-xs font-medium text-[#D2E0DA] sm:text-sm">
-                  Khutbah
+                <p className="text-lg font-semibold tracking-tight text-[#FFFDF7] sm:text-2xl">
+                  Khutbah Begins
                 </p>
 
                 <p className="mt-2 text-3xl font-semibold tracking-tight text-[#FFFDF7] sm:text-5xl">
@@ -129,7 +129,7 @@ export default function HomePage() {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-[#073F36] p-4 sm:p-6">
-                <p className="text-xs font-medium text-[#D2E0DA] sm:text-sm">
+                <p className="text-lg font-semibold tracking-tight text-[#FFFDF7] sm:text-2xl">
                   Jumu’ah Salah
                 </p>
 
