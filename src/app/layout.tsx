@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Playfair_Display, Lora, Amiri } from "next/font/google";
 import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -42,7 +41,7 @@ export default function RootLayout({
         {/* ✅ Push content exactly below fixed header */}
         <main className="min-h-[60vh] pt-[var(--header-h)]">{children}</main>
 
-        <Footer />
+       
       </body>
     </html>
   );
