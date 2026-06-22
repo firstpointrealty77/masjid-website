@@ -27,9 +27,10 @@ const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
 // Replace these before production deployment.
-const WHATSAPP_URL = "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?s=cl&p=i&ilr=0";
-const DONATE_URL = "https://YOUR-DONATION-LINK-HERE";
-const ZELLE_RECIPIENT = "CAROLINA MUSLIM DEVELOPMENT FUND Accounts";
+const WHATSAPP_URL = "https://chat.whatsapp.com/REPLACE-WITH-YOUR-LINK";
+const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
+
+const ZELLE_RECIPIENT = "Carolina Muslim Development Fund Accounts";
 const ZELLE_TAG = "bicc10935";
 const ZELLE_MEMO = "Masjid Support";
 
@@ -118,7 +119,6 @@ export default function HomePage() {
         }}
       />
 
-      {/* Soft green and gold background lighting */}
       <div
         aria-hidden="true"
         className="absolute inset-0"
@@ -128,7 +128,6 @@ export default function HomePage() {
         }}
       />
 
-      {/* Very subtle Islamic pattern */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.016]"
@@ -154,7 +153,6 @@ export default function HomePage() {
       </svg>
 
       <div className="relative mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
-        {/* Hero */}
         <header className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <div className="inline-flex items-center gap-3">
             <span className="h-px w-10 bg-[#D4A447]/55 sm:w-16" />
@@ -176,11 +174,7 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* Prayer Schedule */}
-        <section
-          id="jummah-prayer"
-          className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/40 bg-[#10594A] shadow-[0_26px_80px_rgba(0,0,0,0.32)]"
-        >
+        <section className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/40 bg-[#10594A] shadow-[0_26px_80px_rgba(0,0,0,0.32)]">
           <div className="border-b border-[#D4A447]/25 px-6 py-5 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#E0B75C] sm:tracking-[0.3em]">
               Friday Prayer Schedule
@@ -227,11 +221,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Temporary Venue */}
-          <div
-            id="temporary-venue"
-            className="border-t border-[#D4A447]/25 bg-[#063C34]/50 px-5 py-6 sm:px-8 sm:py-8"
-          >
+          <div className="border-t border-[#D4A447]/25 bg-[#063C34]/50 px-5 py-6 sm:px-8 sm:py-8">
             <div className="flex items-start gap-3 sm:gap-4">
               <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/30 bg-[#0B4C40]">
                 <MapPin className="h-5 w-5 text-[#E0B75C]" />
@@ -269,7 +259,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Visitor Actions */}
         <div className="mx-auto mt-8 flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:justify-center">
           <a
             href={GOOGLE_MAPS_URL}
@@ -297,7 +286,6 @@ export default function HomePage() {
           and future Masjid Ballantyne announcements.
         </p>
 
-        {/* Permanent Masjid Vision */}
         <section className="mx-auto mt-12 w-full max-w-4xl rounded-[30px] border border-[#D4A447]/25 bg-[#0C493E]/95 p-6 text-center shadow-xl sm:p-10">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#D4A447]/30 bg-[#073F36] px-4 py-2">
             <Sparkles className="h-4 w-4 text-[#E0B75C]" />
@@ -342,11 +330,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Donation */}
-        <section
-          id="support"
-          className="mx-auto mt-12 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/25 bg-[#10594A] shadow-[0_24px_70px_rgba(0,0,0,0.26)]"
-        >
+        <section className="mx-auto mt-12 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/25 bg-[#10594A] shadow-[0_24px_70px_rgba(0,0,0,0.26)]">
           <div className="border-b border-[#D4A447]/25 px-6 py-5 text-center">
             <div className="inline-flex items-center gap-2 text-[#E0B75C]">
               <HandHeart className="h-5 w-5" />
@@ -378,7 +362,6 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* Zelle */}
           <div className="border-t border-[#D4A447]/25 bg-[#063C34]/50 p-5 sm:p-8">
             <div className="flex items-start gap-3 text-left sm:gap-4">
               <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/30 bg-[#0B4C40]">
@@ -392,22 +375,29 @@ export default function HomePage() {
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-xs text-[#BDD3C8]">Recipient</p>
-                    <p className="mt-1 text-sm font-semibold text-[#FFFDF7]">
+                    <p className="text-sm font-medium text-[#BDD3C8]">
+                      Recipient
+                    </p>
+
+                    <p className="mt-2 text-base font-semibold leading-relaxed text-[#FFFDF7] sm:text-lg">
                       {ZELLE_RECIPIENT}
                     </p>
                   </div>
 
                   <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-xs text-[#BDD3C8]">Zelle To</p>
-                    <p className="mt-1 break-words text-sm font-semibold text-[#FFFDF7]">
-                      {ZELLE_EMAIL_OR_PHONE}
+                    <p className="text-sm font-medium text-[#BDD3C8]">
+                      Zelle Tag
+                    </p>
+
+                    <p className="mt-2 break-words font-mono text-xl font-bold tracking-wide text-[#FFFDF7] sm:text-2xl">
+                      {ZELLE_TAG}
                     </p>
                   </div>
 
                   <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-xs text-[#BDD3C8]">Memo</p>
-                    <p className="mt-1 text-sm font-semibold text-[#FFFDF7]">
+                    <p className="text-sm font-medium text-[#BDD3C8]">Memo</p>
+
+                    <p className="mt-2 text-base font-semibold text-[#FFFDF7] sm:text-lg">
                       {ZELLE_MEMO}
                     </p>
                   </div>
@@ -422,7 +412,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="mx-auto mt-14 max-w-4xl border-t border-white/10 pt-8 text-center">
           <p className="font-serif text-xl text-[#FFFDF7]">
             Ballantyne Islamic Center
