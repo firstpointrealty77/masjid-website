@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  CalendarDays,
   Clock3,
   HandHeart,
   Landmark,
@@ -15,7 +16,10 @@ const PAGE_TITLE =
   "Jumu’ah Prayer in Ballantyne, Fort Mill & Indian Land | Masjid Ballantyne";
 
 const PAGE_DESCRIPTION =
-  "Friday Jumu’ah (Jummah) prayer near Ballantyne, Fort Mill, Indian Land, and Charlotte. Khutbah begins at 1:30 PM and Jumu’ah Salah is at 1:55 PM.";
+  "Friday Jumu’ah (Jummah) prayer beginning July 3, 2026 near Ballantyne, Fort Mill, Indian Land, and Charlotte. Khutbah begins at 1:30 PM and Jumu’ah Salah is at 1:55 PM.";
+
+const JUMUAH_START_DATE = "Friday, July 3, 2026";
+const JUMUAH_START_DATE_ISO = "2026-07-03";
 
 const TEMPORARY_ADDRESS_LINE_1 = "10562 Providence Rd W";
 const TEMPORARY_ADDRESS_LINE_2 = "Charlotte, NC 28277";
@@ -26,8 +30,10 @@ const JUMUAH_SALAH_TIME = "1:55 PM";
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
-// Replace these before production deployment.
-const WHATSAPP_URL = "https://chat.whatsapp.com/KIPh9IQOtybLvfhfzAzYIM?s=cl&p=i&mlu=0&amv=2";
+// Existing working links.
+const WHATSAPP_URL =
+  "https://chat.whatsapp.com/KIPh9IQOtybLvfhfzAzYIM?s=cl&p=i&mlu=0&amv=2";
+
 const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
 
 const ZELLE_RECIPIENT = "Carolina Muslim Development Fund Accounts";
@@ -74,7 +80,7 @@ const structuredData = {
       alternateName: "Masjid Ballantyne",
       url: SITE_URL,
       description:
-        "A growing Muslim community serving Ballantyne, Fort Mill, Indian Land, and Charlotte through Friday Jumu’ah prayer and community programs.",
+        "A growing Muslim community serving Ballantyne, Fort Mill, Indian Land, and Charlotte through Friday Jumu’ah prayer and community programs beginning July 3, 2026.",
       areaServed: [
         "Ballantyne, Charlotte, NC",
         "Fort Mill, SC",
@@ -169,9 +175,28 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#DCEBE4] sm:text-lg">
-            Join Masjid Ballantyne for Friday Jumu’ah prayer near Ballantyne,
-            Fort Mill, Indian Land, and Charlotte.
+            Join Masjid Ballantyne for Friday Jumu’ah prayer serving
+            Ballantyne, Fort Mill, Indian Land, and Charlotte.
           </p>
+
+          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#D4A447]/35 bg-[#073F36]/80 px-4 py-2.5 text-left shadow-lg">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/35 bg-[#063C34]">
+              <CalendarDays className="h-4 w-4 text-[#E0B75C]" />
+            </span>
+
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A7D7C5]">
+                First Jumu’ah Prayer
+              </p>
+
+              <time
+                dateTime={JUMUAH_START_DATE_ISO}
+                className="mt-0.5 block text-sm font-semibold text-[#FFFDF7]"
+              >
+                {JUMUAH_START_DATE}
+              </time>
+            </div>
+          </div>
         </header>
 
         <section className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/40 bg-[#10594A] shadow-[0_26px_80px_rgba(0,0,0,0.32)]">
