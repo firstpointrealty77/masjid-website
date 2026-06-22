@@ -27,10 +27,10 @@ const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
 // Replace these before production deployment.
-const WHATSAPP_URL = "https://chat.whatsapp.com/REPLACE-WITH-YOUR-LINK";
+const WHATSAPP_URL = "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?s=cl&p=i&ilr=0";
 const DONATE_URL = "https://YOUR-DONATION-LINK-HERE";
-const ZELLE_RECIPIENT = "Ballantyne Islamic Center";
-const ZELLE_EMAIL_OR_PHONE = "YOUR-ZELLE-EMAIL-OR-PHONE";
+const ZELLE_RECIPIENT = "CAROLINA MUSLIM DEVELOPMENT FUND Accounts";
+const ZELLE_TAG = "bicc10935";
 const ZELLE_MEMO = "Masjid Support";
 
 export const metadata: Metadata = {
