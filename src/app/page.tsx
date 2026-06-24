@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  CalendarDays,
   Clock3,
   HandHeart,
   Landmark,
@@ -16,10 +15,7 @@ const PAGE_TITLE =
   "Jumu’ah Prayer in Ballantyne, Fort Mill & Indian Land | Masjid Ballantyne";
 
 const PAGE_DESCRIPTION =
-  "Friday Jumu’ah (Jummah) prayer beginning July 3, 2026 near Ballantyne, Fort Mill, Indian Land, and Charlotte. Khutbah begins at 1:30 PM and Jumu’ah Salah is at 1:55 PM.";
-
-const JUMUAH_START_DATE = "Friday, July 3, 2026";
-const JUMUAH_START_DATE_ISO = "2026-07-03";
+  "Friday Jumu’ah (Jummah) prayer near Ballantyne, Fort Mill, Indian Land, and Charlotte. Khutbah begins at 1:30 PM and Jumu’ah Salah is at 1:55 PM.";
 
 const TEMPORARY_ADDRESS_LINE_1 = "10562 Providence Rd W";
 const TEMPORARY_ADDRESS_LINE_2 = "Charlotte, NC 28277";
@@ -30,10 +26,8 @@ const JUMUAH_SALAH_TIME = "1:55 PM";
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
-// Existing working links.
-const WHATSAPP_URL =
-  "https://chat.whatsapp.com/KIPh9IQOtybLvfhfzAzYIM?s=cl&p=i&mlu=0&amv=2";
-
+// Replace these before production deployment.
+const WHATSAPP_URL = "https://chat.whatsapp.com/JYqpEJtvn5a6riVMf1vnk6";
 const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
 
 const ZELLE_RECIPIENT = "Carolina Muslim Development Fund Accounts";
@@ -80,7 +74,7 @@ const structuredData = {
       alternateName: "Masjid Ballantyne",
       url: SITE_URL,
       description:
-        "A growing Muslim community serving Ballantyne, Fort Mill, Indian Land, and Charlotte through Friday Jumu’ah prayer and community programs beginning July 3, 2026.",
+        "A growing Muslim community serving Ballantyne, Fort Mill, Indian Land, and Charlotte through Friday Jummah prayer and community programs.",
       areaServed: [
         "Ballantyne, Charlotte, NC",
         "Fort Mill, SC",
@@ -164,7 +158,7 @@ export default function HomePage() {
             <span className="h-px w-10 bg-[#D4A447]/55 sm:w-16" />
 
             <p className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.22em] text-[#E0B75C] sm:text-xs sm:tracking-[0.28em]">
-              Friday Jumu’ah
+              Friday Jummah
             </p>
 
             <span className="h-px w-10 bg-[#D4A447]/55 sm:w-16" />
@@ -175,28 +169,9 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#DCEBE4] sm:text-lg">
-            Join Masjid Ballantyne for Friday Jumu’ah prayer serving
-            Ballantyne, Fort Mill, Indian Land, and Charlotte.
-          </p>
-
-          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#D4A447]/35 bg-[#073F36]/80 px-4 py-2.5 text-left shadow-lg">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/35 bg-[#063C34]">
-              <CalendarDays className="h-4 w-4 text-[#E0B75C]" />
-            </span>
-
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A7D7C5]">
-                First Jumu’ah Prayer
-              </p>
-
-              <time
-                dateTime={JUMUAH_START_DATE_ISO}
-                className="mt-0.5 block text-sm font-semibold text-[#FFFDF7]"
-              >
-                {JUMUAH_START_DATE}
-              </time>
-            </div>
-          </div>
+            Ballantyne Islamic Center welcomes you to Friday Jummah prayer — 
+            serving the Muslim community of Ballantyne, Fort Mill, Indian Land, and greater Charlotte.
+            </p>
         </header>
 
         <section className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[30px] border border-[#D4A447]/40 bg-[#10594A] shadow-[0_26px_80px_rgba(0,0,0,0.32)]">
@@ -276,9 +251,20 @@ export default function HomePage() {
                 </a>
 
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
-                  Temporary venue for Friday Jumu’ah and Ramadan programs only.
-                  Daily prayers are not currently held at this location.
-                </p>
+                  This is our interim prayer venue, currently hosting Friday Jummah and Ramadan programs. Daily congregational prayers are not yet available at this location.
+                 </p>
+
+                <div className="mt-4 max-w-2xl rounded-2xl border border-[#D4A447]/20 bg-[#073F36]/55 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E0B75C]">
+                    Parking & Entrance Information
+                  </p>
+
+                  <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
+                    Please use the designated entrance and follow parking guidance
+                    posted at the venue. Detailed arrival information will be shared
+                    in our WhatsApp community before the first Jumu’ah prayer.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -368,7 +354,7 @@ export default function HomePage() {
 
           <div className="p-6 text-center sm:p-9">
             <h2 className="font-serif text-3xl font-semibold text-[#FFFDF7]">
-              Help Build a Permanent Masjid Home
+              Support Our Permanent Masjid — Invest in Your Community's Future
             </h2>
 
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#DCEBE4]">
@@ -397,6 +383,19 @@ export default function HomePage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[#A7D7C5]">
                   Give by Zelle
                 </p>
+
+                <div className="mt-4 rounded-2xl border border-[#D4A447]/20 bg-[#073F36]/55 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E0B75C]">
+                    Donation Processing Notice
+                  </p>
+
+                  <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
+                    Donations for Masjid Ballantyne are received through Carolina
+                    Muslim Development Fund Accounts for the Masjid Ballantyne
+                    project. For your security, please verify the recipient name matches exactly 
+                    before completing your transfer.
+                   </p>
+                </div>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
