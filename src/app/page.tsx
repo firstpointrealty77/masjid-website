@@ -9,10 +9,13 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const SITE_URL = "https://ballantynemasjid.org";
+const SITE_URL = "https://www.ballantynemasjid.org";
 
 const PAGE_TITLE =
   "Jumu’ah Prayer in Ballantyne, Fort Mill & Indian Land | Masjid Ballantyne";
+
+// Shorter title shown when this link is shared in WhatsApp, Facebook, and similar apps.
+const SHARE_TITLE = "Masjid Ballantyne | Friday Jumu’ah Prayer";
 
 const PAGE_DESCRIPTION =
   "Friday Jumu’ah (Jummah) prayer near Ballantyne, Fort Mill, Indian Land, and Charlotte. Khutbah begins at 1:30 PM and Jumu’ah Salah is at 1:55 PM.";
@@ -26,7 +29,7 @@ const JUMUAH_SALAH_TIME = "1:55 PM";
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
-// Replace these before production deployment.
+// Existing active links.
 const WHATSAPP_URL = "https://chat.whatsapp.com/JYqpEJtvn5a6riVMf1vnk6";
 const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
 
@@ -52,14 +55,14 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Masjid Ballantyne",
-    title: PAGE_TITLE,
+    title: SHARE_TITLE,
     description: PAGE_DESCRIPTION,
     locale: "en_US",
   },
 
   twitter: {
     card: "summary",
-    title: PAGE_TITLE,
+    title: SHARE_TITLE,
     description: PAGE_DESCRIPTION,
   },
 };
