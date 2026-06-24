@@ -16,39 +16,6 @@ type NavTopItem = NavLink | NavGroup;
 function clsx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
-function DonateButton({
-  href = "/donate",
-  className,
-  compact,
-  onClick,
-}: {
-  href?: string;
-  className?: string;
-  compact?: boolean;
-  onClick?: () => void;
-}) {
-  return (
-    <Link
-      href={href}
-      aria-label="Donate"
-      onClick={onClick}
-      className={clsx(
-        "group relative inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300",
-        "text-[#0A3A34] border border-[#F3D789]/60",
-        "bg-[linear-gradient(180deg,#EBC870_0%,#D8AA48_52%,#BC811E_100%)]",
-        "shadow-[0_16px_38px_rgba(0,0,0,0.26),0_0_0_1px_rgba(243,215,137,0.14),inset_0_1px_0_rgba(255,255,255,0.24)]",
-        "hover:brightness-[1.05] hover:shadow-[0_20px_42px_rgba(0,0,0,0.32),0_0_28px_rgba(212,164,71,0.24)]",
-        compact ? "h-11 px-5 text-[12px]" : "h-[50px] px-9 text-[13px] xl:px-10",
-        className
-      )}
-    >
-      <span className="relative z-10 tracking-[0.02em]">
-        Donate
-      </span>
-    </Link>
-  );
-}
-
 function MenuButton({ onClick }: { onClick: () => void }) {
   return (
     <button
@@ -511,10 +478,10 @@ export function Header() {
                 </div>
               </div>
 
-              <nav className="flex items-center pb-3">
+              <nav className="hidden">
                 <div className="flex-[1.03]" />
 
-                <div className="relative" ref={desktopNavRef}>
+                <div className="relative hidden" ref={desktopNavRef}>
                   <div className="pointer-events-none absolute inset-x-[8%] -top-4 h-14 overflow-hidden">
                     <span className="absolute left-[6%] top-8 h-[3px] w-[3px] rounded-full bg-[#F3D789]/24 blur-[0.5px] animate-[floatParticleB_14s_ease-in-out_infinite]" />
                     <span className="absolute left-[20%] top-2 h-[2px] w-[2px] rounded-full bg-[#D4A447]/22 animate-[floatParticleC_18s_ease-in-out_infinite]" />
@@ -836,9 +803,6 @@ export function Header() {
                   </div>
                 </div>
 
-                <div className="flex flex-[1.01] justify-end pl-5 xl:pl-6">
-                  <DonateButton className="hidden md:inline-flex" />
-                </div>
               </nav>
             </div>
           </div>
@@ -1184,15 +1148,6 @@ export function Header() {
                   })}
                 </nav>
 
-                <div className="mt-5 h-px bg-[#A7D7C5]/30" />
-
-                <div className="mt-5">
-                  <DonateButton
-                    compact
-                    className="w-full justify-center"
-                    onClick={() => setMobileOpen(false)}
-                  />
-                </div>
               </div>
             </div>
           </div>
