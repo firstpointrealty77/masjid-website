@@ -377,10 +377,11 @@ export default function HomePage() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#4DB89A]/35 bg-white/[0.03] px-8 py-3.5 font-semibold text-[#FFFDF7] transition duration-200 hover:-translate-y-0.5 hover:bg-white/[0.07] sm:w-auto"
+            aria-label="Join the Masjid Ballantyne WhatsApp community"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#A7D7C5] bg-[#A7D7C5] px-8 py-3.5 font-semibold text-[#063C34] shadow-[0_10px_28px_rgba(167,215,197,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#C4E8D8] hover:shadow-[0_14px_34px_rgba(167,215,197,0.28)] sm:w-auto"
           >
-            <MessageCircle className="h-5 w-5 text-[#7DCFB8]" />
-            WhatsApp Updates
+            <MessageCircle className="h-5 w-5" />
+            Join WhatsApp Community
           </a>
         </div>
 
