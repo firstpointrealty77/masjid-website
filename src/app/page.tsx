@@ -27,7 +27,7 @@ const SALAH_TIME = "1:55 PM";
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
-const WHATSAPP_URL = "https://chat.whatsapp.com/JYqpEJtvn5a6riVMf1vnk6";
+const WHATSAPP_URL = "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h?s=cl&p=i&mlu=0&amv=2";
 const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
 
 const ZELLE_RECIPIENT = "Carolina Muslim Development Fund";
