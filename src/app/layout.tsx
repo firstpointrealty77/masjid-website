@@ -22,8 +22,37 @@ const amiri = Amiri({
 });
 
 export const metadata: Metadata = {
-  title: "Ballantyne Islamic Center",
-  description: "Masjid Ballantyne — Ballantyne Islamic Center, Fort Mill, SC",
+  metadataBase: new URL("https://www.ballantynemasjid.org"),
+
+  title: "Masjid Ballantyne | Friday Jumu'ah Prayer",
+  description:
+    "Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and surrounding areas.",
+
+  openGraph: {
+    title: "Masjid Ballantyne | Friday Jumu'ah Prayer",
+    description:
+      "Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and surrounding areas.",
+    url: "https://www.ballantynemasjid.org",
+    siteName: "Masjid Ballantyne",
+    images: [
+      {
+        url: "/og/whatsapp-preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Masjid Ballantyne Friday Jumu'ah Prayer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Masjid Ballantyne | Friday Jumu'ah Prayer",
+    description:
+      "Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and surrounding areas.",
+    images: ["/og/whatsapp-preview.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -38,10 +67,8 @@ export default function RootLayout({
       >
         <Header />
 
-        {/* ✅ Push content exactly below fixed header */}
+        {/* Push content exactly below fixed header */}
         <main className="min-h-[60vh] pt-[var(--header-h)]">{children}</main>
-
-       
       </body>
     </html>
   );
