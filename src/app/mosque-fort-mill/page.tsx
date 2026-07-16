@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     canonical: "/mosque-fort-mill",
   },
   openGraph: {
-    title: "Masjid Indian Land | Jumu'ah Prayer Near Indian Land SC",
+    title: "Mosque Fort Mill | Jumu'ah Prayer Near Fort Mill SC",
     description:
       "Find Jumu'ah prayer near Indian Land, Fort Mill, Ballantyne, Waxhaw, Weddington, Marvin and South Charlotte.",
-    url: "https://www.ballantynemasjid.org/masjid-indian-land",
+    url: "https://www.ballantynemasjid.org/mosque-fort-mill",
     siteName: "Masjid Ballantyne",
     type: "website",
   },
@@ -56,15 +56,15 @@ export default function MasjidIndianLandPage() {
       <section className="bg-[#0A3A34] px-5 py-16 text-white sm:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 inline-flex rounded-full border border-[#A7D7C5]/40 px-4 py-2 text-sm font-medium text-[#A7D7C5]">
-            Masjid Near Indian Land
+            Mosque Near Fort Mill
           </p>
 
           <h1 className="max-w-4xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-            Masjid Serving Indian Land, Fort Mill & Ballantyne
+            Mosque Serving Fort Mill, Indian Land & Ballantyne
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-white/85">
-            Masjid Ballantyne provides Jumu&apos;ah prayer and community
+            Mosque Ballantyne provides Jumu&apos;ah prayer and community
             connection for Muslim families near Indian Land, Fort Mill,
             Ballantyne, Waxhaw, Weddington, Marvin and South Charlotte.
           </p>
@@ -113,13 +113,13 @@ export default function MasjidIndianLandPage() {
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.5fr_1fr]">
           <article className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-3xl font-semibold text-[#0A3A34]">
-              A Local Jumu&apos;ah Option for Indian Land Families
+              A Local Jumu&apos;ah Option for Fort Mill Families
             </h2>
 
             <p className="mt-5 leading-8 text-[#31524c]">
-              Many Muslim families in Indian Land and nearby communities search
+              Many Muslim families in Fort Mill and nearby communities search
               for a convenient masjid, mosque, or Friday Jumu&apos;ah prayer
-              location close to home. Masjid Ballantyne was established to serve
+              location close to home. Ballantyne Islamic Center was established to serve
               this growing Muslim community with prayer, Islamic values and
               community connection.
             </p>
@@ -257,7 +257,7 @@ export default function MasjidIndianLandPage() {
               "@type": "Mosque",
               name: "Masjid Ballantyne",
               alternateName: "Ballantyne Islamic Center",
-              url: "https://www.ballantynemasjid.org/masjid-indian-land",
+              url: "https://www.ballantynemasjid.org/mosque-fort-mill",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "10562 Providence Rd W",

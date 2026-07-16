@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { MapPin, Clock, Car, Users, Navigation, HelpCircle } from "lucide-react";
+import SeoPhotoSection from "../../components/SeoPhotoSection";
 
 export const metadata: Metadata = {
   title: "Ballantyne Islamic Center | Jumu'ah Prayer Near Ballantyne NC",
@@ -17,6 +18,14 @@ export const metadata: Metadata = {
     url: "https://www.ballantynemasjid.org/masjid-ballantyne",
     siteName: "Masjid Ballantyne",
     type: "website",
+    images: [
+  {
+    url: "https://www.ballantynemasjid.org/media/seo/Entrance.jpeg",
+    width: 1200,
+    height: 630,
+    alt: "Masjid Ballantyne serving Ballantyne and South Charlotte",
+  },
+],
   },
 };
 
