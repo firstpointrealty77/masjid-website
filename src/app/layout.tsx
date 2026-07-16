@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import "./globals.css";
 import { Playfair_Display, Lora, Amiri } from "next/font/google";
 import { Header } from "@/components/layout/Header";
@@ -24,22 +25,36 @@ const amiri = Amiri({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ballantynemasjid.org"),
 
-  title: "Masjid Ballantyne | Friday Jumu'ah Prayer",
+  title: {
+    default: "Ballantyne Islamic Center | Friday Jumu'ah Prayer",
+    template: "%s | Ballantyne Islamic Center",
+  },
+
   description:
-    "Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and surrounding areas.",
+    "Ballantyne Islamic Center currently serves Friday Jumu'ah prayer and is growing together toward a permanent masjid, In Sha Allah.",
+
+  alternates: {
+    canonical: "https://www.ballantynemasjid.org",
+  },
+
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 
   openGraph: {
-    title: "Masjid Ballantyne | Friday Jumu'ah Prayer",
+    title: "Ballantyne Islamic Center | Friday Jumu'ah Prayer",
     description:
-      "Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and surrounding areas.",
+      "Currently serving Friday Jumu'ah prayer and growing together toward our permanent masjid, In Sha Allah.",
     url: "https://www.ballantynemasjid.org",
-    siteName: "Masjid Ballantyne",
+    siteName: "Ballantyne Islamic Center",
     images: [
       {
         url: "/og/whatsapp-preview.jpg",
         width: 1200,
         height: 630,
-        alt: "Masjid Ballantyne Friday Jumu'ah Prayer",
+        alt: "Ballantyne Islamic Center Friday Jumu'ah Prayer",
       },
     ],
     locale: "en_US",
@@ -48,9 +63,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Masjid Ballantyne | Friday Jumu'ah Prayer",
+    title: "Ballantyne Islamic Center | Friday Jumu'ah Prayer",
     description:
-      "Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and surrounding areas.",
+      "Currently serving Friday Jumu'ah prayer and growing together toward our permanent masjid, In Sha Allah.",
     images: ["/og/whatsapp-preview.jpg"],
   },
 };
@@ -58,7 +73,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="en">
@@ -67,8 +82,8 @@ export default function RootLayout({
       >
         <Header />
 
-        {/* Push content exactly below fixed header */}
-        <main className="min-h-[60vh] pt-[var(--header-h)]">{children}</main>
+        {/* Keeps page content below the fixed header */}
+        <div className="min-h-[60vh] pt-[var(--header-h)]">{children}</div>
       </body>
     </html>
   );
