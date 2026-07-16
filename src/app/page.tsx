@@ -12,7 +12,7 @@ import {
 const SITE_URL = "https://www.ballantynemasjid.org";
 const SITE_NAME = "Ballantyne Islamic Center";
 const ALTERNATE_NAME = "Masjid Ballantyne";
-const SHARE_IMAGE = "/og/whatsapp-preview.jpg";
+const SHARE_IMAGE = "/og/whatsapp-preview-square.jpg";
 
 const PAGE_TITLE =
   "Friday Jumu'ah Prayer in Ballantyne | Ballantyne Islamic Center";
