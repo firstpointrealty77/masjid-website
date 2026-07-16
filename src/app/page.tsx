@@ -80,8 +80,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: SHARE_IMAGE,
-        width: 1200,
-        height: 630,
+        width: 512,
+        height: 512,
         alt: "Ballantyne Islamic Center Friday Jumu'ah Prayer",
       },
     ],
@@ -155,8 +155,8 @@ const structuredData = {
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: `${SITE_URL}${SHARE_IMAGE}`,
-        width: 1200,
-        height: 630,
+        width: 512,
+        height: 512,
       },
       inLanguage: "en-US",
     },
