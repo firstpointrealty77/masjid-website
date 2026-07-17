@@ -26,12 +26,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.ballantynemasjid.org"),
 
   title: {
-    default: "Ballantyne Islamic Center | Friday Jumu'ah Prayer",
+    default: "Ballantyne Islamic Center | Jumu'ah Prayer",
     template: "%s | Ballantyne Islamic Center",
   },
 
   description:
-    "Ballantyne Islamic Center currently serves Friday Jumu'ah prayer and is growing together toward a permanent masjid, In Sha Allah.",
+    "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.",
 
   alternates: {
     canonical: "https://www.ballantynemasjid.org",
@@ -44,17 +44,17 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Ballantyne Islamic Center | Friday Jumu'ah Prayer",
+    title: "Ballantyne Islamic Center | Jumu'ah Prayer",
     description:
-      "Currently serving Friday Jumu'ah prayer and growing together toward our permanent masjid, In Sha Allah.",
+      "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.",
     url: "https://www.ballantynemasjid.org",
     siteName: "Ballantyne Islamic Center",
     images: [
       {
-        url: "/og/whatsapp-preview-square.jpg",
-        width: 512,
-        height: 512,
-        alt: "Ballantyne Islamic Center Friday Jumu'ah Prayer",
+        url: "/og/whatsapp-preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ballantyne Islamic Center Jumu'ah Prayer",
       },
     ],
     locale: "en_US",
@@ -63,10 +63,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Ballantyne Islamic Center | Friday Jumu'ah Prayer",
+    title: "Ballantyne Islamic Center | Jumu'ah Prayer",
     description:
-      "Currently serving Friday Jumu'ah prayer and growing together toward our permanent masjid, In Sha Allah.",
-    images: ["/og/whatsapp-preview-square.jpg"],
+      "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.",
+    images: ["/og/whatsapp-preview.jpg"],
   },
 };
 

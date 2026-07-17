@@ -12,18 +12,17 @@ import {
 const SITE_URL = "https://www.ballantynemasjid.org";
 const SITE_NAME = "Ballantyne Islamic Center";
 const ALTERNATE_NAME = "Masjid Ballantyne";
-const SHARE_IMAGE = "/og/whatsapp-preview-square.jpg";
+const SHARE_IMAGE = "/og/whatsapp-preview.jpg";
 
-const PAGE_TITLE =
-  "Friday Jumu'ah Prayer in Ballantyne | Ballantyne Islamic Center";
+const PAGE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
 
-const SHARE_TITLE = "Ballantyne Islamic Center | Friday Jumu'ah Prayer";
+const SHARE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
 
 const PAGE_DESCRIPTION =
-  "Ballantyne Islamic Center currently serves Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and South Charlotte while growing together toward our permanent masjid, In Sha Allah. Khutbah begins at 1:30 PM.";
+  "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah. Khutbah begins at 1:30 PM.";
 
 const SHARE_DESCRIPTION =
-  "Currently serving Friday Jumu'ah prayer and growing together toward our permanent masjid, In Sha Allah.";
+  "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.";
 
 const TEMPORARY_ADDRESS_LINE_1 = "10562 Providence Rd W";
 const TEMPORARY_ADDRESS_LINE_2 = "Charlotte, NC 28277";
@@ -80,9 +79,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: SHARE_IMAGE,
-        width: 512,
-        height: 512,
-        alt: "Ballantyne Islamic Center Friday Jumu'ah Prayer",
+        width: 1200,
+        height: 630,
+        alt: "Ballantyne Islamic Center Jumu'ah Prayer",
       },
     ],
     locale: "en_US",
@@ -155,8 +154,8 @@ const structuredData = {
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: `${SITE_URL}${SHARE_IMAGE}`,
-        width: 512,
-        height: 512,
+        width: 1200,
+        height: 630,
       },
       inLanguage: "en-US",
     },
