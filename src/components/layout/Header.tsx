@@ -5,20 +5,32 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { WordmarkLogo } from "@/components/branding/WordmarkLogo";
 
-type NavLink = { type: "link"; label: string; href: string };
+type NavLink = {
+  type: "link";
+  label: string;
+  href: string;
+};
+
 type NavGroup = {
   type: "group";
   label: string;
-  items: Array<{ label: string; href: string; description?: string }>;
+  items: Array<{
+    label: string;
+    href: string;
+    description?: string;
+  }>;
 };
+
 type NavTopItem = NavLink | NavGroup;
 
 function clsx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
+
 function MenuButton({ onClick }: { onClick: () => void }) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#A7D7C5]/45 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.07),transparent_62%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_12px_26px_rgba(0,0,0,0.22)] transition-all duration-200 hover:bg-white/5"
       aria-label="Open menu"
@@ -50,6 +62,7 @@ function GoldChevron({ open }: { open?: boolean }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
       <defs>
         <linearGradient
           id="gold-chevron-gradient"
@@ -69,8 +82,11 @@ function GoldChevron({ open }: { open?: boolean }) {
 }
 
 function isActivePath(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(href + "/");
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export function Header() {
@@ -78,41 +94,30 @@ export function Header() {
 
   const topNav: NavTopItem[] = useMemo(
     () => [
-      { type: "link", label: "Home", href: "/" },
+      {
+        type: "link",
+        label: "Home",
+        href: "/",
+      },
 
       {
         type: "group",
         label: "About",
         items: [
-      {
-        label: "About",
-        href: "/about",
-        description: "Who we are and our purpose",
+          {
+            label: "About Our Center",
+            href: "/about",
+            description: "Our story, mission, values, and vision",
+          },
+          {
+            label: "Leadership",
+            href: "/about/leadership",
+            description: "Meet the board members serving our community",
+          },
+        ],
       },
-      {
-        label: "Leadership",
-        href: "/about/leadership",
-        description: "Meet our leadership",
-      },
-      {
-        label: "Spiritual Team",
-        href: "/about/spiritual-team",
-        description: "Imam and religious guidance",
-      },
-      {
-        label: "Our Staff",
-        href: "/about/staff",
-        description: "Meet our Staff",
-      },
-      {
-        label: "Our Policies & Constitution",
-        href: "/about/policies",
-        description: "Guidelines and governance",
-      },
-    ],
-  },
 
-    {
+      {
         type: "group",
         label: "Programs",
         items: [
@@ -139,7 +144,8 @@ export function Header() {
           {
             label: "Youth Program",
             href: "/programs/youth",
-            description: "Mentorship and masjid-centered youth development",
+            description:
+              "Mentorship and masjid-centered youth development",
           },
           {
             label: "Converts Corner",
@@ -149,7 +155,11 @@ export function Header() {
         ],
       },
 
-      { type: "link", label: "Events", href: "/events" },
+      {
+        type: "link",
+        label: "Events",
+        href: "/events",
+      },
 
       {
         type: "group",
@@ -203,62 +213,94 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   const headerRef = useRef<HTMLElement | null>(null);
+
   const [mobileGroupsOpen, setMobileGroupsOpen] = useState<
     Record<string, boolean>
   >({});
 
   useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
+    const element = headerRef.current;
 
-    const apply = () => {
-      const h = Math.ceil(el.getBoundingClientRect().height);
-      document.documentElement.style.setProperty("--header-h", `${h}px`);
+    if (!element) {
+      return;
+    }
+
+    const applyHeaderHeight = () => {
+      const headerHeight = Math.ceil(
+        element.getBoundingClientRect().height
+      );
+
+      document.documentElement.style.setProperty(
+        "--header-h",
+        `${headerHeight}px`
+      );
     };
 
-    apply();
-    const ro = new ResizeObserver(() => apply());
-    ro.observe(el);
+    applyHeaderHeight();
 
-    window.addEventListener("resize", apply);
+    const resizeObserver = new ResizeObserver(() => {
+      applyHeaderHeight();
+    });
+
+    resizeObserver.observe(element);
+
+    window.addEventListener("resize", applyHeaderHeight);
+
     return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", apply);
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", applyHeaderHeight);
     };
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 60);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
-    if (!mobileOpen) return;
-    const prev = document.body.style.overflow;
+    if (!mobileOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
 
   const activeGroupLabel: string | null = useMemo(() => {
-    for (const it of topNav) {
+    for (const item of topNav) {
       if (
-        it.type === "group" &&
-        it.items.some((x) => isActivePath(pathname, x.href))
+        item.type === "group" &&
+        item.items.some((groupItem) =>
+          isActivePath(pathname, groupItem.href)
+        )
       ) {
-        return it.label;
+        return item.label;
       }
     }
+
     return null;
   }, [pathname, topNav]);
 
   useEffect(() => {
     if (activeGroupLabel) {
-      setMobileGroupsOpen((prev) => ({
-        ...prev,
+      setMobileGroupsOpen((previous) => ({
+        ...previous,
         [activeGroupLabel]: true,
       }));
     }
@@ -274,7 +316,9 @@ export function Header() {
           ref={headerRef}
           className={clsx(
             "relative border-b border-[#A7D7C5]/28",
-            scrolled ? "bg-[#0A3A34]/92 backdrop-blur-md" : "bg-[#0A3A34]"
+            scrolled
+              ? "bg-[#0A3A34]/92 backdrop-blur-md"
+              : "bg-[#0A3A34]"
           )}
         >
           <div className="pointer-events-none absolute inset-0">
@@ -286,6 +330,7 @@ export function Header() {
           </div>
 
           <div className="relative mx-auto max-w-[1720px] px-4 xl:px-6">
+            {/* Mobile header */}
             <div
               className={clsx(
                 "flex items-center gap-3 md:hidden",
@@ -296,7 +341,7 @@ export function Header() {
                 <div className="max-w-full overflow-hidden">
                   <Link
                     href="/"
-                    aria-label="Masjid Ballantyne Home"
+                    aria-label="Ballantyne Islamic Center Home"
                     className="group relative inline-flex max-w-full items-center rounded-xl px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A447]/70"
                   >
                     <span
@@ -307,10 +352,12 @@ export function Header() {
                           "radial-gradient(circle at 50% 50%, rgba(212,164,71,0.28), transparent 68%)",
                       }}
                     />
+
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-y-0 -left-[135%] w-[70%] rounded-xl bg-gradient-to-r from-transparent via-[#F7E7B0]/30 to-transparent skew-x-[-18deg] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:animate-[logoShimmer_1.35s_ease-out_forwards]"
+                      className="pointer-events-none absolute inset-y-0 -left-[135%] w-[70%] skew-x-[-18deg] rounded-xl bg-gradient-to-r from-transparent via-[#F7E7B0]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-[logoShimmer_1.35s_ease-out_forwards] group-hover:opacity-100"
                     />
+
                     <span className="relative z-10 block max-w-full">
                       <WordmarkLogo />
                     </span>
@@ -322,23 +369,23 @@ export function Header() {
                 <MenuButton
                   onClick={() => {
                     setMobileOpen(true);
-                    setMobileGroupsOpen((prev) => ({ ...prev }));
                   }}
                 />
               </div>
             </div>
 
+            {/* Desktop header */}
             <div className="hidden md:block">
               <div className="relative">
                 <div className="pointer-events-none absolute inset-x-[18%] top-1 h-20 overflow-hidden">
-                  <span className="absolute left-[4%] top-10 h-[3px] w-[3px] rounded-full bg-[#F3D789]/28 blur-[0.5px] animate-[floatParticleA_13s_ease-in-out_infinite]" />
-                  <span className="absolute left-[14%] top-4 h-[4px] w-[4px] rounded-full bg-[#D4A447]/20 blur-[0.5px] animate-[floatParticleB_16s_ease-in-out_infinite]" />
-                  <span className="absolute left-[25%] top-12 h-[2px] w-[2px] rounded-full bg-[#F3D789]/32 animate-[floatParticleC_12s_ease-in-out_infinite]" />
-                  <span className="absolute left-[37%] top-2 h-[3px] w-[3px] rounded-full bg-[#E7C66C]/20 blur-[0.5px] animate-[floatParticleD_15s_ease-in-out_infinite]" />
-                  <span className="absolute left-[49%] top-9 h-[4px] w-[4px] rounded-full bg-[#F6E7B0]/18 blur-[0.5px] animate-[floatParticleA_17s_ease-in-out_infinite]" />
-                  <span className="absolute left-[60%] top-1 h-[2px] w-[2px] rounded-full bg-[#D4A447]/28 animate-[floatParticleB_14s_ease-in-out_infinite]" />
-                  <span className="absolute left-[71%] top-14 h-[3px] w-[3px] rounded-full bg-[#F3D789]/22 blur-[0.5px] animate-[floatParticleC_18s_ease-in-out_infinite]" />
-                  <span className="absolute left-[83%] top-5 h-[4px] w-[4px] rounded-full bg-[#E7C66C]/16 blur-[0.5px] animate-[floatParticleD_13s_ease-in-out_infinite]" />
+                  <span className="absolute left-[4%] top-10 h-[3px] w-[3px] animate-[floatParticleA_13s_ease-in-out_infinite] rounded-full bg-[#F3D789]/28 blur-[0.5px]" />
+                  <span className="absolute left-[14%] top-4 h-[4px] w-[4px] animate-[floatParticleB_16s_ease-in-out_infinite] rounded-full bg-[#D4A447]/20 blur-[0.5px]" />
+                  <span className="absolute left-[25%] top-12 h-[2px] w-[2px] animate-[floatParticleC_12s_ease-in-out_infinite] rounded-full bg-[#F3D789]/32" />
+                  <span className="absolute left-[37%] top-2 h-[3px] w-[3px] animate-[floatParticleD_15s_ease-in-out_infinite] rounded-full bg-[#E7C66C]/20 blur-[0.5px]" />
+                  <span className="absolute left-[49%] top-9 h-[4px] w-[4px] animate-[floatParticleA_17s_ease-in-out_infinite] rounded-full bg-[#F6E7B0]/18 blur-[0.5px]" />
+                  <span className="absolute left-[60%] top-1 h-[2px] w-[2px] animate-[floatParticleB_14s_ease-in-out_infinite] rounded-full bg-[#D4A447]/28" />
+                  <span className="absolute left-[71%] top-14 h-[3px] w-[3px] animate-[floatParticleC_18s_ease-in-out_infinite] rounded-full bg-[#F3D789]/22 blur-[0.5px]" />
+                  <span className="absolute left-[83%] top-5 h-[4px] w-[4px] animate-[floatParticleD_13s_ease-in-out_infinite] rounded-full bg-[#E7C66C]/16 blur-[0.5px]" />
                 </div>
 
                 <div
@@ -349,29 +396,29 @@ export function Header() {
                 >
                   <Link
                     href="/"
-                    aria-label="Masjid Ballantyne Home"
+                    aria-label="Ballantyne Islamic Center Home"
                     className="group relative inline-flex items-center justify-center rounded-2xl px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A447]/70"
                   >
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl transition-all duration-400 group-hover:opacity-100"
+                      className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl transition-all duration-300 group-hover:opacity-100"
                       style={{
                         background:
                           "radial-gradient(circle at 50% 50%, rgba(212,164,71,0.22), transparent 68%)",
                       }}
                     />
+
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-y-[8%] -left-[125%] w-[36%] rounded-2xl bg-gradient-to-r from-transparent via-[#FFF4CC]/38 to-transparent skew-x-[-18deg] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:animate-[logoShimmer_1.45s_ease-out_forwards]"
+                      className="pointer-events-none absolute inset-y-[8%] -left-[125%] w-[36%] skew-x-[-18deg] rounded-2xl bg-gradient-to-r from-transparent via-[#FFF4CC]/38 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-[logoShimmer_1.45s_ease-out_forwards] group-hover:opacity-100"
                     />
+
                     <span className="relative z-10 origin-center scale-[1.04] transition-transform duration-300 group-hover:scale-[1.06] xl:scale-[1.07] xl:group-hover:scale-[1.085]">
                       <WordmarkLogo />
                     </span>
                   </Link>
                 </div>
               </div>
-
-
             </div>
           </div>
 
@@ -381,9 +428,11 @@ export function Header() {
                 transform: translateX(0) skewX(12deg);
                 opacity: 0;
               }
+
               25% {
                 opacity: 1;
               }
+
               100% {
                 transform: translateX(240%) skewX(12deg);
                 opacity: 0;
@@ -395,9 +444,11 @@ export function Header() {
                 transform: translateX(0) skewX(-18deg);
                 opacity: 0;
               }
+
               18% {
                 opacity: 0.55;
               }
+
               100% {
                 transform: translateX(520%) skewX(-18deg);
                 opacity: 0;
@@ -409,18 +460,22 @@ export function Header() {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.16;
               }
+
               25% {
                 transform: translate3d(6px, -4px, 0) scale(1.08);
                 opacity: 0.3;
               }
+
               50% {
                 transform: translate3d(12px, -10px, 0) scale(0.96);
                 opacity: 0.18;
               }
+
               75% {
                 transform: translate3d(8px, -6px, 0) scale(1.04);
                 opacity: 0.26;
               }
+
               100% {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.16;
@@ -432,18 +487,22 @@ export function Header() {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.12;
               }
+
               30% {
                 transform: translate3d(-7px, 5px, 0) scale(1.05);
                 opacity: 0.24;
               }
+
               55% {
                 transform: translate3d(-12px, -3px, 0) scale(0.95);
                 opacity: 0.14;
               }
+
               80% {
                 transform: translate3d(-5px, -8px, 0) scale(1.02);
                 opacity: 0.2;
               }
+
               100% {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.12;
@@ -455,18 +514,22 @@ export function Header() {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.14;
               }
+
               20% {
                 transform: translate3d(4px, -6px, 0) scale(1.04);
                 opacity: 0.24;
               }
+
               45% {
                 transform: translate3d(10px, -12px, 0) scale(0.92);
                 opacity: 0.13;
               }
+
               70% {
                 transform: translate3d(7px, -4px, 0) scale(1.06);
                 opacity: 0.22;
               }
+
               100% {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.14;
@@ -478,18 +541,22 @@ export function Header() {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.1;
               }
+
               28% {
                 transform: translate3d(-5px, -5px, 0) scale(1.08);
                 opacity: 0.2;
               }
+
               52% {
                 transform: translate3d(-9px, -11px, 0) scale(0.94);
                 opacity: 0.12;
               }
+
               78% {
                 transform: translate3d(-4px, -3px, 0) scale(1.03);
                 opacity: 0.18;
               }
+
               100% {
                 transform: translate3d(0, 0, 0) scale(1);
                 opacity: 0.1;
@@ -501,16 +568,20 @@ export function Header() {
                 transform: translateX(0);
                 opacity: 0;
               }
+
               6% {
                 opacity: 0.14;
               }
+
               14% {
                 opacity: 0.18;
               }
+
               24% {
                 transform: translateX(760%);
                 opacity: 0;
               }
+
               100% {
                 transform: translateX(760%);
                 opacity: 0;
@@ -523,9 +594,10 @@ export function Header() {
       {mobileOpen && (
         <div className="fixed inset-0 z-[60]">
           <button
+            type="button"
             className="absolute inset-0 bg-black/60"
             onClick={() => setMobileOpen(false)}
-            aria-label="Close overlay"
+            aria-label="Close menu overlay"
           />
 
           <div className="absolute right-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto overscroll-contain border-l border-[#A7D7C5]/35 bg-[#0A3A34] shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
@@ -540,6 +612,7 @@ export function Header() {
                 </Link>
 
                 <button
+                  type="button"
                   onClick={() => setMobileOpen(false)}
                   className="text-lg text-white"
                   aria-label="Close menu"
@@ -573,6 +646,7 @@ export function Header() {
                       <div className="text-[15px] font-medium tracking-[0.01em] text-white">
                         Join Our WhatsApp Community
                       </div>
+
                       <div className="mt-1 text-[12px] leading-relaxed text-white/65">
                         Get prayer updates, events, announcements, and community
                         reminders.
@@ -586,7 +660,8 @@ export function Header() {
                 <nav className="mt-5 flex flex-col gap-2.5">
                   {topNav.map((item) => {
                     if (item.type === "link") {
-                      const isActive = isActivePath(pathname, item.href);
+                      const active = isActivePath(pathname, item.href);
+
                       return (
                         <Link
                           key={item.href}
@@ -594,7 +669,7 @@ export function Header() {
                           onClick={() => setMobileOpen(false)}
                           className={clsx(
                             "relative rounded-[22px] border border-white/10 px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
-                            isActive
+                            active
                               ? "bg-[linear-gradient(90deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] text-[#F6E7B0]"
                               : "text-white hover:bg-white/[0.03] hover:text-[#A7D7C5]"
                           )}
@@ -603,12 +678,13 @@ export function Header() {
                             aria-hidden="true"
                             className={clsx(
                               "absolute bottom-2 left-0 top-2 w-[2px] rounded-full transition-opacity",
-                              isActive
+                              active
                                 ? "bg-gradient-to-b from-[#F3D789] via-[#D4A447] to-[#C8922E] opacity-100 shadow-[0_0_10px_rgba(212,164,71,0.28)]"
                                 : "opacity-0"
                             )}
                           />
-                          {isActive && (
+
+                          {active && (
                             <span
                               aria-hidden="true"
                               className="pointer-events-none absolute inset-0 rounded-[22px]"
@@ -618,15 +694,21 @@ export function Header() {
                               }}
                             />
                           )}
-                          <span className="relative z-10">{item.label}</span>
+
+                          <span className="relative z-10">
+                            {item.label}
+                          </span>
                         </Link>
                       );
                     }
 
-                    const groupActive = item.items.some((x) =>
-                      isActivePath(pathname, x.href)
+                    const groupActive = item.items.some((groupItem) =>
+                      isActivePath(pathname, groupItem.href)
                     );
-                    const isOpen = !!mobileGroupsOpen[item.label] || groupActive;
+
+                    const groupOpen =
+                      Boolean(mobileGroupsOpen[item.label]) ||
+                      groupActive;
 
                     return (
                       <div
@@ -636,22 +718,25 @@ export function Header() {
                         <button
                           type="button"
                           onClick={() =>
-                            setMobileGroupsOpen((p) => ({
-                              ...p,
-                              [item.label]: !p[item.label],
+                            setMobileGroupsOpen((previous) => ({
+                              ...previous,
+                              [item.label]:
+                                !previous[item.label],
                             }))
                           }
                           className={clsx(
                             "relative flex w-full items-center justify-between px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
-                            groupActive || isOpen
+                            groupActive || groupOpen
                               ? "text-[#F6E7B0]"
                               : "text-white"
                           )}
-                          aria-expanded={isOpen}
+                          aria-expanded={groupOpen}
                         >
-                          <span className="relative z-10">{item.label}</span>
+                          <span className="relative z-10">
+                            {item.label}
+                          </span>
 
-                          {(groupActive || isOpen) && (
+                          {(groupActive || groupOpen) && (
                             <span
                               aria-hidden="true"
                               className="absolute bottom-2 left-0 top-2 w-[2px] rounded-full bg-gradient-to-b from-[#F3D789] via-[#D4A447] to-[#C8922E] shadow-[0_0_10px_rgba(212,164,71,0.28)]"
@@ -661,22 +746,28 @@ export function Header() {
                           <span
                             className={clsx(
                               "transition-transform duration-300",
-                              isOpen ? "rotate-180" : "rotate-0"
+                              groupOpen ? "rotate-180" : "rotate-0"
                             )}
                           >
-                            <GoldChevron open={isOpen} />
+                            <GoldChevron open={groupOpen} />
                           </span>
                         </button>
 
-                        {isOpen && (
+                        {groupOpen && (
                           <div className="px-2 pb-2">
-                            {item.items.map((it) => {
-                              const active = isActivePath(pathname, it.href);
+                            {item.items.map((groupItem) => {
+                              const active = isActivePath(
+                                pathname,
+                                groupItem.href
+                              );
+
                               return (
                                 <Link
-                                  key={it.href}
-                                  href={it.href}
-                                  onClick={() => setMobileOpen(false)}
+                                  key={groupItem.href}
+                                  href={groupItem.href}
+                                  onClick={() =>
+                                    setMobileOpen(false)
+                                  }
                                   className={clsx(
                                     "relative block rounded-[18px] px-3.5 py-2.5 text-[14px] transition-colors",
                                     active
@@ -693,6 +784,7 @@ export function Header() {
                                         : "opacity-0"
                                     )}
                                   />
+
                                   {active && (
                                     <span
                                       aria-hidden="true"
@@ -703,8 +795,9 @@ export function Header() {
                                       }}
                                     />
                                   )}
+
                                   <span className="relative z-10 pl-2">
-                                    {it.label}
+                                    {groupItem.label}
                                   </span>
                                 </Link>
                               );
@@ -715,7 +808,6 @@ export function Header() {
                     );
                   })}
                 </nav>
-
               </div>
             </div>
           </div>
