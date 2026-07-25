@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
+  ArrowRight,
   Clock3,
+  Compass,
   HandHeart,
   Landmark,
   MapPin,
@@ -40,6 +43,45 @@ const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
 const ZELLE_RECIPIENT = "Carolina Muslim Development Fund";
 const ZELLE_TAG = "bicc10935";
 const ZELLE_MEMO = "Masjid Support";
+
+const EXPLORE_LINKS = [
+  {
+    href: "/about",
+    title: "About Ballantyne Islamic Center",
+    description:
+      "Learn about our story, mission, Islamic values, and permanent masjid vision.",
+  },
+  {
+    href: "/about/leadership",
+    title: "Our Leadership",
+    description:
+      "Meet the board members serving the community with amanah and responsibility.",
+  },
+  {
+    href: "/jummah-prayer-ballantyne",
+    title: "Friday Jumu’ah Prayer",
+    description:
+      "View the latest Khutbah time, prayer venue, directions, and visitor guidance.",
+  },
+  {
+    href: "/masjid-ballantyne",
+    title: "Masjid Near Ballantyne",
+    description:
+      "Find Friday prayer information for Muslim families in the Ballantyne area.",
+  },
+  {
+    href: "/mosque-fort-mill",
+    title: "Mosque Near Fort Mill",
+    description:
+      "Jumu’ah information for Muslim families traveling from Fort Mill and Tega Cay.",
+  },
+  {
+    href: "/masjid-indian-land",
+    title: "Masjid Near Indian Land",
+    description:
+      "Friday prayer information serving Indian Land and nearby South Carolina communities.",
+  },
+] as const;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -307,10 +349,12 @@ export default function HomePage() {
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/28 bg-[#073F36]">
                 <Clock3 className="h-5 w-5 text-[#E0B75C]" />
               </span>
+
               <div className="pt-0.5">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#7DCFB8]">
                   Kindly arrive by 1:25 PM
                 </p>
+
                 <p className="mt-1 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
                   Please be seated before the Khutbah begins — listening
                   attentively is part of the adab of Jumu&apos;ah.
@@ -322,9 +366,11 @@ export default function HomePage() {
               <p className="text-lg font-semibold tracking-tight text-[#FFFDF7] sm:text-xl">
                 Khutbah Begins
               </p>
+
               <p className="mt-2 font-serif text-5xl font-semibold tracking-tight text-[#F5DFA0] sm:text-7xl">
                 {KHUTBAH_TIME}
               </p>
+
               <p className="mt-3 text-sm text-[#BDD3C8] sm:text-base">
                 Jumu&apos;ah Salah begins at{" "}
                 <span className="font-semibold text-[#FFFDF7]">
@@ -374,6 +420,7 @@ export default function HomePage() {
                   <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E0B75C]">
                     Parking &amp; Entrance
                   </p>
+
                   <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
                     Follow posted signs on arrival. Join our WhatsApp community
                     for the latest parking, entrance, and Jumu&apos;ah updates.
@@ -449,6 +496,7 @@ export default function HomePage() {
           <div className="relative">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#4DB89A]/30 bg-[#4DB89A]/10 px-4 py-2">
               <Sparkles className="h-3.5 w-3.5 text-[#7DCFB8]" />
+
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7DCFB8]">
                 A Growing Community
               </p>
@@ -484,6 +532,7 @@ export default function HomePage() {
                 <span className="inline-block rounded-full border border-[#C44E38]/40 bg-[#9B3A2A]/22 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-[#C44E38]">
                   Where We Are
                 </span>
+
                 <p className="mt-3 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
                   Alhamdulillah, we currently gather every Friday for
                   Jumu&apos;ah prayer at our interim venue while our community
@@ -502,6 +551,7 @@ export default function HomePage() {
                 <span className="inline-block rounded-full border border-[#D4A447]/40 bg-[#D4A447]/14 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-[#E0B75C]">
                   Our Vision — In Sha Allah
                 </span>
+
                 <p className="mt-3 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
                   A permanent masjid where families can worship, learn, serve,
                   and build a strong Islamic foundation for future generations.
@@ -530,6 +580,7 @@ export default function HomePage() {
           <div className="border-b border-[#D4A447]/20 bg-[#063C34]/40 px-6 py-4 text-center">
             <div className="inline-flex items-center gap-2">
               <HandHeart className="h-4 w-4 text-[#7DCFB8]" />
+
               <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#7DCFB8]">
                 Support Ballantyne Islamic Center
               </p>
@@ -590,6 +641,7 @@ export default function HomePage() {
                   <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E0B75C]">
                     Important Note
                   </p>
+
                   <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
                     Donations are received through Carolina Muslim Development
                     Fund for the Ballantyne Islamic Center / Masjid Ballantyne
@@ -603,6 +655,7 @@ export default function HomePage() {
                     <p className="text-sm font-medium text-[#BDD3C8]">
                       Recipient
                     </p>
+
                     <p className="mt-2 text-base font-semibold leading-snug text-[#FFFDF7] sm:text-lg">
                       {ZELLE_RECIPIENT}
                     </p>
@@ -612,6 +665,7 @@ export default function HomePage() {
                     <p className="text-sm font-medium text-[#BDD3C8]">
                       Zelle Tag
                     </p>
+
                     <p className="mt-2 font-mono text-xl font-bold tracking-wide text-[#F5DFA0] sm:text-2xl">
                       {ZELLE_TAG}
                     </p>
@@ -619,6 +673,7 @@ export default function HomePage() {
 
                   <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
                     <p className="text-sm font-medium text-[#BDD3C8]">Memo</p>
+
                     <p className="mt-2 text-base font-semibold text-[#FFFDF7] sm:text-lg">
                       {ZELLE_MEMO}
                     </p>
@@ -634,18 +689,96 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Section divider */}
+        <div className="my-10 flex items-center gap-4">
+          <span className="h-px flex-1 bg-[#D4A447]/15" />
+          <span className="text-base text-[#D4A447]/40">✦</span>
+          <span className="h-px flex-1 bg-[#D4A447]/15" />
+        </div>
+
+        {/* INTERNAL LINKS FOR VISITORS AND SEO */}
+        <section
+          aria-labelledby="explore-heading"
+          className="relative overflow-hidden rounded-[28px] border border-[#D4A447]/22 bg-[#073F36] p-6 shadow-[0_24px_64px_rgba(0,0,0,0.24)] sm:p-8"
+        >
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#D4A447]/10 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[#4DB89A]/10 blur-3xl" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/65 to-transparent" />
+          </div>
+
+          <div className="relative">
+            <div className="flex flex-col items-center text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D4A447]/25 bg-[#D4A447]/10 text-[#F5DFA0]">
+                <Compass className="h-5 w-5" />
+              </div>
+
+              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.24em] text-[#7DCFB8]">
+                Explore Our Community
+              </p>
+
+              <h2
+                id="explore-heading"
+                className="mt-3 font-[family-name:var(--font-playfair)] text-2xl font-semibold leading-tight text-[#FFFDF7] sm:text-3xl"
+              >
+                Learn More About Ballantyne Islamic Center
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#BDD3C8] sm:text-base">
+                Explore our story, leadership, Friday prayer information, and
+                the communities we serve across Ballantyne, Fort Mill, Indian
+                Land, and nearby areas.
+              </p>
+            </div>
+
+            <nav
+              aria-label="Explore Ballantyne Islamic Center"
+              className="mt-8 grid gap-3 sm:grid-cols-2"
+            >
+              {EXPLORE_LINKS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0A453B] p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[#D4A447]/35 hover:bg-[#0C4F43] hover:shadow-[0_16px_38px_rgba(0,0,0,0.18)]"
+                >
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/40 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-[family-name:var(--font-playfair)] text-lg font-semibold leading-snug text-[#FFFDF7] transition group-hover:text-[#F5DFA0]">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-2 text-sm leading-6 text-[#BDD3C8]">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A7D7C5]/20 bg-white/5 text-[#A7D7C5] transition duration-300 group-hover:border-[#D4A447]/35 group-hover:text-[#F5DFA0]">
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </section>
+
         {/* FOOTER */}
         <footer className="mx-auto mt-14 max-w-2xl border-t border-white/10 pt-8 text-center">
           <p className="font-serif text-xl font-semibold text-[#FFFDF7]">
             Ballantyne Islamic Center
           </p>
+
           <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7DCFB8]">
             Masjid Ballantyne
           </p>
+
           <p className="mt-4 text-sm text-[#BDD3C8] sm:text-base">
             Currently serving Friday Jumu&apos;ah prayer and growing together
             toward our permanent masjid, In Sha Allah.
           </p>
+
           <p className="mt-3 text-xs text-white/30">
             © {new Date().getFullYear()} Ballantyne Islamic Center. All rights
             reserved.
