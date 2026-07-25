@@ -10,9 +10,14 @@ export function proxy(request: NextRequest) {
     pathname === "/masjid-indian-land" ||
     pathname === "/mosque-fort-mill";
 
+  const publicAboutPaths =
+    pathname === "/about" ||
+    pathname === "/about/leadership";
+
   const allowedPaths =
     pathname === "/" ||
     publicSeoPaths ||
+    publicAboutPaths ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/media") ||
