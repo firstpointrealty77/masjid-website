@@ -18,7 +18,6 @@ const ALTERNATE_NAME = "Masjid Ballantyne";
 const SHARE_IMAGE = "/og/whatsapp-preview.jpg";
 
 const PAGE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
-
 const SHARE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
 
 const PAGE_DESCRIPTION =
@@ -29,6 +28,7 @@ const SHARE_DESCRIPTION =
 
 const TEMPORARY_ADDRESS_LINE_1 = "10562 Providence Rd W";
 const TEMPORARY_ADDRESS_LINE_2 = "Charlotte, NC 28277";
+
 const KHUTBAH_TIME = "1:30 PM";
 const SALAH_TIME = "1:55 PM";
 
@@ -38,11 +38,14 @@ const GOOGLE_MAPS_URL =
 const WHATSAPP_URL =
   "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h?s=cl&p=i&mlu=0&amv=2";
 
-const DONATE_URL = "https://www.paypal.com/ncp/payment/9DNAZTUH3M6LU";
+const DONATE_URL =
+  "https://www.paypal.com/donate/?hosted_button_id=XTBPXKLENK5H8";
 
 const ZELLE_RECIPIENT = "Carolina Muslim Development Fund";
 const ZELLE_TAG = "bicc10935";
 const ZELLE_MEMO = "Masjid Support";
+
+const MONTHLY_DONATION_OPTIONS = ["$30", "$50", "$100"] as const;
 
 const EXPLORE_LINKS = [
   {
@@ -140,8 +143,10 @@ export const metadata: Metadata = {
 // ─────────────────────────────────────────────────────────────
 // STRUCTURED DATA
 // ─────────────────────────────────────────────────────────────
+
 const structuredData = {
   "@context": "https://schema.org",
+
   "@graph": [
     {
       "@type": "ReligiousOrganization",
@@ -151,14 +156,17 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/icon.png`,
       image: `${SITE_URL}${SHARE_IMAGE}`,
+
       description:
         "Ballantyne Islamic Center is a growing Muslim community currently serving Friday Jumu'ah prayer near Ballantyne, Fort Mill, Indian Land, and South Charlotte while working toward a permanent masjid, In Sha Allah.",
+
       areaServed: [
         "Ballantyne, Charlotte, NC",
         "Fort Mill, SC",
         "Indian Land, SC",
         "South Charlotte, NC",
       ],
+
       address: {
         "@type": "PostalAddress",
         streetAddress: TEMPORARY_ADDRESS_LINE_1,
@@ -167,6 +175,7 @@ const structuredData = {
         postalCode: "28277",
         addressCountry: "US",
       },
+
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: "Friday",
@@ -181,7 +190,9 @@ const structuredData = {
       url: SITE_URL,
       name: SITE_NAME,
       alternateName: ALTERNATE_NAME,
-      publisher: { "@id": `${SITE_URL}/#organization` },
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
       inLanguage: "en-US",
     },
 
@@ -191,14 +202,20 @@ const structuredData = {
       url: SITE_URL,
       name: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
-      isPartOf: { "@id": `${SITE_URL}/#website` },
-      about: { "@id": `${SITE_URL}/#organization` },
+      isPartOf: {
+        "@id": `${SITE_URL}/#website`,
+      },
+      about: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: `${SITE_URL}${SHARE_IMAGE}`,
         width: 1200,
         height: 630,
       },
+
       inLanguage: "en-US",
     },
 
@@ -206,6 +223,7 @@ const structuredData = {
       "@type": "Event",
       "@id": `${SITE_URL}/#jummah-event`,
       name: "Friday Jumu'ah Prayer — Ballantyne Islamic Center",
+
       description:
         "Weekly Friday Jumu'ah prayer serving the Muslim community of Ballantyne, Fort Mill, Indian Land, and South Charlotte. Khutbah begins at 1:30 PM. Jumu'ah Salah begins at 1:55 PM. Kindly arrive by 1:25 PM.",
 
@@ -221,7 +239,9 @@ const structuredData = {
         endTime: "14:30",
       },
 
-      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventAttendanceMode:
+        "https://schema.org/OfflineEventAttendanceMode",
+
       eventStatus: "https://schema.org/EventScheduled",
 
       image: [`${SITE_URL}${SHARE_IMAGE}`],
@@ -229,6 +249,7 @@ const structuredData = {
       location: {
         "@type": "Place",
         name: "Ballantyne Islamic Center — Friday Jumu'ah Venue",
+
         address: {
           "@type": "PostalAddress",
           streetAddress: TEMPORARY_ADDRESS_LINE_1,
@@ -237,6 +258,7 @@ const structuredData = {
           postalCode: "28277",
           addressCountry: "US",
         },
+
         geo: {
           "@type": "GeoCoordinates",
           latitude: 35.0335,
@@ -276,7 +298,7 @@ const structuredData = {
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#063C34] text-[#FFFDF7]">
-      {/* Structured data for SEO */}
+      {/* Structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -284,7 +306,7 @@ export default function HomePage() {
         }}
       />
 
-      {/* Subtle geometric background pattern */}
+      {/* Background pattern */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 opacity-[0.018]"
@@ -295,7 +317,7 @@ export default function HomePage() {
         }}
       />
 
-      {/* Ambient colour glow */}
+      {/* Ambient glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0"
@@ -307,12 +329,15 @@ export default function HomePage() {
 
       <div className="relative mx-auto w-full max-w-3xl px-5 py-10 sm:px-8 sm:py-14">
         {/* HEADER */}
+
         <header className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
           <div className="inline-flex items-center gap-3">
             <span className="h-px w-10 bg-[#D4A447]/50 sm:w-16" />
+
             <p className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.28em] text-[#E0B75C]">
               Friday Jumu&apos;ah
             </p>
+
             <span className="h-px w-10 bg-[#D4A447]/50 sm:w-16" />
           </div>
 
@@ -330,7 +355,8 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* PRAYER SCHEDULE CARD */}
+        {/* JUMU'AH SCHEDULE */}
+
         <section
           aria-labelledby="schedule-heading"
           className="overflow-hidden rounded-[28px] border border-[#D4A447]/25 bg-[#0C4F43] shadow-[0_24px_64px_rgba(0,0,0,0.3)]"
@@ -381,6 +407,7 @@ export default function HomePage() {
           </div>
 
           {/* Venue */}
+
           <div className="border-t border-[#D4A447]/20 bg-[#063C34]/45 px-5 py-6 sm:px-8 sm:py-8">
             <div className="flex items-start gap-3 sm:gap-4">
               <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#4DB89A]/30 bg-[#0B4C40]">
@@ -431,7 +458,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA Buttons */}
+        {/* CTA */}
+
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <a
             href={GOOGLE_MAPS_URL}
@@ -468,7 +496,254 @@ export default function HomePage() {
           </a>
         </p>
 
-        {/* Section divider */}
+        {/* SHIMMER DIVIDER INTO MONTHLY GIVING */}
+
+        <div className="my-10 flex items-center gap-4">
+          <span className="relative h-px flex-1 overflow-hidden bg-[#D4A447]/15">
+            <span
+              aria-hidden="true"
+              className="donation-divider-shimmer absolute inset-y-0 w-24 bg-gradient-to-r from-transparent via-[#F5DFA0]/70 to-transparent"
+            />
+          </span>
+
+          <span className="text-base text-[#D4A447]/55">🤲</span>
+
+          <span className="relative h-px flex-1 overflow-hidden bg-[#D4A447]/15">
+            <span
+              aria-hidden="true"
+              className="donation-divider-shimmer donation-divider-shimmer-delay absolute inset-y-0 w-24 bg-gradient-to-r from-transparent via-[#F5DFA0]/70 to-transparent"
+            />
+          </span>
+        </div>
+
+        {/* MONTHLY GIVING */}
+
+        <section
+          aria-labelledby="donate-heading"
+          className="overflow-hidden rounded-[28px] border border-[#D4A447]/25 shadow-[0_24px_64px_rgba(0,0,0,0.28)]"
+          style={{
+            background:
+              "linear-gradient(160deg, #10594A 0%, #0C4F43 50%, #063C34 100%)",
+          }}
+        >
+          <div className="border-b border-[#D4A447]/20 bg-[#063C34]/40 px-6 py-4 text-center">
+            <div className="inline-flex items-center gap-2">
+              <HandHeart className="h-4 w-4 text-[#7DCFB8]" />
+
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#7DCFB8]">
+                Support Ballantyne Islamic Center
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 text-center sm:p-9">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#D4A447]/30 bg-[#D4A447]/10">
+              <HandHeart className="h-6 w-6 text-[#F5DFA0]" />
+            </div>
+
+            <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.22em] text-[#7DCFB8]">
+              Monthly Giving
+            </p>
+
+            <h2
+              id="donate-heading"
+              className="mx-auto mt-3 max-w-2xl font-serif text-3xl font-semibold leading-tight text-[#FFFDF7] sm:text-4xl md:text-5xl"
+            >
+              Sadaqah Jariyah
+            </h2>
+
+            <p className="monthly-text-shimmer mt-2 bg-gradient-to-r from-[#D4A447] via-[#FFF1BC] to-[#D4A447] bg-[length:220%_100%] bg-clip-text font-serif text-xl font-semibold text-transparent sm:text-2xl">
+              One Month at a Time
+            </p>
+
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
+              Your monthly contribution helps sustain Jumu&apos;ah, Islamic
+              programs, community activities, and our journey toward a permanent
+              masjid, In Sha Allah.
+            </p>
+
+            <div className="mx-auto mt-8 max-w-xl">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E0B75C]">
+                Choose a Monthly Amount
+              </p>
+
+              {/* Mobile: 2 x 2 compact grid
+                  Desktop: 3 amounts + Other full width */}
+              <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {MONTHLY_DONATION_OPTIONS.map((amount) => (
+                  <a
+                    key={amount}
+                    href={DONATE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Donate ${amount} monthly to Ballantyne Islamic Center`}
+                    className="group relative min-h-[108px] overflow-hidden rounded-2xl border border-[#D4A447]/30 bg-[#073F36] px-3 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition duration-200 hover:-translate-y-1 hover:border-[#D4A447]/65 hover:bg-[#0A493D] hover:shadow-[0_14px_32px_rgba(0,0,0,0.22)] sm:min-h-[118px] sm:py-5"
+                  >
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/55 to-transparent" />
+
+                    <div className="flex h-full flex-col items-center justify-center">
+                      <span className="block font-serif text-2xl font-semibold text-[#F5DFA0] sm:text-3xl">
+                        {amount}
+                      </span>
+
+                      <span className="mt-1.5 block text-[10px] font-bold uppercase tracking-[0.16em] text-[#A7D7C5]">
+                        Monthly
+                      </span>
+                    </div>
+                  </a>
+                ))}
+
+                <a
+                  href={DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Choose another monthly donation amount"
+                  className="group relative min-h-[108px] overflow-hidden rounded-2xl border border-white/10 bg-[#073F36] px-4 py-4 text-center transition duration-200 hover:-translate-y-0.5 hover:border-[#D4A447]/45 hover:bg-[#0A493D] sm:col-span-3 sm:min-h-0 sm:px-5 sm:text-left"
+                >
+                  <div className="flex h-full flex-col items-center justify-center sm:flex-row sm:justify-between">
+                    <div>
+                      <p className="font-semibold text-[#FFFDF7]">
+                        Other Amount
+                      </p>
+
+                      <p className="mt-1 hidden text-xs text-[#BDD3C8] sm:block">
+                        Choose the monthly amount that works best for you.
+                      </p>
+                    </div>
+
+                    <ArrowRight className="mt-2 h-5 w-5 shrink-0 text-[#E0B75C] transition-transform duration-200 group-hover:translate-x-1 sm:mt-0" />
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Give Monthly */}
+
+            <a
+              href={DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative mx-auto mt-7 inline-flex w-[88%] max-w-sm overflow-hidden rounded-full bg-[#D4A447] px-8 py-4 text-base font-bold text-[#063C34] shadow-[0_12px_30px_rgba(212,164,71,0.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#E0B75C] hover:shadow-[0_16px_36px_rgba(212,164,71,0.3)] sm:w-auto"
+            >
+              <span
+                aria-hidden="true"
+                className="donation-button-shimmer pointer-events-none absolute inset-y-0 w-24 bg-gradient-to-r from-transparent via-white/45 to-transparent"
+              />
+
+              <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
+                <HandHeart className="h-5 w-5" />
+                Give Monthly
+              </span>
+            </a>
+
+            <p className="mx-auto mt-4 max-w-lg px-2 text-xs leading-relaxed text-[#BDD3C8]">
+              Secure giving through PayPal. Select{" "}
+              <span className="font-semibold text-[#A7D7C5]">
+                Monthly
+              </span>{" "}
+              to start your recurring contribution.
+            </p>
+
+            <div className="mx-auto mt-7 max-w-xl rounded-2xl border border-[#D4A447]/20 bg-[#063C34]/45 p-5">
+              <p className="font-serif text-lg font-semibold text-[#F5DFA0]">
+                Your Monthly Support Makes a Difference
+              </p>
+
+              <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
+                Consistent monthly giving helps sustain Jumu&apos;ah, Islamic
+                education, youth programs, community services, and our journey
+                toward a permanent masjid.
+              </p>
+            </div>
+
+            <p className="mt-5 text-sm leading-relaxed text-[#BDD3C8]">
+              Prefer to give once?{" "}
+              <a
+                href={DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#F5DFA0] underline decoration-[#D4A447]/45 underline-offset-4 transition hover:text-[#FFFDF7]"
+              >
+                Choose One-Time on PayPal
+              </a>
+            </p>
+          </div>
+
+          {/* ZELLE */}
+
+          <div className="border-t border-[#D4A447]/20 bg-[#063C34]/45 p-5 sm:p-8">
+            <div className="flex items-start gap-3 text-left sm:gap-4">
+              <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/28 bg-[#0B4C40]">
+                <Landmark className="h-5 w-5 text-[#E0B75C]" />
+              </span>
+
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#A7D7C5]">
+                  Give by Zelle
+                </p>
+
+                <div
+                  className="mt-4 rounded-2xl border p-4"
+                  style={{
+                    borderColor: "rgba(196,124,26,0.28)",
+                    background: "rgba(196,124,26,0.08)",
+                  }}
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E0B75C]">
+                    Important Note
+                  </p>
+
+                  <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
+                    Donations are received through Carolina Muslim Development
+                    Fund for the Ballantyne Islamic Center / Masjid Ballantyne
+                    project. For your security, please verify the recipient name
+                    matches exactly before completing your transfer.
+                  </p>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
+                    <p className="text-sm font-medium text-[#BDD3C8]">
+                      Recipient
+                    </p>
+
+                    <p className="mt-2 text-base font-semibold leading-snug text-[#FFFDF7] sm:text-lg">
+                      {ZELLE_RECIPIENT}
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
+                    <p className="text-sm font-medium text-[#BDD3C8]">
+                      Zelle Tag
+                    </p>
+
+                    <p className="mt-2 font-mono text-xl font-bold tracking-wide text-[#F5DFA0] sm:text-2xl">
+                      {ZELLE_TAG}
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
+                    <p className="text-sm font-medium text-[#BDD3C8]">
+                      Memo
+                    </p>
+
+                    <p className="mt-2 text-base font-semibold text-[#FFFDF7] sm:text-lg">
+                      {ZELLE_MEMO}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-4 text-sm leading-relaxed text-[#BDD3C8]">
+                  ⚠ For your security, please verify the recipient name before
+                  sending.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* DIVIDER */}
+
         <div className="my-10 flex items-center gap-4">
           <span className="h-px flex-1 bg-[#D4A447]/15" />
           <span className="text-base text-[#D4A447]/40">☪</span>
@@ -476,6 +751,7 @@ export default function HomePage() {
         </div>
 
         {/* GROWING COMMUNITY */}
+
         <section
           aria-labelledby="community-heading"
           className="relative overflow-hidden rounded-[28px] border border-[#D4A447]/22 p-6 text-center shadow-xl sm:p-10"
@@ -561,149 +837,25 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Section divider */}
-        <div className="my-10 flex items-center gap-4">
-          <span className="h-px flex-1 bg-[#D4A447]/15" />
-          <span className="text-base text-[#D4A447]/40">🤲</span>
-          <span className="h-px flex-1 bg-[#D4A447]/15" />
-        </div>
+        {/* DIVIDER */}
 
-        {/* DONATION */}
-        <section
-          aria-labelledby="donate-heading"
-          className="overflow-hidden rounded-[28px] border border-[#D4A447]/25 shadow-[0_24px_64px_rgba(0,0,0,0.28)]"
-          style={{
-            background:
-              "linear-gradient(160deg, #10594A 0%, #0C4F43 50%, #063C34 100%)",
-          }}
-        >
-          <div className="border-b border-[#D4A447]/20 bg-[#063C34]/40 px-6 py-4 text-center">
-            <div className="inline-flex items-center gap-2">
-              <HandHeart className="h-4 w-4 text-[#7DCFB8]" />
-
-              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#7DCFB8]">
-                Support Ballantyne Islamic Center
-              </p>
-            </div>
-          </div>
-
-          <div className="p-6 text-center sm:p-9">
-            <h2
-              id="donate-heading"
-              className="font-serif text-2xl font-semibold text-[#FFFDF7] sm:text-3xl"
-            >
-              Support Our Permanent Masjid —{" "}
-              <span className="text-[#F5DFA0]">
-                A Sadaqah Jariyah for Generations
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#DCEBE4]">
-              Your contribution helps establish a permanent home for prayer,
-              Qur&apos;anic education, youth programs, family services, and
-              community support —{" "}
-              <span className="font-semibold text-[#E0B75C]">
-                a lasting sadaqah jariyah
-              </span>{" "}
-              for you and your family.
-            </p>
-
-            <a
-              href={DONATE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D4A447] px-8 py-3.5 font-semibold text-[#063C34] shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#E0B75C] sm:w-auto"
-            >
-              <HandHeart className="h-5 w-5" />
-              Donate Online
-            </a>
-          </div>
-
-          {/* Zelle */}
-          <div className="border-t border-[#D4A447]/20 bg-[#063C34]/45 p-5 sm:p-8">
-            <div className="flex items-start gap-3 text-left sm:gap-4">
-              <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/28 bg-[#0B4C40]">
-                <Landmark className="h-5 w-5 text-[#E0B75C]" />
-              </span>
-
-              <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#A7D7C5]">
-                  Give by Zelle
-                </p>
-
-                <div
-                  className="mt-4 rounded-2xl border p-4"
-                  style={{
-                    borderColor: "rgba(196,124,26,0.28)",
-                    background: "rgba(196,124,26,0.08)",
-                  }}
-                >
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E0B75C]">
-                    Important Note
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
-                    Donations are received through Carolina Muslim Development
-                    Fund for the Ballantyne Islamic Center / Masjid Ballantyne
-                    project. For your security, please verify the recipient name
-                    matches exactly before completing your transfer.
-                  </p>
-                </div>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-sm font-medium text-[#BDD3C8]">
-                      Recipient
-                    </p>
-
-                    <p className="mt-2 text-base font-semibold leading-snug text-[#FFFDF7] sm:text-lg">
-                      {ZELLE_RECIPIENT}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-sm font-medium text-[#BDD3C8]">
-                      Zelle Tag
-                    </p>
-
-                    <p className="mt-2 font-mono text-xl font-bold tracking-wide text-[#F5DFA0] sm:text-2xl">
-                      {ZELLE_TAG}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-sm font-medium text-[#BDD3C8]">Memo</p>
-
-                    <p className="mt-2 text-base font-semibold text-[#FFFDF7] sm:text-lg">
-                      {ZELLE_MEMO}
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-sm leading-relaxed text-[#BDD3C8]">
-                  ⚠ For your security, please verify the recipient name before
-                  sending.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section divider */}
         <div className="my-10 flex items-center gap-4">
           <span className="h-px flex-1 bg-[#D4A447]/15" />
           <span className="text-base text-[#D4A447]/40">✦</span>
           <span className="h-px flex-1 bg-[#D4A447]/15" />
         </div>
 
-        {/* INTERNAL LINKS FOR VISITORS AND SEO */}
+        {/* EXPLORE */}
+
         <section
           aria-labelledby="explore-heading"
           className="relative overflow-hidden rounded-[28px] border border-[#D4A447]/22 bg-[#073F36] p-6 shadow-[0_24px_64px_rgba(0,0,0,0.24)] sm:p-8"
         >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#D4A447]/10 blur-3xl" />
+
             <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[#4DB89A]/10 blur-3xl" />
+
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/65 to-transparent" />
           </div>
 
@@ -765,6 +917,7 @@ export default function HomePage() {
         </section>
 
         {/* FOOTER */}
+
         <footer className="mx-auto mt-14 max-w-2xl border-t border-white/10 pt-8 text-center">
           <p className="font-serif text-xl font-semibold text-[#FFFDF7]">
             Ballantyne Islamic Center
