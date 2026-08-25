@@ -31,11 +31,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.",
-
-  alternates: {
-    canonical: "https://www.ballantynemasjid.org",
-  },
+    "Friday Jumu'ah prayer and community updates from Ballantyne Islamic Center as we grow together toward our permanent masjid, In Sha Allah.",
 
   icons: {
     icon: "/icon.png",
@@ -46,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ballantyne Islamic Center | Jumu'ah Prayer",
     description:
-      "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.",
+      "Friday Jumu'ah prayer and community updates from Ballantyne Islamic Center as we grow together toward our permanent masjid, In Sha Allah.",
     url: "https://www.ballantynemasjid.org",
     siteName: "Ballantyne Islamic Center",
     images: [
@@ -65,9 +61,37 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ballantyne Islamic Center | Jumu'ah Prayer",
     description:
-      "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.",
+      "Friday Jumu'ah prayer and community updates from Ballantyne Islamic Center as we grow together toward our permanent masjid, In Sha Allah.",
     images: ["/og/whatsapp-preview.jpg"],
   },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.ballantynemasjid.org/#organization",
+  name: "Ballantyne Islamic Center",
+  alternateName: "Masjid Ballantyne",
+  url: "https://www.ballantynemasjid.org/",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.ballantynemasjid.org/icon.png",
+  },
+  description:
+    "Ballantyne Islamic Center serves the Muslim community in Ballantyne, South Charlotte, Fort Mill, Indian Land, Waxhaw, Weddington, Marvin and surrounding areas with Friday Jumu'ah prayer, Islamic learning and community programs.",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.ballantynemasjid.org/#website",
+  url: "https://www.ballantynemasjid.org/",
+  name: "Ballantyne Islamic Center",
+  alternateName: "Masjid Ballantyne",
+  publisher: {
+    "@id": "https://www.ballantynemasjid.org/#organization",
+  },
+  inLanguage: "en-US",
 };
 
 export default function RootLayout({
@@ -84,6 +108,13 @@ export default function RootLayout({
 
         {/* Keeps page content below the fixed header */}
         <div className="min-h-[60vh] pt-[var(--header-h)]">{children}</div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationSchema, websiteSchema]),
+          }}
+        />
       </body>
     </html>
   );
