@@ -632,7 +632,7 @@ export default function HomePage() {
 
               <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
                 <HandHeart className="h-5 w-5" />
-                Give Monthly
+                DONATE
               </span>
             </a>
 
