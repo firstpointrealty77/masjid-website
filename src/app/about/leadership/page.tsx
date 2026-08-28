@@ -10,7 +10,7 @@ import { leadershipTeam } from "@/data/leadership";
 const SITE_URL = "https://www.ballantynemasjid.org";
 const PAGE_PATH = "/about/leadership";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
-const SHARE_IMAGE = `${SITE_URL}/og/whatsapp-preview.jpg`;
+const SHARE_IMAGE = `${SITE_URL}/og/whatsapp-preview-v2.jpg`;
 
 export const metadata: Metadata = {
   title: "Leadership",
