@@ -15,7 +15,7 @@ import {
 const SITE_URL = "https://www.ballantynemasjid.org";
 const SITE_NAME = "Ballantyne Islamic Center";
 const ALTERNATE_NAME = "Masjid Ballantyne";
-const SHARE_IMAGE = "/og/whatsapp-preview.jpg";
+const SHARE_IMAGE = "/og/whatsapp-preview-v2.jpg";
 
 const PAGE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
 const SHARE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";

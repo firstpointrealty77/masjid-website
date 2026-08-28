@@ -22,7 +22,7 @@ const SITE_URL = "https://www.ballantynemasjid.org";
 const PAGE_PATH = "/about";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
-const SHARE_IMAGE_PATH = "/og/whatsapp-preview.jpg";
+const SHARE_IMAGE_PATH = "/og/whatsapp-preview-v2.jpg";
 const SHARE_IMAGE_URL = `${SITE_URL}${SHARE_IMAGE_PATH}`;
 
 const WHATSAPP_URL =
