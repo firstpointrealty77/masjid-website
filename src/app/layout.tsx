@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Ballantyne Islamic Center",
     images: [
       {
-        url: "/og/whatsapp-preview.jpg",
+        url: "/og/whatsapp-preview-v2.jpg",
         width: 1200,
         height: 630,
         alt: "Ballantyne Islamic Center Jumu'ah Prayer",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     title: "Ballantyne Islamic Center | Jumu'ah Prayer",
     description:
       "Friday Jumu'ah prayer and community updates from Ballantyne Islamic Center as we grow together toward our permanent masjid, In Sha Allah.",
-    images: ["/og/whatsapp-preview.jpg"],
+    images: ["/og/whatsapp-preview-v2.jpg"],
   },
 };
 
