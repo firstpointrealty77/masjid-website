@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PrayerTimesModule } from "@/components/home/PrayerTimesModule";
 import {
   ArrowRight,
   Clock3,
@@ -495,6 +496,9 @@ export default function HomePage() {
             Join our WhatsApp community.
           </a>
         </p>
+        {/* DAILY SALAH TIMES — REFERENCE ONLY */}
+
+        <PrayerTimesModule />
 
         {/* SHIMMER DIVIDER INTO MONTHLY GIVING */}
 
