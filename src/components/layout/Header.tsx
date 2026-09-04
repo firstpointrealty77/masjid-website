@@ -307,7 +307,7 @@ export function Header() {
   }, [pathname, activeGroupLabel]);
 
   const whatsappInvite =
-    "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t";
+    "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
 
   return (
     <>

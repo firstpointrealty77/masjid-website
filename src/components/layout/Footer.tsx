@@ -41,7 +41,7 @@ const CONTACT = {
   addressLine2: "Fort Mill, SC 29707",
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=10935+Harrisburg+Road+Fort+Mill+SC+29707",
-  whatsappUrl: "https://chat.whatsapp.com/",
+  whatsappUrl: "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h",
 };
 
 function FooterSectionHeading({

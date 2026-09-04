@@ -56,7 +56,7 @@ export const programsData: ProgramItem[] = [
       "/programs/coming-soon?program=quranic-education&action=register",
     whatsappText: "Join Program Updates",
     whatsappHref:
-      "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t",
+      "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h",
   },
   {
     slug: "sunday-school",
@@ -95,7 +95,7 @@ export const programsData: ProgramItem[] = [
       "/programs/coming-soon?program=sunday-school&action=register",
     whatsappText: "Join Parent Updates",
     whatsappHref:
-      "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t",
+      "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h",
   },
   {
     slug: "sisters",
@@ -133,7 +133,7 @@ export const programsData: ProgramItem[] = [
     registerHref: "/programs/coming-soon?program=sisters&action=join",
     whatsappText: "Join Sisters Updates",
     whatsappHref:
-      "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t",
+      "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h",
   },
   {
     slug: "youth",
@@ -171,7 +171,7 @@ export const programsData: ProgramItem[] = [
     registerHref: "/programs/coming-soon?program=youth&action=join",
     whatsappText: "Join Youth Updates",
     whatsappHref:
-      "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t",
+      "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h",
   },
   {
     slug: "converts",
@@ -209,7 +209,7 @@ export const programsData: ProgramItem[] = [
     registerHref: "/programs/coming-soon?program=converts&action=learn",
     whatsappText: "Join Welcome Updates",
     whatsappHref:
-      "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t",
+      "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h",
   },
 ];
 

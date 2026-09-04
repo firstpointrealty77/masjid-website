@@ -45,7 +45,7 @@ export default function ProgramsComingSoonPage({
       : "Registration";
 
   const whatsappInvite =
-    "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t";
+    "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f7f5ef_0%,#fcfbf7_40%,#f7f5ef_100%)]">

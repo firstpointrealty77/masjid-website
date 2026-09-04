@@ -113,7 +113,7 @@ export default function ComingSoonPopup() {
 
                 {/* WHATSAPP */}
                 <a
-                  href="https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t"
+                  href="https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h"
                   target="_blank"
                   className="rounded-full bg-[#25D366] px-6 py-2 text-sm font-semibold text-white shadow hover:brightness-110 transition"
                 >

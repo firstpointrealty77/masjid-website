@@ -26,7 +26,7 @@ const SHARE_IMAGE_PATH = "/og/whatsapp-preview-v2.jpg";
 const SHARE_IMAGE_URL = `${SITE_URL}${SHARE_IMAGE_PATH}`;
 
 const WHATSAPP_URL =
-  "https://chat.whatsapp.com/DMKJvPNcQ4OD5mzXQ83Oea?mode=gi_t";
+  "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
 
 const COMMUNITIES = [
   "Ballantyne",

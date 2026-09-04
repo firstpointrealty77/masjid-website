@@ -37,7 +37,7 @@ const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
 
 const WHATSAPP_URL =
-  "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h?s=cl&p=i&mlu=0&amv=2";
+  "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
 
 const DONATE_URL =
   "https://www.paypal.com/donate/?hosted_button_id=XTBPXKLENK5H8";
