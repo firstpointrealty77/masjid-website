@@ -532,15 +532,15 @@ export default function HomePage() {
         </section>
 
         <figure className="mt-8 overflow-hidden rounded-2xl border border-[#D4A447]/25 bg-[#0A4539]">
-          <div className="grid grid-cols-2 gap-1 sm:grid-cols-3">
-            <div className="relative col-span-2 aspect-[4/3] sm:col-span-1 sm:aspect-[3/4]">
-              <Image src="/images/community/jummah-prayer-ballantyne-charlotte.jpeg" alt="Congregation listening to the Friday khutbah at Ballantyne Islamic Center’s interim venue" fill sizes="(max-width: 639px) 100vw, 240px" className="object-cover object-bottom" />
+          <div className="grid grid-cols-2 gap-1">
+            <div className="relative col-span-2 aspect-[957/657]">
+              <Image src="/images/community/jummah-khutbah-main.jpg" alt="Congregation listening to the Friday khutbah at Ballantyne Islamic Center’s interim venue" fill sizes="(max-width: 767px) 100vw, 704px" className="object-contain" />
             </div>
-            <div className="relative aspect-square sm:aspect-[3/4]">
-              <Image src="/images/community/indian-land-muslim-community.jpeg" alt="Community members gathering on prayer mats in the Jumu’ah hall" fill sizes="(max-width: 639px) 50vw, 240px" className="object-cover object-bottom" />
+            <div className="relative aspect-square">
+              <Image src="/images/community/indian-land-muslim-community.jpeg" alt="Community members gathering on prayer mats in the Jumu’ah hall" fill sizes="(max-width: 767px) 50vw, 352px" className="object-cover object-bottom" />
             </div>
-            <div className="relative aspect-square sm:aspect-[3/4]">
-              <Image src="/images/community/ballantyne-congregation.jpeg" alt="Worshippers praying together at the interim venue" fill sizes="(max-width: 639px) 50vw, 240px" className="object-cover object-bottom" />
+            <div className="relative aspect-square">
+              <Image src="/images/community/ballantyne-congregation.jpeg" alt="Worshippers praying together at the interim venue" fill sizes="(max-width: 767px) 50vw, 352px" className="object-cover object-bottom" />
             </div>
           </div>
           <figcaption className="px-5 py-4 text-center text-sm leading-relaxed text-[#DCEBE4]">Our community, united in prayer. Friday Jumu’ah at our interim venue as we work toward a permanent masjid, In Sha Allah.</figcaption>
