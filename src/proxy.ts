@@ -15,7 +15,11 @@ export function proxy(request: NextRequest) {
     pathname === "/about/leadership";
 
   const allowedPaths =
+    pathname === "/_not-found" ||
     pathname === "/" ||
+    pathname === "/donate" ||
+    pathname === "/contact" ||
+    pathname === "/construction-progress" ||
     publicSeoPaths ||
     publicAboutPaths ||
     pathname.startsWith("/_next") ||
@@ -29,7 +33,7 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  return NextResponse.redirect(new URL("/", request.url));
+  return NextResponse.rewrite(new URL("/_not-found", request.url), { status: 404 });
 }
 
 export const config = {

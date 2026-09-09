@@ -94,125 +94,30 @@ export function Header() {
 
   const topNav: NavTopItem[] = useMemo(
     () => [
-      {
-        type: "link",
-        label: "Home",
-        href: "/",
-      },
-
-      {
-        type: "group",
-        label: "About",
-        items: [
-          {
-            label: "About Our Center",
-            href: "/about",
-            description: "Our story, mission, values, and vision",
-          },
-          {
-            label: "Leadership",
-            href: "/about/leadership",
-            description: "Meet the board members serving our community",
-          },
-        ],
-      },
-
-      {
-        type: "group",
-        label: "Programs",
-        items: [
-          {
-            label: "Programs Overview",
-            href: "/programs",
-            description: "Explore all masjid programs",
-          },
-          {
-            label: "Quranic Education",
-            href: "/programs/quranic-education",
-            description: "Nazirah, tajwid, and memorization",
-          },
-          {
-            label: "Sunday School",
-            href: "/programs/sunday-school",
-            description: "Weekend Islamic learning for children",
-          },
-          {
-            label: "Sisters Program",
-            href: "/programs/sisters",
-            description: "Halaqas, learning, and sisterhood",
-          },
-          {
-            label: "Youth Program",
-            href: "/programs/youth",
-            description:
-              "Mentorship and masjid-centered youth development",
-          },
-          {
-            label: "Converts Corner",
-            href: "/programs/converts",
-            description: "Support and guidance for new Muslims",
-          },
-        ],
-      },
-
-      {
-        type: "link",
-        label: "Events",
-        href: "/events",
-      },
-
-      {
-        type: "group",
-        label: "Get Involved",
-        items: [
-          {
-            label: "Volunteer",
-            href: "/get-involved/volunteer",
-            description: "Serve the community",
-          },
-          {
-            label: "Donate",
-            href: "/donate",
-            description: "Support the masjid",
-          },
-          {
-            label: "Services",
-            href: "/services",
-            description: "Community support and services",
-          },
-        ],
-      },
-
-      {
-        type: "link",
-        label: "Masjid Construction",
-        href: "/construction-progress",
-      },
-
-      {
-        type: "group",
-        label: "Contact",
-        items: [
-          {
-            label: "Contact Us",
-            href: "/contact",
-            description: "Reach the masjid team",
-          },
-          {
-            label: "Plan a Visit",
-            href: "/visit",
-            description: "Visit the masjid",
-          },
-        ],
-      },
+      { type: "link", label: "Home", href: "/" },
+      { type: "link", label: "About", href: "/about" },
+      { type: "link", label: "Jumu’ah Prayer", href: "/jummah-prayer-ballantyne" },
+      { type: "link", label: "Our Future Masjid", href: "/construction-progress" },
+      { type: "link", label: "Donate", href: "/donate" },
+      { type: "link", label: "Contact", href: "/contact" },
     ],
     []
   );
-
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [desktopGroupOpen, setDesktopGroupOpen] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   const headerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const closeOutside = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) {
+        setDesktopGroupOpen(null);
+      }
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, []);
 
   const [mobileGroupsOpen, setMobileGroupsOpen] = useState<
     Record<string, boolean>
@@ -281,30 +186,6 @@ export function Header() {
       document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
-
-  const activeGroupLabel: string | null = useMemo(() => {
-    for (const item of topNav) {
-      if (
-        item.type === "group" &&
-        item.items.some((groupItem) =>
-          isActivePath(pathname, groupItem.href)
-        )
-      ) {
-        return item.label;
-      }
-    }
-
-    return null;
-  }, [pathname, topNav]);
-
-  useEffect(() => {
-    if (activeGroupLabel) {
-      setMobileGroupsOpen((previous) => ({
-        ...previous,
-        [activeGroupLabel]: true,
-      }));
-    }
-  }, [pathname, activeGroupLabel]);
 
   const whatsappInvite =
     "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
@@ -421,6 +302,54 @@ export function Header() {
               </div>
             </div>
           </div>
+
+          <nav
+            aria-label="Main navigation"
+            className="relative mx-auto hidden max-w-[1200px] flex-wrap items-center justify-center gap-1 border-t border-[#A7D7C5]/20 px-3 py-2 md:flex"
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setDesktopGroupOpen(null);
+              }
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                const trigger = event.currentTarget.querySelector<HTMLButtonElement>(
+                  'button[aria-expanded="true"]'
+                );
+                setDesktopGroupOpen(null);
+                trigger?.focus();
+              }
+            }}
+          >
+            {topNav.map((item, index) => {
+              const active = item.type === "link"
+                ? isActivePath(pathname, item.href)
+                : item.items.some((link) => isActivePath(pathname, link.href));
+              const navClass = clsx(
+                "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A447]",
+                active ? "bg-white/5 text-[#F6E7B0]" : "text-white hover:bg-white/5 hover:text-[#A7D7C5]"
+              );
+              if (item.type === "link") {
+                return <Link key={item.href} href={item.href} className={navClass} aria-current={active ? "page" : undefined} onClick={() => setDesktopGroupOpen(null)}>{item.label}</Link>;
+              }
+              const open = desktopGroupOpen === item.label;
+              return (
+                <div key={item.label} className="relative">
+                  <button type="button" className={navClass} aria-expanded={open} aria-controls={`desktop-nav-${index}`} onClick={() => setDesktopGroupOpen(open ? null : item.label)}>
+                    {item.label}<GoldChevron open={open} />
+                  </button>
+                  <div id={`desktop-nav-${index}`} hidden={!open} className={clsx("absolute top-full z-10 mt-1 w-64 rounded-xl border border-[#A7D7C5]/30 bg-[#0A3A34] p-2 shadow-xl", index === topNav.length - 1 ? "right-0" : "left-0")}>
+                    {item.items.map((link) => (
+                      <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} onClick={() => setDesktopGroupOpen(null)} className="block rounded-lg px-3 py-2 text-sm text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A447]">
+                        <span className="block font-medium">{link.label}</span>
+                        {link.description && <span className="mt-1 block text-xs text-white/65">{link.description}</span>}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </nav>
 
           <style jsx global>{`
             @keyframes sweep {

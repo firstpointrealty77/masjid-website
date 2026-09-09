@@ -107,7 +107,7 @@ export default function RootLayout({
         <Header />
 
         {/* Keeps page content below the fixed header */}
-        <div className="min-h-[60vh] pt-[var(--header-h)]">{children}</div>
+        <div className="min-h-[60vh]" style={{ paddingTop: "var(--header-h, 170px)" }}>{children}</div>
 
         <script
           type="application/ld+json"

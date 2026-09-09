@@ -1,318 +1,99 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { CopyDetail } from "@/components/CopyDetail";
+import { HeartHandshake, ArrowUpRight, Wallet, Landmark, Info } from "lucide-react";
+import styles from "./donate.module.css";
 
-type DonateCategory = {
-  title: string;
-  subtitle: string;
-  href: string;
-  image: string;
-  badge?: string;
+export const metadata: Metadata = {
+  title: { absolute: "Donate | Ballantyne Islamic Center" },
+  description: "Support Friday Jumu’ah prayer and Ballantyne Islamic Center’s journey toward a permanent masjid. Give through PayPal or Zelle.",
+  alternates: { canonical: "https://www.ballantynemasjid.org/donate" },
+  openGraph: {
+    title: { absolute: "Donate | Ballantyne Islamic Center" },
+    description: "Support Friday Jumu’ah prayer and our journey toward a permanent masjid.",
+    url: "https://www.ballantynemasjid.org/donate",
+  },
 };
 
-const categories: DonateCategory[] = [
-  {
-    title: "MASJID MAINTENANCE",
-    subtitle: "Support daily masjid needs",
-    href: "/donate/masjid-maintenance",
-    image: "/media/donate/masjid-maintenance.jpg",
-    badge: "Essential Support",
-  },
-  {
-    title: "ZAKAAT",
-    subtitle: "Obligatory charity",
-    href: "/donate/zakaat",
-    image: "/media/donate/zakaat.jpg",
-    badge: "Zakat Eligible",
-  },
-  {
-    title: "SADAQA",
-    subtitle: "General charity",
-    href: "/donate/sadaqa",
-    image: "/media/donate/sadaqa.jpg",
-    badge: "Give Anytime",
-  },
-  {
-    title: "MONTHLY PLEDGE",
-    subtitle: "Recurring monthly support",
-    href: "/donate/monthly-pledge",
-    image: "/media/donate/monthly-pledge.jpg",
-    badge: "Recurring",
-  },
-  {
-    title: "MASJID CONSTRUCTION",
-    subtitle: "Help build the House of Allah",
-    href: "/donate/masjid-construction",
-    image: "/media/donate/masjid-construction.jpg",
-    badge: "Phase 1",
-  },
-  {
-    title: "ISLAMIC SCHOOL",
-    subtitle: "Support students and Islamic learning",
-    href: "/donate/islamic-school",
-    image: "/media/donate/islamic-school.jpg",
-    badge: "Education",
-  },
-];
-
-function DonateCard({ title, subtitle, href, image, badge }: DonateCategory) {
-  return (
-    <article
-      className="
-      group flex h-full flex-col
-      overflow-hidden
-      rounded-[24px]
-      border border-[#E7DFC9]
-      bg-white
-      shadow-sm
-      hover:shadow-xl
-      transition-all duration-500
-      hover:-translate-y-1
-      "
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="
-          w-full 
-          h-[170px] 
-          object-cover 
-          group-hover:scale-105 
-          transition duration-700
-          "
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-
-        {badge && (
-          <div
-            className="
-          absolute top-3 left-3 
-          bg-[#FFF8E6]
-          border border-[#E7DFC9]
-          px-3 py-1 
-          rounded-full 
-          text-xs 
-          font-medium 
-          text-[#8E6A24]
-          "
-          >
-            {badge}
-          </div>
-        )}
-
-        <div
-          className="
-        absolute top-3 right-3 
-        w-10 h-10 
-        rounded-full 
-        bg-white/90 
-        flex items-center justify-center
-        shadow
-        "
-        >
-          <ArrowUpRight className="w-4 h-4 text-[#0A3A34]" />
-        </div>
-      </div>
-
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-lg font-semibold text-[#0A3A34]">{title}</h3>
-
-        <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
-
-        <div className="w-10 h-[2px] bg-[#D4A447] mt-3 mb-4" />
-
-        <div className="mt-auto">
-          <Link
-            href={href}
-            className="
-          block 
-          text-center 
-          py-3
-          rounded-full 
-          font-semibold 
-          text-[#0A3A34]
-          bg-gradient-to-r 
-          from-[#E1BA5A] 
-          to-[#C8922E]
-          hover:shadow-lg 
-          transition-all
-          "
-          >
-            Donate
-          </Link>
-        </div>
-      </div>
-    </article>
-  );
-}
+const PAYPAL_URL = "https://www.paypal.com/donate/?hosted_button_id=XTBPXKLENK5H8";
 
 export default function DonatePage() {
   return (
-    <main className="bg-[#F8F6F1] min-h-screen">
-      <section className="max-w-7xl mx-auto px-4 py-10">
-        
-        {/* Premium Trust Banner */}
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <span className={styles.heroIcon}><HeartHandshake aria-hidden="true" size={26} /></span>
+        <p className={styles.eyebrow}>Together for our community</p>
+        <h1>Support our Jumu’ah.<br /> <span>Help build our future.</span></h1>
+        <p className={styles.intro}>Your gift helps sustain Friday Jumu’ah and supports our journey toward a permanent masjid in Ballantyne, In Sha Allah. Every contribution is appreciated.</p>
+        <a href={PAYPAL_URL} target="_blank" rel="noopener noreferrer" className={`${styles.primary} ${styles.mobileGive}`}>Give through PayPal <ArrowUpRight aria-hidden="true" size={18} /><span className="sr-only"> (opens in a new tab)</span></a>
+      </section>
 
-        <div
-          className="
-          mb-8
-          rounded-[26px]
-          border border-[#E7DFC9]
-          bg-white
-          shadow-[0_10px_30px_rgba(15,23,42,0.05)]
-          p-6
-          relative
-          overflow-hidden
-          group
-          "
-        >
-          {/* Gold Animated Line */}
-
-          <div
-            className="
-            absolute top-0 left-0 right-0
-            h-[2px]
-            bg-gradient-to-r
-            from-transparent
-            via-[#D4A447]
-            to-transparent
-            animate-pulse
-            "
-          />
-
-          <div
-            className="
-            grid 
-            grid-cols-1 
-            lg:grid-cols-[1fr_auto]
-            gap-4
-            items-center
-            "
-          >
-            {/* Left */}
-
-            <div className="flex items-start gap-3">
-              
-              <div
-                className="
-                w-10 h-10
-                rounded-xl
-                bg-[#F8F6F1]
-                border border-[#E7DFC9]
-                flex items-center justify-center
-                "
-              >
-                <ShieldCheck
-                  className="w-5 h-5 text-[#D4A447]"
-                />
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-[#0A3A34]">
-                  501(c)(3) Non-Profit Organization
-                </h3>
-
-                <p className="mt-1 text-sm text-[#667085]">
-                  Ballantyne Islamic Center is a registered nonprofit organization.
-                  All donations are tax-deductible to the extent permitted by law.
-                </p>
-              </div>
+      <section aria-labelledby="giving-heading" className={styles.content}>
+        <div className={styles.sectionHeading}>
+          <div><p className={styles.eyebrow}>Every contribution matters</p><h2 id="giving-heading">Choose your way to give</h2></div>
+          <p>Two simple ways to support our community.</p>
+        </div>
+        <div id="giving-options" className={styles.cards}>
+          <section aria-labelledby="paypal-heading" className={`${styles.card} ${styles.paypal}`}>
+            <div className={styles.cardTop}><span className={styles.icon}><Wallet aria-hidden="true" size={24} /></span><span className={styles.method}>Online giving</span></div>
+            <h3 id="paypal-heading">Give with PayPal</h3>
+            <p className={styles.description}>Make a one-time gift or become a monthly supporter. Choose your amount and purpose on PayPal.</p>
+            <ol className={styles.steps}>
+              <li><span>1</span>Select One-Time, Monthly, or Yearly on PayPal.</li>
+              <li><span>2</span>Choose $30, $50, or $100. For $20 or another amount, select Other.</li>
+              <li><span>3</span>Choose your cause, then review the amount and frequency before confirming.</li>
+            </ol>
+            <div className={styles.action}>
+              <a href={PAYPAL_URL} target="_blank" rel="noopener noreferrer" className={styles.primary}>Give through PayPal <ArrowUpRight aria-hidden="true" size={18} /><span className="sr-only"> (opens in a new tab)</span></a>
+              <p>Complete your donation on PayPal’s website.</p>
             </div>
+          </section>
 
-            {/* Trust Badges */}
+          <section aria-labelledby="zelle-heading" className={styles.card}>
+            <div className={styles.cardTop}><span className={styles.icon}><Landmark aria-hidden="true" size={24} /></span><span className={styles.method}>Through your bank</span></div>
+            <h3 id="zelle-heading">Give with Zelle</h3>
+            <p className={styles.description}>Prefer to give through your bank? Use the details below in Zelle.</p>
+            <dl className={styles.details}>
+              <div><dt>Recipient</dt><dd>Carolina Muslim Development Fund</dd></div>
+              <div><dt>Zelle tag</dt><dd><CopyDetail value="bicc10935" label="Zelle tag" /></dd></div>
+              <div><dt>General giving memo</dt><dd><CopyDetail value="Masjid Support" label="memo" /></dd></div>
+            </dl>
+            <p className={styles.bankNote}>For a specific purpose, replace “Masjid Support” with the memo from your chosen cause below. Verify the recipient name matches before sending.</p>
+          </section>
+        </div>
 
-            <div
-              className="
-              flex 
-              items-center 
-              gap-2
-              whitespace-nowrap
-              "
-            >
-              <span
-                className="
-                px-3 py-1.5
-                rounded-full
-                border border-[#E7DFC9]
-                bg-[#F8F6F1]
-                text-xs
-                font-medium
-                text-[#0A3A34]
-                hover:bg-white
-                hover:shadow-sm
-                transition
-                "
-              >
-                ✓ Tax Deductible
-              </span>
+        <aside className={styles.recipient} aria-labelledby="recipient-heading">
+          <Info aria-hidden="true" size={21} />
+          <div><h2 id="recipient-heading">Your donation supports BIC</h2><p><strong>Carolina Muslim Development Fund</strong> receives donations for the Ballantyne Islamic Center / Masjid Ballantyne project. This is the recipient name you’ll see on PayPal and Zelle. Questions? <Link href="/contact" className="underline underline-offset-4">Contact our team.</Link></p></div>
+        </aside>
 
-              <span
-                className="
-                px-3 py-1.5
-                rounded-full
-                border border-[#E7DFC9]
-                bg-[#F8F6F1]
-                text-xs
-                font-medium
-                text-[#0A3A34]
-                hover:bg-white
-                hover:shadow-sm
-                transition
-                "
-              >
-                ✓ Non-Profit
-              </span>
-
-              <span
-                className="
-                px-3 py-1.5
-                rounded-full
-                border border-[#E7DFC9]
-                bg-[#F8F6F1]
-                text-xs
-                font-medium
-                text-[#0A3A34]
-                hover:bg-white
-                hover:shadow-sm
-                transition
-                "
-              >
-                ✓ Community Supported
-              </span>
-            </div>
+        <section aria-labelledby="purpose-heading" className={styles.purposes}>
+          <p className={styles.eyebrow}>Ways to support</p>
+          <h2 id="purpose-heading">What would you like to support?</h2>
+          <p className={styles.purposeIntro}>Choose your cause on PayPal, or copy its memo below and include it with your Zelle transfer.</p>
+          <div className={styles.purposeGrid}>
+            {[
+              { title: "Regular Expenses", description: "Help cover the ongoing costs of holding Friday Jumu’ah and serving our congregation.", memo: "Regular Expenses" },
+              { title: "Sadaqah", description: "Give voluntary charity in support of Ballantyne Islamic Center and its community.", memo: "Sadaqah" },
+              { title: "Our Future Masjid", description: "Contribute toward our goal of a permanent home for worship and community.", memo: "Future Masjid" },
+            ].map((purpose) => (
+              <article key={purpose.memo} className={styles.purposeCard}>
+                <h3>{purpose.title}</h3>
+                <p>{purpose.description}</p>
+                <div className={styles.purposeMemo}><span>Zelle memo</span><CopyDetail value={purpose.memo} label={`${purpose.title} Zelle memo`} /></div>
+              </article>
+            ))}
           </div>
-        </div>
-
-        {/* Header */}
-
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold text-[#0A3A34]">
-            Donation Categories
-          </h2>
-
-          <span className="text-sm text-gray-500">
-            {categories.length} Total
-          </span>
-        </div>
-
-        {/* Cards */}
-
-        <div
-          className="
-          grid 
-          grid-cols-1 
-          md:grid-cols-2 
-          lg:grid-cols-3 
-          gap-5
-          "
-        >
-          {categories.map((category) => (
-            <DonateCard key={category.title} {...category} />
-          ))}
-        </div>
+          <p className={styles.purposeNote}>On PayPal, use “Use this donation for” to choose Regular Expenses, Sadaqah, or Our Future Masjid. Regular Expenses is the default.</p>
+        </section>
+        <aside className={styles.monthly} aria-labelledby="monthly-heading">
+          <p className={styles.eyebrow}>Monthly support</p>
+          <h2 id="monthly-heading">Be part of our community’s future—every month.</h2>
+          <p>A recurring gift helps sustain Jumu’ah and supports planning for our permanent masjid. Whether you choose $20, $30, $50, $100, or another amount, choose what works for you.</p>
+          <p className={styles.monthlyHint}>Select Monthly on PayPal to start recurring giving. You’ll review and authorize your gift there.</p>
+          <a href="#giving-options" className={styles.returnToGiving}>Back to giving options <span aria-hidden="true">↑</span></a>
+        </aside>
+        <div className={styles.closing}><HeartHandshake aria-hidden="true" size={24} /><h2>Thank you for supporting our community.</h2><p>Gathering for Jumu’ah today. Working toward a permanent masjid for tomorrow.</p><Link href="/jummah-prayer-ballantyne">Jumu’ah prayer information <ArrowUpRight aria-hidden="true" size={16} /></Link></div>
       </section>
     </main>
   );

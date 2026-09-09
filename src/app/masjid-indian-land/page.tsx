@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Masjid Ballantyne serves Muslim families near Indian Land, Fort Mill, Ballantyne, Waxhaw, Weddington, Marvin and South Charlotte. Join Friday Jumu'ah prayer at 10562 Providence Rd W, Charlotte, NC 28277.",
   alternates: {
-    canonical: "/mosque-indian-land",
+    canonical: "/masjid-indian-land",
   },
   openGraph: {
     title: "Masjid Indian Land | Jumu'ah Prayer Near Indian Land SC",

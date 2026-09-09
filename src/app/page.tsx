@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { PrayerTimesModule } from "@/components/home/PrayerTimesModule";
 import {
   ArrowRight,
   Clock3,
   Compass,
   HandHeart,
-  Landmark,
   MapPin,
   MessageCircle,
   Navigation,
@@ -38,15 +38,6 @@ const GOOGLE_MAPS_URL =
 
 const WHATSAPP_URL =
   "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
-
-const DONATE_URL =
-  "https://www.paypal.com/donate/?hosted_button_id=XTBPXKLENK5H8";
-
-const ZELLE_RECIPIENT = "Carolina Muslim Development Fund";
-const ZELLE_TAG = "bicc10935";
-const ZELLE_MEMO = "Masjid Support";
-
-const MONTHLY_DONATION_OPTIONS = ["$30", "$50", "$100"] as const;
 
 const EXPLORE_LINKS = [
   {
@@ -520,232 +511,40 @@ export default function HomePage() {
           </span>
         </div>
 
-        {/* MONTHLY GIVING */}
+        {/* COMMUNITY GIVING */}
+
 
         <section
           aria-labelledby="donate-heading"
-          className="overflow-hidden rounded-[28px] border border-[#D4A447]/25 shadow-[0_24px_64px_rgba(0,0,0,0.28)]"
-          style={{
-            background:
-              "linear-gradient(160deg, #10594A 0%, #0C4F43 50%, #063C34 100%)",
-          }}
+          className="rounded-[28px] border border-[#D4A447]/25 px-6 py-9 text-center shadow-[0_16px_40px_rgba(0,0,0,0.18)] sm:px-10 sm:py-12"
+          style={{ background: "linear-gradient(160deg, #10594A 0%, #0C4F43 50%, #063C34 100%)" }}
         >
-          <div className="border-b border-[#D4A447]/20 bg-[#063C34]/40 px-6 py-4 text-center">
-            <div className="inline-flex items-center gap-2">
-              <HandHeart className="h-4 w-4 text-[#7DCFB8]" />
-
-              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#7DCFB8]">
-                Support Ballantyne Islamic Center
-              </p>
-            </div>
-          </div>
-
-          <div className="p-5 text-center sm:p-9">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#D4A447]/30 bg-[#D4A447]/10">
-              <HandHeart className="h-6 w-6 text-[#F5DFA0]" />
-            </div>
-
-            <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.22em] text-[#7DCFB8]">
-              Monthly Giving
-            </p>
-
-            <h2
-              id="donate-heading"
-              className="mx-auto mt-3 max-w-2xl font-serif text-3xl font-semibold leading-tight text-[#FFFDF7] sm:text-4xl md:text-5xl"
-            >
-              Sadaqah Jariyah
-            </h2>
-
-            <p className="monthly-text-shimmer mt-2 bg-gradient-to-r from-[#D4A447] via-[#FFF1BC] to-[#D4A447] bg-[length:220%_100%] bg-clip-text font-serif text-xl font-semibold text-transparent sm:text-2xl">
-              One Month at a Time
-            </p>
-
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
-              Your monthly contribution helps sustain Jumu&apos;ah, Islamic
-              programs, community activities, and our journey toward a permanent
-              masjid, In Sha Allah.
-            </p>
-
-            <div className="mx-auto mt-8 max-w-xl">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E0B75C]">
-                Choose a Monthly Amount
-              </p>
-
-              {/* Mobile: 2 x 2 compact grid
-                  Desktop: 3 amounts + Other full width */}
-              <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {MONTHLY_DONATION_OPTIONS.map((amount) => (
-                  <a
-                    key={amount}
-                    href={DONATE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Donate ${amount} monthly to Ballantyne Islamic Center`}
-                    className="group relative min-h-[108px] overflow-hidden rounded-2xl border border-[#D4A447]/30 bg-[#073F36] px-3 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition duration-200 hover:-translate-y-1 hover:border-[#D4A447]/65 hover:bg-[#0A493D] hover:shadow-[0_14px_32px_rgba(0,0,0,0.22)] sm:min-h-[118px] sm:py-5"
-                  >
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A447]/55 to-transparent" />
-
-                    <div className="flex h-full flex-col items-center justify-center">
-                      <span className="block font-serif text-2xl font-semibold text-[#F5DFA0] sm:text-3xl">
-                        {amount}
-                      </span>
-
-                      <span className="mt-1.5 block text-[10px] font-bold uppercase tracking-[0.16em] text-[#A7D7C5]">
-                        Monthly
-                      </span>
-                    </div>
-                  </a>
-                ))}
-
-                <a
-                  href={DONATE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Choose another monthly donation amount"
-                  className="group relative min-h-[108px] overflow-hidden rounded-2xl border border-white/10 bg-[#073F36] px-4 py-4 text-center transition duration-200 hover:-translate-y-0.5 hover:border-[#D4A447]/45 hover:bg-[#0A493D] sm:col-span-3 sm:min-h-0 sm:px-5 sm:text-left"
-                >
-                  <div className="flex h-full flex-col items-center justify-center sm:flex-row sm:justify-between">
-                    <div>
-                      <p className="font-semibold text-[#FFFDF7]">
-                        Other Amount
-                      </p>
-
-                      <p className="mt-1 hidden text-xs text-[#BDD3C8] sm:block">
-                        Choose the monthly amount that works best for you.
-                      </p>
-                    </div>
-
-                    <ArrowRight className="mt-2 h-5 w-5 shrink-0 text-[#E0B75C] transition-transform duration-200 group-hover:translate-x-1 sm:mt-0" />
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            {/* Give Monthly */}
-
-            <a
-              href={DONATE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative mx-auto mt-7 inline-flex w-[88%] max-w-sm overflow-hidden rounded-full bg-[#D4A447] px-8 py-4 text-base font-bold text-[#063C34] shadow-[0_12px_30px_rgba(212,164,71,0.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#E0B75C] hover:shadow-[0_16px_36px_rgba(212,164,71,0.3)] sm:w-auto"
-            >
-              <span
-                aria-hidden="true"
-                className="donation-button-shimmer pointer-events-none absolute inset-y-0 w-24 bg-gradient-to-r from-transparent via-white/45 to-transparent"
-              />
-
-              <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
-                <HandHeart className="h-5 w-5" />
-                DONATE
-              </span>
-            </a>
-
-            <p className="mx-auto mt-4 max-w-lg px-2 text-xs leading-relaxed text-[#BDD3C8]">
-              Secure giving through PayPal. Select{" "}
-              <span className="font-semibold text-[#A7D7C5]">
-                Monthly
-              </span>{" "}
-              to start your recurring contribution.
-            </p>
-
-            <div className="mx-auto mt-7 max-w-xl rounded-2xl border border-[#D4A447]/20 bg-[#063C34]/45 p-5">
-              <p className="font-serif text-lg font-semibold text-[#F5DFA0]">
-                Your Monthly Support Makes a Difference
-              </p>
-
-              <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
-                Consistent monthly giving helps sustain Jumu&apos;ah, Islamic
-                education, youth programs, community services, and our journey
-                toward a permanent masjid.
-              </p>
-            </div>
-
-            <p className="mt-5 text-sm leading-relaxed text-[#BDD3C8]">
-              Prefer to give once?{" "}
-              <a
-                href={DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#F5DFA0] underline decoration-[#D4A447]/45 underline-offset-4 transition hover:text-[#FFFDF7]"
-              >
-                Choose One-Time on PayPal
-              </a>
-            </p>
-          </div>
-
-          {/* ZELLE */}
-
-          <div className="border-t border-[#D4A447]/20 bg-[#063C34]/45 p-5 sm:p-8">
-            <div className="flex items-start gap-3 text-left sm:gap-4">
-              <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D4A447]/28 bg-[#0B4C40]">
-                <Landmark className="h-5 w-5 text-[#E0B75C]" />
-              </span>
-
-              <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#A7D7C5]">
-                  Give by Zelle
-                </p>
-
-                <div
-                  className="mt-4 rounded-2xl border p-4"
-                  style={{
-                    borderColor: "rgba(196,124,26,0.28)",
-                    background: "rgba(196,124,26,0.08)",
-                  }}
-                >
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E0B75C]">
-                    Important Note
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
-                    Donations are received through Carolina Muslim Development
-                    Fund for the Ballantyne Islamic Center / Masjid Ballantyne
-                    project. For your security, please verify the recipient name
-                    matches exactly before completing your transfer.
-                  </p>
-                </div>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-sm font-medium text-[#BDD3C8]">
-                      Recipient
-                    </p>
-
-                    <p className="mt-2 text-base font-semibold leading-snug text-[#FFFDF7] sm:text-lg">
-                      {ZELLE_RECIPIENT}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-sm font-medium text-[#BDD3C8]">
-                      Zelle Tag
-                    </p>
-
-                    <p className="mt-2 font-mono text-xl font-bold tracking-wide text-[#F5DFA0] sm:text-2xl">
-                      {ZELLE_TAG}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-[#073F36] p-4">
-                    <p className="text-sm font-medium text-[#BDD3C8]">
-                      Memo
-                    </p>
-
-                    <p className="mt-2 text-base font-semibold text-[#FFFDF7] sm:text-lg">
-                      {ZELLE_MEMO}
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-sm leading-relaxed text-[#BDD3C8]">
-                  ⚠ For your security, please verify the recipient name before
-                  sending.
-                </p>
-              </div>
-            </div>
-          </div>
+          <HandHeart aria-hidden="true" className="mx-auto h-8 w-8 text-[#E5C37C]" />
+          <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#A7D7C5]">Give for the sake of Allah</p>
+          <h2 id="donate-heading" className="mx-auto mt-4 max-w-2xl text-3xl font-medium leading-tight text-[#FFFDF7] sm:text-4xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            Support our masjid.<br /><span className="text-[#ECD4A0]">Nurture our community.</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-[#DCEBE4] sm:text-base">Help sustain Friday Jumu’ah and establish a permanent place of prayer for our community in Ballantyne, In Sha Allah.</p>
+          <Link href="/donate" className="mx-auto mt-6 inline-flex min-h-13 w-full max-w-sm items-center justify-center gap-2 rounded-xl bg-[#D4A447] px-6 py-4 text-base font-semibold text-[#063C34] transition-colors hover:bg-[#E0B75C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ECD4A0] sm:w-auto">
+            Donate to the Masjid <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#BDD3C8]">Give once or support monthly. May Allah accept your generosity and place barakah in your wealth and family.</p>
         </section>
 
+        <figure className="mt-8 overflow-hidden rounded-2xl border border-[#D4A447]/25 bg-[#0A4539]">
+          <div className="grid grid-cols-2 gap-1 sm:grid-cols-3">
+            <div className="relative col-span-2 aspect-[4/3] sm:col-span-1 sm:aspect-[3/4]">
+              <Image src="/images/community/jummah-prayer-ballantyne-charlotte.jpeg" alt="Congregation listening to the Friday khutbah at Ballantyne Islamic Center’s interim venue" fill sizes="(max-width: 639px) 100vw, 240px" className="object-cover object-bottom" />
+            </div>
+            <div className="relative aspect-square sm:aspect-[3/4]">
+              <Image src="/images/community/indian-land-muslim-community.jpeg" alt="Community members gathering on prayer mats in the Jumu’ah hall" fill sizes="(max-width: 639px) 50vw, 240px" className="object-cover object-bottom" />
+            </div>
+            <div className="relative aspect-square sm:aspect-[3/4]">
+              <Image src="/images/community/ballantyne-congregation.jpeg" alt="Worshippers praying together at the interim venue" fill sizes="(max-width: 639px) 50vw, 240px" className="object-cover object-bottom" />
+            </div>
+          </div>
+          <figcaption className="px-5 py-4 text-center text-sm leading-relaxed text-[#DCEBE4]">Our community, united in prayer. Friday Jumu’ah at our interim venue as we work toward a permanent masjid, In Sha Allah.</figcaption>
+        </figure>
         {/* DIVIDER */}
 
         <div className="my-10 flex items-center gap-4">

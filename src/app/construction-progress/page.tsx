@@ -1,90 +1,56 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ConstructionHero } from "@/components/construction/ConstructionHero";
-import { JourneyTimeline } from "@/components/construction/JourneyTimeline";
-import { MilestonesPanel } from "@/components/construction/MilestonesPanel";
-import { SpendingBreakdown } from "@/components/construction/SpendingBreakdown";
-import { FundingSummary } from "@/components/construction/FundingSummary";
+import { ArrowUpRight, Building2, BookOpen, HeartHandshake, UsersRound } from "lucide-react";
+import styles from "./future.module.css";
 
-export default function ConstructionProgressPage() {
+export const metadata: Metadata = {
+  title: { absolute: "Our Future Masjid | Ballantyne Islamic Center" },
+  description: "Our vision for a permanent home for worship and community in Ballantyne. Learn about the goal and how to support our future masjid.",
+  alternates: { canonical: "https://www.ballantynemasjid.org/construction-progress" },
+  openGraph: {
+    title: "Our Future Masjid | Ballantyne Islamic Center",
+    description: "Together toward a permanent home for worship and community.",
+    url: "https://www.ballantynemasjid.org/construction-progress",
+  },
+};
+
+export default function FutureMasjidPage() {
   return (
-    <main className="bg-[linear-gradient(180deg,#fcfaf4_0%,#f7f4ea_22%,#ffffff_100%)]">
-      <section className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
-        <div className="space-y-6 sm:space-y-7">
-          <ConstructionHero />
-          <JourneyTimeline />
-          <MilestonesPanel />
-          <SpendingBreakdown />
-
-          <section className="rounded-[28px] border border-[#eadbb3] bg-[linear-gradient(135deg,#112d20_0%,#173a2a_50%,#1b4531_100%)] px-5 py-7 text-white shadow-[0_18px_50px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-[#f0dfab]">
-                  Support the Build
-                </div>
-                <h2 className="mt-2 font-serif text-2xl font-semibold text-[#fff8e8]">
-                  Help complete Phase 1 of the masjid
-                </h2>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-[#e8f0eb]">
-                  Every contribution helps move the project forward and
-                  establish a permanent house of Allah for prayer, learning,
-                  and community for generations to come.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/donate"
-                  className="inline-flex items-center justify-center rounded-full border border-[#ead8a5]/30 bg-[#d4af37] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0f3327] shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105"
-                >
-                  Donate Now
-                </Link>
-
-                <Link
-                  href="/construction-progress"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/8 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/12"
-                >
-                  View Progress
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          <FundingSummary />
-
-          <section className="rounded-[28px] border border-[#eadbb3] bg-[linear-gradient(135deg,#112d20_0%,#173a2a_50%,#1b4531_100%)] px-5 py-7 text-white shadow-[0_18px_50px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-[#f0dfab]">
-                  Continue Exploring
-                </div>
-                <h2 className="mt-2 font-serif text-2xl font-semibold text-[#fff8e8]">
-                  Return to the homepage or support this phase
-                </h2>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-[#e8f0eb]">
-                  Follow the broader masjid updates on the homepage, or continue
-                  supporting Phase 1 construction.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/8 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/12"
-                >
-                  Back to Home
-                </Link>
-
-                <Link
-                  href="/donate"
-                  className="inline-flex items-center justify-center rounded-full border border-[#ead8a5]/30 bg-[#d4af37] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0f3327] shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition hover:brightness-105"
-                >
-                  Donate for Phase 1
-                </Link>
-              </div>
-            </div>
-          </section>
-        </div>
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <span className={styles.heroIcon}><Building2 aria-hidden="true" size={28} /></span>
+        <p className={styles.eyebrow}>Our Future Masjid</p>
+        <h1>A place to worship.<br /><span>A community to call home.</span></h1>
+        <p className={styles.intro}>Together, we are working toward a permanent masjid for Ballantyne and our neighboring communities, In Sha Allah.</p>
+        <Link href="/donate" className={styles.primary}>Support our future masjid <ArrowUpRight aria-hidden="true" size={18} /></Link>
       </section>
+
+      <div className={styles.content}>
+        <section className={styles.today} aria-labelledby="today-heading">
+          <div><p className={styles.eyebrow}>Our community today</p><h2 id="today-heading">Gathering for Jumu’ah.<br />Growing together.</h2></div>
+          <div><p>Ballantyne Islamic Center currently gathers for Friday Jumu’ah prayer at our interim venue. These gatherings are the foundation of our community as we work toward a permanent home.</p><Link href="/jummah-prayer-ballantyne" className={styles.textLink}>Current Jumu’ah times &amp; location <ArrowUpRight aria-hidden="true" size={16} /></Link></div>
+        </section>
+
+        <section className={styles.vision} aria-labelledby="vision-heading">
+          <p className={styles.eyebrow}>The vision we share</p>
+          <h2 id="vision-heading">More than a building. A place to belong.</h2>
+          <p className={styles.sectionIntro}>Our hope is to create a lasting home where faith, learning, and community can flourish. These are aspirations for our future masjid.</p>
+          <div className={styles.grid}>
+            {[
+              { Icon: Building2, title: "A home for worship", text: "A dedicated place to gather in prayer and strengthen our connection to Allah." },
+              { Icon: BookOpen, title: "A place to learn", text: "Space for Qur’anic learning and Islamic education for future generations." },
+              { Icon: UsersRound, title: "A welcoming community", text: "A place where families, youth, neighbors, and new Muslims can find connection and support." },
+            ].map(({ Icon, title, text }) => <article className={styles.card} key={title}><Icon aria-hidden="true" size={26} /><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </section>
+
+        <section className={styles.support} aria-labelledby="support-heading">
+          <HeartHandshake aria-hidden="true" size={30} />
+          <div><p className={styles.eyebrow}>Help move the vision forward</p><h2 id="support-heading">Be part of our next chapter.</h2><p>Contribute toward our permanent masjid goal with a one-time or monthly gift. On PayPal, choose <strong>Our Future Masjid</strong> under “Use this donation for.” For Zelle, include <strong>Future Masjid</strong> as your memo.</p><Link href="/donate" className={styles.primary}>View ways to give <ArrowUpRight aria-hidden="true" size={18} /></Link></div>
+        </section>
+
+        <section className={styles.questions} aria-labelledby="questions-heading"><h2 id="questions-heading">Want to learn more about the project?</h2><p>Contact our team for current project information or to discuss how you can help.</p><Link href="/contact" className={styles.textLink}>Get in touch <ArrowUpRight aria-hidden="true" size={16} /></Link></section>
+      </div>
     </main>
   );
 }
