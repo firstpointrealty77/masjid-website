@@ -718,28 +718,6 @@ export default function HomePage() {
             </nav>
           </div>
         </section>
-
-        {/* FOOTER */}
-
-        <footer className="mx-auto mt-14 max-w-2xl border-t border-white/10 pt-8 text-center">
-          <p className="font-serif text-xl font-semibold text-[#FFFDF7]">
-            Ballantyne Islamic Center
-          </p>
-
-          <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7DCFB8]">
-            Masjid Ballantyne
-          </p>
-
-          <p className="mt-4 text-sm text-[#BDD3C8] sm:text-base">
-            Currently serving Friday Jumu&apos;ah prayer and growing together
-            toward our permanent masjid, In Sha Allah.
-          </p>
-
-          <p className="mt-3 text-xs text-white/30">
-            © {new Date().getFullYear()} Ballantyne Islamic Center. All rights
-            reserved.
-          </p>
-        </footer>
       </div>
     </main>
   );

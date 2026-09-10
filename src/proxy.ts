@@ -19,6 +19,7 @@ export function proxy(request: NextRequest) {
     pathname === "/" ||
     pathname === "/donate" ||
     pathname === "/contact" ||
+    pathname === "/privacy" ||
     pathname === "/construction-progress" ||
     publicSeoPaths ||
     publicAboutPaths ||
