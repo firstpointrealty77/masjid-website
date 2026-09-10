@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { Playfair_Display, Lora, Amiri } from "next/font/google";
 import { Header } from "@/components/layout/Header";
+import { Analytics } from "@/components/Analytics";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -105,6 +106,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${lora.variable} ${amiri.variable} min-h-screen bg-white text-slate-900 antialiased`}
       >
         <Header />
+        <Analytics />
 
         {/* Keeps page content below the fixed header */}
         <div className="min-h-[60vh]" style={{ paddingTop: "var(--header-h, 170px)" }}>{children}</div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export function CopyDetail({ value, label }: { value: string; label: string }) {
   const [status, setStatus] = useState("");
@@ -14,6 +15,9 @@ export function CopyDetail({ value, label }: { value: string; label: string }) {
     if (resetTimer.current) clearTimeout(resetTimer.current);
     try {
       await navigator.clipboard.writeText(value);
+      if (window.location.pathname === "/donate") {
+        trackEvent("donation_details_copy", { method: "zelle", detail: label === "Zelle tag" ? "recipient_tag" : "memo" });
+      }
       setStatus("Copied!");
       resetTimer.current = setTimeout(() => setStatus(""), 2500);
     } catch {
