@@ -25,7 +25,8 @@ export default function DonatePage() {
         <p className={styles.eyebrow}>Together for our community</p>
         <h1>Support our Jumu’ah.<br /> <span>Help build our future.</span></h1>
         <p className={styles.intro}>Your gift helps sustain Friday Jumu’ah and supports our journey toward a permanent masjid in Ballantyne, In Sha Allah. Every contribution is appreciated.</p>
-        <a href={PAYPAL_URL} target="_blank" rel="noopener noreferrer" className={`${styles.primary} ${styles.mobileGive}`}>Give through PayPal <ArrowUpRight aria-hidden="true" size={18} /><span className="sr-only"> (opens in a new tab)</span></a>
+        <a href={PAYPAL_URL} target="_blank" rel="noopener noreferrer" className={`${styles.primary} ${styles.mobileGive}`}>Donate now <ArrowUpRight aria-hidden="true" size={18} /><span className="sr-only"> (opens in a new tab)</span></a>
+        <p className={styles.heroPaymentMethods}>Debit or credit card &middot; PayPal</p>
       </section>
 
       <section aria-labelledby="giving-heading" className={styles.content}>
@@ -36,23 +37,23 @@ export default function DonatePage() {
         <div id="giving-options" className={styles.cards}>
           <section aria-labelledby="paypal-heading" className={`${styles.card} ${styles.paypal}`}>
             <div className={styles.cardTop}><span className={styles.icon}><Wallet aria-hidden="true" size={24} /></span><span className={styles.method}>Online giving</span></div>
-            <h3 id="paypal-heading">Give with PayPal</h3>
-            <p className={styles.description}>Make a one-time gift or become a monthly supporter. Choose your amount and purpose on PayPal.</p>
+            <h3 id="paypal-heading">Donate online</h3>
+            <p className={styles.description}>Give once or make a recurring donation to support our community.</p>
             <ol className={styles.steps}>
-              <li><span>1</span>Select One-Time, Monthly, or Yearly on PayPal.</li>
-              <li><span>2</span>Choose $30, $50, or $100. For $20 or another amount, select Other.</li>
-              <li><span>3</span>Choose your cause, then review the amount and frequency before confirming.</li>
+              <li><span>1</span>Choose One-Time, Monthly, or Yearly.</li>
+              <li><span>2</span>Select an amount, or choose Other to enter your own.</li>
+              <li><span>3</span>Choose your cause and review your donation before confirming.</li>
             </ol>
             <div className={styles.action}>
-              <a href={PAYPAL_URL} target="_blank" rel="noopener noreferrer" className={styles.primary}>Give through PayPal <ArrowUpRight aria-hidden="true" size={18} /><span className="sr-only"> (opens in a new tab)</span></a>
-              <p>Complete your donation on PayPal’s website.</p>
+              <a href={PAYPAL_URL} target="_blank" rel="noopener noreferrer" className={styles.primary}>Donate now <ArrowUpRight aria-hidden="true" size={18} /><span className="sr-only"> (opens in a new tab)</span></a>
+              <p className={styles.paymentMethods}>Debit or credit card &middot; PayPal</p><p>Secure checkout through PayPal.</p>
             </div>
           </section>
 
           <section aria-labelledby="zelle-heading" className={styles.card}>
             <div className={styles.cardTop}><span className={styles.icon}><Landmark aria-hidden="true" size={24} /></span><span className={styles.method}>Through your bank</span></div>
-            <h3 id="zelle-heading">Give with Zelle</h3>
-            <p className={styles.description}>Prefer to give through your bank? Use the details below in Zelle.</p>
+            <h3 id="zelle-heading">Donate with Zelle</h3>
+            <p className={styles.description}>Send your donation through your bank&apos;s app using the Zelle details below.</p>
             <dl className={styles.details}>
               <div><dt>Recipient</dt><dd>Carolina Muslim Development Fund</dd></div>
               <div><dt>Zelle tag</dt><dd><CopyDetail value="bicc10935" label="Zelle tag" /></dd></div>
@@ -64,7 +65,7 @@ export default function DonatePage() {
 
         <aside className={styles.recipient} aria-labelledby="recipient-heading">
           <Info aria-hidden="true" size={21} />
-          <div><h2 id="recipient-heading">Your donation supports BIC</h2><p><strong>Carolina Muslim Development Fund</strong> receives donations for the Ballantyne Islamic Center / Masjid Ballantyne project. This is the recipient name you’ll see on PayPal and Zelle. Questions? <Link href="/contact" className="underline underline-offset-4">Contact our team.</Link></p></div>
+          <div><h2 id="recipient-heading">Who receives your donation?</h2><p><strong>Carolina Muslim Development Fund</strong> receives donations for the Ballantyne Islamic Center / Masjid Ballantyne project. This is the recipient name you’ll see on PayPal and Zelle. Questions? <Link href="/contact" className="underline underline-offset-4">Contact our team.</Link></p></div>
         </aside>
 
         <section aria-labelledby="purpose-heading" className={styles.purposes}>
