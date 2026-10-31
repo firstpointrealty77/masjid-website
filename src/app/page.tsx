@@ -22,7 +22,7 @@ const PAGE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
 const SHARE_TITLE = "Ballantyne Islamic Center | Jumu'ah Prayer";
 
 const PAGE_DESCRIPTION =
-  "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah. Khutbah begins at 1:30 PM.";
+  "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah. Khutbah begins at 1:00 PM.";
 
 const SHARE_DESCRIPTION =
   "Friday Jumu'ah prayer and community updates as we grow together toward our permanent masjid, In Sha Allah.";
@@ -30,8 +30,8 @@ const SHARE_DESCRIPTION =
 const TEMPORARY_ADDRESS_LINE_1 = "10562 Providence Rd W";
 const TEMPORARY_ADDRESS_LINE_2 = "Charlotte, NC 28277";
 
-const KHUTBAH_TIME = "1:30 PM";
-const SALAH_TIME = "1:55 PM";
+const KHUTBAH_TIME = "1:00 PM";
+const SALAH_TIME = "1:25 PM";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
@@ -217,18 +217,18 @@ const structuredData = {
       name: "Friday Jumu'ah Prayer — Ballantyne Islamic Center",
 
       description:
-        "Weekly Friday Jumu'ah prayer serving the Muslim community of Ballantyne, Fort Mill, Indian Land, and South Charlotte. Khutbah begins at 1:30 PM. Jumu'ah Salah begins at 1:55 PM. Kindly arrive by 1:25 PM.",
+        "Weekly Friday Jumu'ah prayer serving the Muslim community of Ballantyne, Fort Mill, Indian Land, and South Charlotte. Khutbah begins at 1:00 PM. Jumu'ah Salah begins at 1:25 PM. Kindly arrive by 12:55 PM.",
 
-      startDate: "2026-07-03T13:30:00-04:00",
-      endDate: "2026-07-03T14:30:00-04:00",
+      startDate: "2026-11-06T13:00:00-05:00",
+      endDate: "2026-11-06T14:00:00-05:00",
 
       eventSchedule: {
         "@type": "Schedule",
-        startDate: "2026-07-03",
+        startDate: "2026-11-06",
         repeatFrequency: "P1W",
         byDay: "https://schema.org/Friday",
-        startTime: "13:30",
-        endTime: "14:30",
+        startTime: "13:00",
+        endTime: "14:00",
       },
 
       eventAttendanceMode:
@@ -370,7 +370,7 @@ export default function HomePage() {
 
               <div className="pt-0.5">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#7DCFB8]">
-                  Kindly arrive by 1:25 PM
+                  Kindly arrive by 12:55 PM
                 </p>
 
                 <p className="mt-1 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
