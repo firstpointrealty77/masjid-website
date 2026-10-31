@@ -452,12 +452,12 @@ export default function HomePage() {
 
         {/* CTA */}
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
           <a
             href={GOOGLE_MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D4A447] px-8 py-3.5 font-semibold text-[#063C34] shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#E0B75C] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-transparent bg-[#D4A447] px-4 py-3.5 text-sm font-semibold sm:px-8 sm:text-base text-[#063C34] shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#E0B75C] sm:w-auto"
           >
             <Navigation className="h-5 w-5" />
             Get Directions
@@ -468,11 +468,19 @@ export default function HomePage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Join the Ballantyne Islamic Center WhatsApp community"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#A7D7C5] bg-[#A7D7C5] px-8 py-3.5 font-semibold text-[#063C34] shadow-[0_10px_28px_rgba(167,215,197,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#C4E8D8] hover:shadow-[0_14px_34px_rgba(167,215,197,0.28)] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#A7D7C5] bg-[#A7D7C5] px-4 py-3.5 text-sm font-semibold sm:px-8 sm:text-base text-[#063C34] shadow-[0_10px_28px_rgba(167,215,197,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#C4E8D8] hover:shadow-[0_14px_34px_rgba(167,215,197,0.28)] sm:w-auto"
           >
             <MessageCircle className="h-5 w-5" />
             Join WhatsApp Community
           </a>
+
+          <Link
+            href="/donate"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#F6EBD5] bg-[#F6EBD5] px-4 py-3.5 text-sm font-semibold sm:px-8 sm:text-base text-[#063C34] shadow-lg transition duration-200 hover:-translate-y-0.5 hover:border-[#FFF8EA] hover:bg-[#FFF8EA] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5DFA0] sm:w-auto"
+          >
+            <HandHeart aria-hidden="true" className="h-5 w-5" />
+            Donate
+          </Link>
         </div>
 
         <p className="mx-auto mt-5 max-w-xl text-center text-sm leading-relaxed text-[#BDD3C8]">
