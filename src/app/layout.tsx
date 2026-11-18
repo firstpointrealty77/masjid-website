@@ -5,6 +5,7 @@ import { Playfair_Display, Lora, Amiri } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/Analytics";
+import { TemporaryPrayerBanner } from "@/components/layout/TemporaryPrayerBanner";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -110,7 +111,10 @@ export default function RootLayout({
         <Analytics />
 
         {/* Keeps page content below the fixed header */}
-        <div className="min-h-[60vh]" style={{ paddingTop: "var(--header-h, 170px)" }}>{children}</div>
+        <div className="min-h-[60vh]" style={{ paddingTop: "var(--header-h, 170px)" }}>
+          <TemporaryPrayerBanner />
+          {children}
+        </div>
 
         <Footer />
 

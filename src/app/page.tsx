@@ -34,7 +34,7 @@ const KHUTBAH_TIME = "1:00 PM";
 const SALAH_TIME = "1:25 PM";
 
 const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=10562%20Providence%20Rd%20W%2C%20Charlotte%2C%20NC%2028277";
+  "https://www.google.com/maps/dir/?api=1&destination=15139%20Ballancroft%20Pkwy%2C%20Charlotte%2C%20NC%2028277";
 
 const WHATSAPP_URL =
   "https://chat.whatsapp.com/EcIDT1sYYqbBozdH4AMk9h";
@@ -409,14 +409,18 @@ export default function HomePage() {
               <div className="min-w-0 flex-1 text-left">
                 <span className="inline-flex rounded-full border border-[#4DB89A]/35 bg-[#4DB89A]/12 px-3 py-1">
                   <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#7DCFB8]">
-                    Friday Prayer Venue
+                    Jumu&apos;ah · November 20 &amp; 27, 2026
                   </p>
                 </span>
 
                 <address className="mt-4 font-serif text-xl font-semibold leading-snug not-italic text-[#FFFDF7] sm:text-3xl">
-                  {TEMPORARY_ADDRESS_LINE_1}
+                  Holiday Inn Express &mdash; Ballantyne
                   <br />
-                  {TEMPORARY_ADDRESS_LINE_2}
+                  <span className="text-base font-normal sm:text-xl">
+                    15139 Ballancroft Pkwy
+                    <br />
+                    {TEMPORARY_ADDRESS_LINE_2}
+                  </span>
                 </address>
 
                 <a
@@ -429,11 +433,10 @@ export default function HomePage() {
                   View on Google Maps
                 </a>
 
-                <p className="mt-4 text-sm leading-relaxed text-[#DCEBE4] sm:text-base">
-                  This is our current Friday Jumu&apos;ah venue. Join us every
-                  Friday as we grow together toward our permanent masjid, In Sha
-                  Allah.
-                </p>
+                <div className="mt-4 border-t border-white/15 pt-4 text-sm leading-relaxed text-[#C0D0CA]">
+                  <p>Usual venue &middot; {TEMPORARY_ADDRESS_LINE_1}</p>
+                  <p>Unavailable November 20 &amp; 27</p>
+                </div>
 
                 <div className="mt-4 rounded-2xl border border-[#D4A447]/18 bg-[#073F36]/55 p-4">
                   <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E0B75C]">

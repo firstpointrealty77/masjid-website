@@ -1,0 +1,71 @@
+.notice {
+  position: fixed;
+  inset: 0;
+  width: min(34rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: 1rem auto auto;
+  overflow-y: auto;
+  padding: 1.25rem;
+  border: 1px solid #d4a447;
+  border-top: 4px solid #d4a447;
+  border-radius: 1rem;
+  background: #0a3a34;
+  color: white;
+  box-shadow: 0 20px 60px #0005;
+}
+.notice[open] { animation: drop-in 250ms ease-out; }
+.notice::backdrop { background: #0007; }
+.heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.eyebrow { color: #f3d789; font-size: 0.875rem; font-weight: 600; }
+.close {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background: #ffffff14;
+  color: white;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+.title { margin-top: 0.5rem; font-size: clamp(1.25rem, 4vw, 1.5rem); font-weight: 600; line-height: 1.35; }
+.schedule { margin-top: 0.75rem; color: #f3d789; font-weight: 600; line-height: 1.6; }
+.venue { margin-top: 1rem; font-weight: 600; }
+.address { margin-top: 0.25rem; line-height: 1.6; }
+.explanation { margin-top: 0.75rem; color: #e0ece8; font-size: 0.875rem; line-height: 1.6; }
+.directions {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  background: #f3d789;
+  color: #0a3a34;
+  text-align: center;
+  font-weight: 600;
+}
+.reopen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 0.75rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #d4a447;
+  background: #fff3d6;
+  color: #0a3a34;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+}
+.viewDetails { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.close:focus-visible, .directions:focus-visible, .reopen:focus-visible { outline: 3px solid #d4a447; outline-offset: 3px; }
+@keyframes drop-in {
+  from { opacity: 0; transform: translateY(-2rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .notice[open] { animation: none; }
+}
